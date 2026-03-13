@@ -1,6 +1,7 @@
 import { apiClient } from './apiClient';
 
-export type PurchaseOrderStatus = 'draft' | 'pending' | 'approved' | 'received' | 'cancelled';
+export type PurchaseOrderStatus = 'draft' | 'sent' | 'confirmed' | 'received' | 'cancelled'
+// Mettre à jour normalizePurchaseOrderStatus() en conséquence;
 
 export interface GoodsReceipt {
   id: string;
@@ -56,8 +57,8 @@ const extractList = <T>(payload: unknown): T[] => {
 
 const normalizePurchaseOrderStatus = (value: unknown): PurchaseOrderStatus => {
   const status = toText(value).toLowerCase();
-  if (status === 'pending') return 'pending';
-  if (status === 'approved') return 'approved';
+  if (status === 'sent') return 'sent';
+  if (status === 'confirmed') return 'confirmed';
   if (status === 'received') return 'received';
   if (status === 'cancelled') return 'cancelled';
   return 'draft';

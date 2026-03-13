@@ -299,32 +299,32 @@ const normalizeAnalytics = (payload: unknown): AnalyticsData => {
   return {
     movements_chart: Array.isArray(record.movements_chart)
       ? record.movements_chart.map((item) => ({
-          date: normalizeDate(item.date),
-          stock_in: Math.trunc(toNumber(item.stock_in)),
-          stock_out: Math.trunc(toNumber(item.stock_out)),
-        }))
+        date: normalizeDate(item.date),
+        stock_in: Math.trunc(toNumber(item.stock_in)),
+        stock_out: Math.trunc(toNumber(item.stock_out)),
+      }))
       : [],
     by_category: Array.isArray(record.by_category)
       ? record.by_category.map((item) => ({
-          category: typeof item.category === 'string' ? item.category : '',
-          total_products: Math.trunc(toNumber(item.total_products)),
-          total_stock: Math.trunc(toNumber(item.total_stock)),
-          percentage: toNumber(item.percentage),
-        }))
+        category: typeof item.category === 'string' ? item.category : '',
+        total_products: Math.trunc(toNumber(item.total_products)),
+        total_stock: Math.trunc(toNumber(item.total_stock)),
+        percentage: toNumber(item.percentage),
+      }))
       : [],
     top_products: Array.isArray(record.top_products)
       ? record.top_products.map((item) => ({
-          product_name: typeof item.product_name === 'string' ? item.product_name : '',
-          total_movements: Math.trunc(toNumber(item.total_movements)),
-          stock_in: Math.trunc(toNumber(item.stock_in)),
-          stock_out: Math.trunc(toNumber(item.stock_out)),
-        }))
+        product_name: typeof item.product_name === 'string' ? item.product_name : '',
+        total_movements: Math.trunc(toNumber(item.total_movements)),
+        stock_in: Math.trunc(toNumber(item.stock_in)),
+        stock_out: Math.trunc(toNumber(item.stock_out)),
+      }))
       : [],
   };
 };
 
 export const getInventoryStats = async (): Promise<InventoryStats> => {
-  const response = await apiClient.get('/api/admin/inventory/stats');
+  const response = await apiClient.get('/api/admin/inventory/stats/');
   return normalizeInventoryStats(response.data);
 };
 

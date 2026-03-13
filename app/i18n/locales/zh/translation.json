@@ -1,0 +1,892 @@
+{
+  "common": {
+    "search": "搜索...",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "add": "添加",
+    "loading": "加载中...",
+    "noResults": "未找到结果",
+    "confirm": "确认",
+    "back": "返回",
+    "next": "下一步",
+    "submit": "提交",
+    "appName": "KingKunta",
+    "adminDashboard": "管理控制台",
+    "allRightsReserved": "版权所有。",
+    "view": "查看",
+    "send": "发送",
+    "enable": "启用",
+    "update": "更新",
+    "items": "项目",
+    "today": "今天",
+    "refresh": "刷新",
+    "previous": "上一页",
+    "exportLogs": "导出日志",
+    "markAllRead": "全部标记为已读",
+    "clearAll": "清除全部"
+  },
+  "pages": {
+    "dashboard": {
+      "title": "控制台",
+      "subtitle": "业务指标概览",
+      "stats": {
+        "totalRevenue": "总收入",
+        "orders": "订单",
+        "customers": "客户",
+        "refunds": "退款",
+        "fromLastMonth": "较上月"
+      },
+      "charts": {
+        "sales": "销售概览",
+        "orders": "订单分析",
+        "orderStatuses": {
+          "completed": "已完成",
+          "processing": "处理中",
+          "pending": "待处理",
+          "cancelled": "已取消"
+        }
+      },
+      "recentOrders": {
+        "title": "最近订单",
+        "subtitle": "最新客户订单及其状态",
+        "table": {
+          "orderId": "订单ID",
+          "customer": "客户",
+          "product": "产品",
+          "amount": "金额",
+          "status": "状态",
+          "date": "日期"
+        }
+      },
+      "inventory": {
+        "title": "库存概览",
+        "totalProducts": "产品总数",
+        "stockIn": "入库",
+        "stockOut": "出库",
+        "recentMovements": "最近库存变动",
+        "product": "产品",
+        "type": "类型",
+        "quantity": "数量",
+        "reference": "参考",
+        "date": "日期",
+        "in": "入库",
+        "out": "出库",
+        "allMovements": "查看所有变动"
+      }
+    },
+    "inventory": {
+      "title": "库存管理",
+      "subtitle": "库存和变动概览",
+      "stats": {
+        "totalProducts": "产品总数",
+        "totalValue": "总价值",
+        "stockIn": "入库（本月）",
+        "stockOut": "出库（本月）",
+        "lowStock": "低库存商品",
+        "outOfStock": "缺货"
+      },
+      "alerts": {
+        "title": "低库存警报",
+        "critical": "严重库存",
+        "warning": "警告级别",
+        "items": "低于最低值的商品",
+        "reorderPoint": "补货点"
+      },
+      "movements": {
+        "title": "库存变动",
+        "filter": "按类型筛选",
+        "all": "所有变动",
+        "in": "入库",
+        "out": "出库",
+        "byProduct": "按产品",
+        "byDate": "按日期",
+        "export": "导出报告"
+      }
+    },
+    "settings": {
+      "title": "设置",
+      "subtitle": "管理您的账户设置和首选项",
+      "sections": {
+        "account": "账户设置",
+        "notifications": "通知",
+        "security": "安全",
+        "preferences": "首选项"
+      },
+      "labels": {
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "电子邮件",
+        "phone": "电话号码",
+        "bio": "简介"
+      },
+      "buttons": {
+        "save": "保存更改",
+        "saved": "已保存！",
+        "cancel": "取消"
+      },
+      "notifications": {
+        "email": "电子邮件通知",
+        "push": "推送通知",
+        "sms": "短信通知",
+        "marketing": "营销邮件",
+        "emailDesc": "通过电子邮件接收通知",
+        "pushDesc": "接收浏览器推送通知",
+        "smsDesc": "通过短信接收通知",
+        "marketingDesc": "接收促销优惠和更新"
+      },
+      "security": {
+        "currentPassword": "当前密码",
+        "newPassword": "新密码",
+        "confirmPassword": "确认新密码",
+        "updatePassword": "更新密码",
+        "enable2FA": "启用双重验证",
+        "twoFactorAuth": "双因素认证",
+        "addSecurity": "为您的账户添加额外的安全保护"
+      },
+      "preferences": {
+        "language": "语言",
+        "timezone": "时区",
+        "dateFormat": "日期格式",
+        "timeFormat": "时间格式",
+        "currency": "货币",
+        "defaultDashboard": "默认控制台",
+        "selectLanguage": "选择语言",
+        "selectTimezone": "选择时区",
+        "selectDateFormat": "选择日期格式",
+        "selectTimeFormat": "选择时间格式",
+        "selectCurrency": "选择货币",
+        "selectDashboard": "选择默认控制台"
+      }
+    },
+    "products": {
+      "title": "产品",
+      "subtitle": "管理您的产品库存",
+      "buttons": {
+        "addProduct": "添加产品",
+        "manageCategories": "管理分类",
+        "add": "添加"
+      },
+      "categories": {
+        "title": "分类管理",
+        "addCategory": "添加分类",
+        "form": {
+          "name": "名称",
+          "description": "描述"
+        },
+        "messages": {
+          "createSuccess": "分类创建成功",
+          "updateSuccess": "分类更新成功",
+          "deleteSuccess": "分类删除成功",
+          "createError": "创建分类时出错",
+          "updateError": "更新分类时出错",
+          "deleteError": "删除分类时出错",
+          "deleteConfirm": "您确定要删除此分类吗？",
+          "fetchError": "加载分类失败"
+        }
+      },
+      "search": {
+        "placeholder": "搜索产品..."
+      },
+      "filters": {
+        "allCategories": "所有分类"
+      },
+      "table": {
+        "product": "产品",
+        "category": "分类",
+        "price": "价格",
+        "stock": "库存",
+        "status": "状态",
+        "actions": "操作"
+      },
+      "status": {
+        "active": "活跃",
+        "inactive": "非活跃"
+      },
+      "add": {
+        "title": "添加产品",
+        "subtitle": "创建新产品列表",
+        "backToProducts": "返回产品",
+        "saveProduct": "保存产品",
+        "cancel": "取消",
+        "basicInfo": "基本信息",
+        "productName": "产品名称 *",
+        "sku": "SKU *",
+        "category": "分类 *",
+        "description": "描述 *",
+        "pricing": "定价",
+        "price": "价格 *",
+        "costPrice": "成本价",
+        "discount": "折扣 (%)",
+        "inventory": "库存",
+        "stockQuantity": "库存数量 *",
+        "minStock": "最低库存",
+        "weight": "重量 (kg)",
+        "status": "状态",
+        "features": "产品特性",
+        "addFeature": "添加特性",
+        "enterFeature": "输入特性",
+        "productStatus": "状态",
+        "active": "活跃",
+        "inactive": "非活跃",
+        "draft": "草稿",
+        "productImages": "产品图片",
+        "upload": "上传",
+        "uploadLimit": "最多上传5张图片。每张最大2MB。",
+        "organization": "组织",
+        "brand": "品牌",
+        "tags": "标签",
+        "addCategory": "添加分类"
+      },
+      "details": {
+        "title": "产品详情",
+        "subtitle": "查看和管理产品信息",
+        "backToProducts": "返回产品",
+        "delete": "删除",
+        "editProduct": "编辑产品",
+        "productImage": "产品图片",
+        "sku": "SKU",
+        "stock": "库存",
+        "units": "个",
+        "features": "特性",
+        "quantity": "数量",
+        "addToCart": "加入购物车",
+        "relatedProducts": "相关产品",
+        "outOfStock": "缺货",
+        "rating": "评分",
+        "reviews": "评论"
+      },
+      "grid": {
+        "title": "产品网格",
+        "subtitle": "以网格视图查看产品",
+        "searchPlaceholder": "搜索产品...",
+        "allCategories": "所有分类",
+        "sortByPrice": "按价格排序",
+        "priceLowToHigh": "价格：低到高",
+        "priceHighToLow": "价格：高到低",
+        "outOfStock": "缺货",
+        "inStock": "有库存",
+        "edit": "编辑",
+        "favorite": "收藏"
+      }
+    },
+    "orders": {
+      "title": "订单",
+      "subtitle": "管理客户订单和履约",
+      "search": {
+        "placeholder": "搜索订单..."
+      },
+      "filters": {
+        "allStatus": "所有状态",
+        "pending": "待处理",
+        "processing": "处理中",
+        "shipped": "已发货",
+        "delivered": "已送达",
+        "cancelled": "已取消"
+      },
+      "table": {
+        "orderId": "订单ID",
+        "customer": "客户",
+        "items": "项目",
+        "total": "总计",
+        "status": "状态",
+        "date": "日期",
+        "actions": "操作"
+      },
+      "itemsCount": "项目"
+    },
+    "customers": {
+      "title": "客户",
+      "subtitle": "管理您的客户关系",
+      "search": {
+        "placeholder": "搜索客户..."
+      },
+      "filters": {
+        "allCustomers": "所有客户",
+        "active": "活跃",
+        "inactive": "非活跃",
+        "sortJoinDate": "按加入日期排序",
+        "sortOrders": "按订单数排序",
+        "sortTotalSpent": "按总消费排序"
+      },
+      "details": {
+        "orders": "订单",
+        "totalSpent": "总消费",
+        "joined": "加入日期"
+      },
+      "buttons": {
+        "viewProfile": "查看资料",
+        "sendMessage": "发送消息"
+      },
+      "status": {
+        "active": "活跃",
+        "inactive": "非活跃"
+      }
+    },
+    "users": {
+      "title": "用户",
+      "subtitle": "管理用户账户和角色",
+      "buttons": {
+        "addUser": "添加用户"
+      },
+      "search": {
+        "placeholder": "搜索用户..."
+      },
+      "filters": {
+        "allRoles": "所有角色",
+        "allStatus": "所有状态",
+        "active": "活跃",
+        "inactive": "非活跃",
+        "pending": "待处理"
+      },
+      "table": {
+        "user": "用户",
+        "role": "角色",
+        "status": "状态",
+        "joinDate": "加入日期",
+        "lastLogin": "最后登录",
+        "actions": "操作"
+      },
+      "modal": {
+        "editRole": "编辑用户角色",
+        "user": "用户",
+        "currentRole": "当前角色",
+        "selectRole": "选择新角色",
+        "cancel": "取消",
+        "save": "保存更改"
+      }
+    },
+    "analytics": {
+      "title": "分析",
+      "subtitle": "全面的业务洞察和绩效指标",
+      "metrics": {
+        "totalRevenue": "总收入",
+        "totalOrders": "总订单数",
+        "newCustomers": "新客户",
+        "productsSold": "售出产品"
+      },
+      "charts": {
+        "revenueTrend": "收入趋势",
+        "salesByCategory": "分类销售",
+        "ordersVsCustomers": "订单数对新客户"
+      },
+      "tables": {
+        "topSelling": "畅销产品"
+      },
+      "table": {
+        "product": "产品",
+        "sales": "销售",
+        "revenue": "收入",
+        "performance": "绩效"
+      },
+      "changes": {
+        "increase": "增加",
+        "decrease": "减少"
+      },
+      "categories": {
+        "electronics": "电子产品",
+        "clothing": "服装",
+        "homeGarden": "家居园艺",
+        "sports": "运动",
+        "books": "书籍"
+      }
+    },
+    "events": {
+      "title": "事件",
+      "subtitle": "管理和跟踪所有公司事件",
+      "buttons": {
+        "createEvent": "创建事件",
+        "searchPlaceholder": "搜索事件...",
+        "allCategories": "所有分类"
+      },
+      "stats": {
+        "totalEvents": "事件总数",
+        "upcoming": "即将到来",
+        "totalAttendees": "总参与者",
+        "categories": "分类"
+      },
+      "table": {
+        "event": "事件",
+        "schedule": "日程",
+        "location": "位置",
+        "category": "分类",
+        "attendees": "参与者",
+        "status": "状态",
+        "actions": "操作"
+      },
+      "fields": {
+        "description": "描述",
+        "startingDate": "开始日期",
+        "endingDate": "结束日期",
+        "startingHours": "开始时间",
+        "endingHours": "结束时间"
+      },
+      "status": {
+        "upcoming": "即将到来",
+        "ongoing": "进行中",
+        "completed": "已完成"
+      },
+      "modals": {
+        "createTitle": "创建事件",
+        "editTitle": "编辑事件",
+        "detailsTitle": "事件详情",
+        "deleteTitle": "删除事件",
+        "filterByCategory": "按分类筛选",
+        "validationTitleDate": "标题和开始日期为必填项。",
+        "deleteConfirm": "确定要删除 {{title}} 吗？"
+      },
+      "errors": {
+        "invalidEventId": "该事件不可用，因为它的 ID 无效。"
+      },
+      "noEvents": "未找到符合条件的事件"
+    },
+    "activityLog": {
+      "title": "活动日志",
+      "subtitle": "跟踪所有用户操作和系统事件",
+      "summary": {
+        "totalActivities": "总活动数",
+        "activeUsers": "活跃用户",
+        "failedActions": "失败操作",
+        "categoriesCount": "类别"
+      },
+      "search": {
+        "placeholder": "搜索活动..."
+      },
+      "filters": {
+        "allCategories": "所有类别",
+        "allUsers": "所有用户",
+        "allStatus": "所有状态",
+        "allTime": "所有时间",
+        "today": "今天",
+        "thisWeek": "本周",
+        "thisMonth": "本月"
+      },
+      "table": {
+        "timestamp": "时间戳",
+        "user": "用户",
+        "action": "操作",
+        "category": "类别",
+        "description": "描述",
+        "ipAddress": "IP地址",
+        "status": "状态"
+      },
+      "noActivities": "未找到活动",
+      "showingEntries": "显示 {count} 条，共 {total} 条",
+      "exporting": "导出中..."
+    },
+    "notifications": {
+      "title": "通知",
+      "subtitle": "管理通知并保持更新",
+      "summary": {
+        "totalNotifications": "总通知数",
+        "highPriority": "高优先级",
+        "unread": "未读",
+        "read": "已读"
+      },
+      "search": {
+        "placeholder": "搜索通知..."
+      },
+      "filters": {
+        "allTypes": "所有类型",
+        "allPriority": "所有优先级",
+        "unreadOnly": "仅未读"
+      },
+      "types": {
+        "order": "订单",
+        "payment": "付款",
+        "product": "产品",
+        "user": "用户",
+        "system": "系统",
+        "email": "邮件",
+        "alert": "提醒",
+        "info": "信息"
+      },
+      "actions": {
+        "markAsRead": "标记为已读",
+        "delete": "删除"
+      },
+      "noNotifications": "未找到通知",
+      "showingNotifications": "显示 {count} 条，共 {total} 条"
+    },
+    "checkout": {
+      "title": "结账",
+      "subtitle": "完成您的订单",
+      "shippingAddress": "收货地址",
+      "fullName": "全名",
+      "address": "地址",
+      "city": "城市",
+      "zipCode": "邮编",
+      "phone": "电话",
+      "shippingMethod": "配送方式",
+      "standardShipping": "标准配送",
+      "expressShipping": "快递配送",
+      "nextDayDelivery": "次日达",
+      "deliveryDays": "工作日",
+      "tomorrow": "明天",
+      "paymentMethod": "付款方式",
+      "cardNumber": "卡号",
+      "expiryDate": "有效期",
+      "cvv": "CVV",
+      "nameOnCard": "持卡人姓名",
+      "securePayment": "您的付款信息已安全加密",
+      "orderSummary": "订单摘要",
+      "subtotal": "小计",
+      "shipping": "运费",
+      "tax": "税费",
+      "total": "总计"
+    },
+    "billing": {
+      "title": "账单",
+      "subtitle": "管理您的付款方式和账单",
+      "paymentMethods": "付款方式",
+      "addNewCard": "添加新卡",
+      "billingHistory": "账单历史",
+      "accountBalance": "账户余额",
+      "currentBalance": "当前余额",
+      "noOutstandingBalance": "无未结清余额",
+      "billingAddress": "账单地址",
+      "billingSettings": "账单设置",
+      "emailReceipts": "邮件收据",
+      "autoPay": "自动付款",
+      "invoice": "发票",
+      "description": "描述",
+      "amount": "金额",
+      "action": "操作"
+    },
+    "invoice": {
+      "title": "发票",
+      "backToBilling": "返回账单",
+      "billTo": "开票给",
+      "invoiceDate": "发票日期",
+      "dueDate": "到期日",
+      "description": "描述",
+      "qty": "数量",
+      "price": "价格",
+      "itemsTotal": "总计",
+      "thankYou": "感谢您的业务！",
+      "paymentDue": "请在发票日期后15天内付款。",
+      "questions": "有问题？请联系我们：",
+      "freeReturns": "30天内免费退货",
+      "securePayment": "安全付款处理",
+      "subtotal": "小计",
+      "shipping": "运费",
+      "tax": "税费",
+      "total": "总计"
+    },
+    "email": {
+      "title": "邮件",
+      "subtitle": "管理您的邮件和通信",
+      "compose": "撰写",
+      "inbox": "收件箱",
+      "starred": "已标星",
+      "sent": "已发送",
+      "drafts": "草稿",
+      "spam": "垃圾邮件",
+      "search": {
+        "placeholder": "搜索邮件..."
+      },
+      "labels": {
+        "work": "工作",
+        "personal": "个人",
+        "important": "重要"
+      },
+      "noEmails": "未找到邮件",
+      "attachments": "附件"
+    },
+    "chat": {
+      "title": "聊天",
+      "subtitle": "消息和通信",
+      "search": {
+        "placeholder": "搜索联系人..."
+      },
+      "online": "在线",
+      "typeMessage": "输入消息..."
+    },
+    "customerDetails": {
+      "title": "客户详情",
+      "subtitle": "查看和管理客户信息",
+      "backToCustomers": "返回客户",
+      "contactInformation": "联系信息",
+      "notes": "备注",
+      "quickActions": "快捷操作",
+      "viewAllOrders": "查看所有订单",
+      "downloadInvoice": "下载发票",
+      "viewAddressBook": "查看通讯录",
+      "editCustomer": "编辑客户",
+      "orderHistory": "订单历史",
+      "editNotes": "编辑备注",
+      "location": "位置"
+    },
+    "orderDetails": {
+      "title": "订单详情",
+      "subtitle": "查看和管理订单信息",
+      "backToOrders": "返回订单",
+      "orderProgress": "订单进度",
+      "orderItems": "订单商品",
+      "orderId": "订单ID",
+      "date": "日期",
+      "customer": "客户",
+      "email": "邮件",
+      "phone": "电话",
+      "total": "总计",
+      "status": "状态",
+      "shippingAddress": "收货地址",
+      "billingAddress": "账单地址",
+      "paymentMethod": "付款方式",
+      "orderInformation": "订单信息",
+      "orderActions": "订单操作",
+      "printInvoice": "打印发票",
+      "sendConfirmation": "发送确认邮件",
+      "refundOrder": "退款订单",
+      "trackPackage": "跟踪包裹",
+      "updateStatus": "更新状态",
+      "paid": "已付款",
+      "trackingNumber": "跟踪号",
+      "timeline": {
+        "orderPlaced": "已下单",
+        "processing": "处理中",
+        "shipped": "已发货",
+        "delivered": "已送达"
+      }
+    },
+    "roleManagement": {
+      "title": "角色管理",
+      "subtitle": "定义角色和管理权限",
+      "createRole": "创建角色",
+      "editRole": "编辑角色",
+      "roleName": "角色名称",
+      "description": "描述",
+      "permissions": "权限",
+      "usersAssigned": "已分配用户",
+      "permissionsCount": "权限",
+      "availablePermissions": "可用权限",
+      "cancel": "取消",
+      "saveChanges": "保存更改",
+      "deleteRole": "删除角色",
+      "roleColor": {
+        "admin": "管理员",
+        "manager": "经理",
+        "support": "支持",
+        "viewer": "查看者"
+      },
+      "permissionCategories": {
+        "dashboard": "控制台",
+        "products": "产品",
+        "orders": "订单",
+        "customers": "客户",
+        "users": "用户",
+        "billing": "账单"
+      }
+    },
+    "login": {
+      "brandTagline": "国王与王后的品牌",
+      "secureSignIn": "Kingkunta，一个唤醒我们每个人高贵气质的皇家品牌。戴上你的王冠，彰显你的风格与力量。",
+      "welcomeBack": "欢迎回来",
+      "subtitle": "登录以访问您的控制台。",
+      "identifierLabel": "邮箱或用户名",
+      "identifierPlaceholder": "admin@kingkunta.com",
+      "passwordLabel": "密码",
+      "passwordPlaceholder": "请输入密码",
+      "signIn": "登录",
+      "signingIn": "正在登录...",
+      "showPassword": "显示密码",
+      "hidePassword": "隐藏密码",
+      "validationMissingCredentials": "请输入邮箱/用户名和密码。",
+      "errorLoginFailed": "登录失败，请检查凭据后重试。",
+      "errorInvalidTokenRole": "已认证，但未返回有效的访问令牌或角色。",
+      "errorUnableConnect": "无法连接到后端。"
+    },
+    "promotions": {
+      "title": "促销和优惠券",
+      "subtitle": "Create, track and optimize your coupon campaigns",
+      "buttons": {
+        "createCoupon": "Create Coupon",
+        "generate": "Generate",
+        "previous": "Previous",
+        "next": "Next",
+        "cancel": "Cancel",
+        "saveChanges": "Save Changes"
+      },
+      "stats": {
+        "totalCoupons": "Total Coupons",
+        "active": "Active",
+        "scheduled": "Scheduled",
+        "expired": "Expired",
+        "discountsGiven": "discounts given"
+      },
+      "analytics": {
+        "title": "Coupons Analytics",
+        "usageOverTime": "Coupon Usage Over Time",
+        "discountsByType": "Discounts by Type",
+        "topPerformingCoupons": "Top Performing Coupons",
+        "rank": "Rank",
+        "code": "Code",
+        "usesHeader": "Uses",
+        "totalDiscount": "Total Discount",
+        "revenueGenerated": "Revenue Generated",
+        "uses": "uses",
+        "discounts": "discounts"
+      },
+      "filters": {
+        "searchPlaceholder": "Search by code...",
+        "statusAll": "All",
+        "statusActive": "Active",
+        "statusScheduled": "Scheduled",
+        "statusExpired": "Expired",
+        "statusDisabled": "Disabled",
+        "typeAll": "All Types",
+        "typePercentage": "Percentage",
+        "typeFixedAmount": "Fixed Amount",
+        "typeFreeShipping": "Free Shipping"
+      },
+      "table": {
+        "code": "Code",
+        "type": "Type",
+        "value": "Value",
+        "minOrder": "Min Order",
+        "usage": "Usage",
+        "validPeriod": "Valid Period",
+        "status": "Status",
+        "actions": "Actions",
+        "noCoupons": "No coupons found"
+      },
+      "typeLabels": {
+        "percentOff": "% Off",
+        "fixed": "Fixed",
+        "freeShip": "Free Ship",
+        "percentageLong": "Percentage",
+        "fixedAmountLong": "Fixed Amount",
+        "freeShippingLong": "Free Shipping"
+      },
+      "valueLabels": {
+        "free": "Free"
+      },
+      "statusLabels": {
+        "active": "Active",
+        "scheduled": "Scheduled",
+        "expired": "Expired",
+        "disabled": "Disabled"
+      },
+      "actions": {
+        "copyCode": "Copy code",
+        "duplicate": "Duplicate",
+        "edit": "Edit",
+        "delete": "Delete",
+        "toggleEnable": "Enable coupon",
+        "toggleDisable": "Disable coupon",
+        "createdSuccess": "Coupon created!",
+        "updatedSuccess": "Coupon updated!",
+        "deletedSuccess": "Coupon deleted!",
+        "duplicateSuccess": "Coupon duplicated!",
+        "toggleSuccess": "Coupon status updated!"
+      },
+      "modal": {
+        "createTitle": "Create Coupon",
+        "editTitle": "Edit Coupon",
+        "step1": "Step 1 - General Info",
+        "step2": "Step 2 - Conditions & Limits",
+        "fields": {
+          "code": "Code",
+          "codePlaceholder": "Leave empty to auto-generate",
+          "type": "Type",
+          "value": "Value",
+          "valuePlaceholderPercent": "e.g. 20 for 20%",
+          "valuePlaceholderFixed": "e.g. 10.00 for $10",
+          "minOrderAmount": "Min Order Amount",
+          "maxDiscountAmount": "Max Discount Amount",
+          "startDate": "Start Date",
+          "endDate": "End Date",
+          "usageLimit": "Usage Limit (total)",
+          "usageLimitPerUser": "Usage Limit per User",
+          "applicableTo": "Applicable To",
+          "allProducts": "All Products",
+          "specificCategories": "Specific Categories",
+          "specificProducts": "Specific Products",
+          "selectCategories": "Select categories",
+          "selectProducts": "Select products"
+        },
+        "validation": {
+          "typeRequired": "Coupon type is required.",
+          "valueRequired": "Value must be greater than 0.",
+          "percentageMax": "Percentage must be less than or equal to 100.",
+          "dateRequired": "Start date and end date are required.",
+          "endAfterStart": "End date must be after start date.",
+          "categoryRequired": "Please select at least one category.",
+          "productRequired": "Please select at least one product."
+        }
+      },
+      "deleteConfirm": {
+        "title": "Delete Coupon",
+        "message": "Are you sure you want to delete coupon {{code}}?",
+        "confirm": "Delete"
+      }
+    }
+  },
+  "nav": {
+    "dashboard": "控制台",
+    "analytics": "分析",
+    "customers": "客户",
+    "products": "产品",
+    "orders": "订单",
+    "inventory": "库存",
+    "inventoryOverview": "库存概览",
+    "stockMovements": "库存变动",
+    "lowStockAlerts": "低库存警报",
+    "events": "事件",
+    "billing": "账单",
+    "invoice": "发票",
+    "reports": "报告",
+    "email": "电子邮件",
+    "chat": "聊天",
+    "notifications": "通知",
+    "settings": "设置",
+    "help": "帮助",
+    "profile": "资料",
+    "activityLog": "活动日志",
+    "users": "用户",
+    "checkout": "结账",
+    "productList": "产品列表",
+    "productGrid": "产品网格",
+    "productDetails": "产品详情",
+    "addProduct": "添加产品",
+    "orderList": "订单列表",
+    "orderDetails": "订单详情",
+    "customerDetails": "客户详情",
+    "userList": "用户列表",
+    "roleManagement": "角色管理",
+    "checkoutLabel": "结账",
+    "billingLabel": "账单",
+    "invoiceLabel": "发票",
+    "analyticsLabel": "分析",
+    "chatLabel": "聊天",
+    "emailLabel": "电子邮件",
+    "eventsLabel": "事件",
+    "settingsLabel": "设置",
+    "promotions": "促销",
+    "promotionsLabel": "促销"
+  },
+  "language": {
+    "select": "选择语言",
+    "english": "英语",
+    "french": "法语",
+    "spanish": "西班牙语",
+    "japanese": "日语",
+    "chinese": "中文"
+  },
+  "theme": {
+    "light": "浅色",
+    "dark": "深色",
+    "auto": "自动"
+  },
+  "user": {
+    "admin": "管理员用户",
+    "email": "admin@example.com",
+    "logout": "退出登录",
+    "settings": "用户设置"
+  },
+  "sidebar": {
+    "collapse": "收起侧边栏",
+    "expand": "展开侧边栏"
+  }
+}

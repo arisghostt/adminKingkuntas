@@ -1,0 +1,934 @@
+{
+  "common": {
+    "search": "Rechercher...",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "loading": "Chargement...",
+    "noResults": "Aucun résultat trouvé",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "submit": "Soumettre",
+    "appName": "KingKunta",
+    "adminDashboard": "Tableau de bord administrateur",
+    "allRightsReserved": "Tous droits réservés.",
+    "view": "Voir",
+    "send": "Envoyer",
+    "enable": "Activer",
+    "update": "Mettre à jour",
+    "items": "articles",
+    "today": "Aujourd'hui",
+    "refresh": "Actualiser",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "exportLogs": "Exporter les journaux",
+    "markAllRead": "Tout marquer comme lu",
+    "clearAll": "Tout effacer",
+    "previousPage": "Précédent",
+    "nextPage": "Suivant",
+    "share": "Partager",
+    "print": "Imprimer",
+    "download": "Télécharger",
+    "downloadPDF": "Télécharger PDF",
+    "printInvoice": "Imprimer la facture",
+    "apply": "Appliquer",
+    "continueShopping": "Continuer vos achats",
+    "proceedToCheckout": "Passer à la caisse",
+    "placeOrder": "Passer la commande",
+    "payBalance": "Solde à payer",
+    "compose": "Composer",
+    "reply": "Répondre",
+    "forward": "Transférer",
+    "typeMessage": "Tapez un message...",
+    "searchContacts": "Rechercher des contacts...",
+    "searchEmails": "Rechercher des emails...",
+    "online": "En ligne",
+    "offline": "Hors ligne",
+    "searchPlaceholder": "Rechercher...",
+    "filterByCategory": "Filtrer par catégorie",
+    "selectAll": "Tout sélectionner",
+    "deselectAll": "Tout désélectionner",
+    "success": "Succès",
+    "failed": "Échoué",
+    "pending": "En attente",
+    "high": "Élevé",
+    "medium": "Moyen",
+    "low": "Faible"
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Tableau de bord",
+      "subtitle": "Aperçu des métriques de votre entreprise",
+      "stats": {
+        "totalRevenue": "Revenu total",
+        "orders": "Commandes",
+        "customers": "Clients",
+        "refunds": "Remboursements",
+        "fromLastMonth": "du mois dernier"
+      },
+      "charts": {
+        "sales": "Aperçu des ventes",
+        "orders": "Analyse des commandes",
+        "orderStatuses": {
+          "completed": "Terminé",
+          "processing": "En cours",
+          "pending": "En attente",
+          "cancelled": "Annulé"
+        }
+      },
+      "recentOrders": {
+        "title": "Commandes récentes",
+        "subtitle": "Dernières commandes clients et leur statut",
+        "table": {
+          "orderId": "ID de commande",
+          "customer": "Client",
+          "product": "Produit",
+          "amount": "Montant",
+          "status": "Statut",
+          "date": "Date"
+        }
+      },
+      "inventory": {
+        "title": "Aperçu de l'inventaire",
+        "totalProducts": "Total des produits",
+        "stockIn": "Stock entrant",
+        "stockOut": "Stock sortant",
+        "recentMovements": "Mouvements de stock récents",
+        "product": "Produit",
+        "type": "Type",
+        "quantity": "Quantité",
+        "reference": "Référence",
+        "date": "Date",
+        "in": "Entrée",
+        "out": "Sortie",
+        "allMovements": "Voir tous les mouvements"
+      }
+    },
+    "inventory": {
+      "title": "Gestion de l'inventaire",
+      "subtitle": "Aperçu de votre stock et mouvements",
+      "stats": {
+        "totalProducts": "Total des produits",
+        "totalValue": "Valeur totale",
+        "stockIn": "Stock entrant (Ce mois)",
+        "stockOut": "Stock sortant (Ce mois)",
+        "lowStock": "Articles en stock faible",
+        "outOfStock": "Rupture de stock"
+      },
+      "alerts": {
+        "title": "Alertes stock faible",
+        "critical": "Stock critique",
+        "warning": "Niveau d'alerte",
+        "items": "Articles sous le minimum",
+        "reorderPoint": "Point de commande",
+        "lastRestocked": "Dernier réapprovisionnement",
+        "addStock": "Ajouter du stock",
+        "product": "Produit",
+        "category": "Catégorie",
+        "stock": "Stock",
+        "minStock": "Stock min",
+        "status": "Statut",
+        "actions": "Actions"
+      },
+      "movements": {
+        "title": "Mouvements de stock",
+        "filter": "Filtrer par type",
+        "all": "Tous les mouvements",
+        "in": "Stock entrant",
+        "out": "Stock sortant",
+        "byProduct": "Par produit",
+        "byDate": "Par date",
+        "export": "Exporter le rapport",
+        "exportShort": "Exporter"
+      }
+    },
+    "settings": {
+      "title": "Paramètres",
+      "subtitle": "Gérez les paramètres et préférences de votre compte",
+      "sections": {
+        "account": "Paramètres du compte",
+        "notifications": "Notifications",
+        "security": "Sécurité",
+        "preferences": "Préférences"
+      },
+      "labels": {
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "email": "Adresse e-mail",
+        "phone": "Numéro de téléphone",
+        "bio": "Bio"
+      },
+      "buttons": {
+        "save": "Enregistrer les modifications",
+        "saved": "Enregistré!",
+        "cancel": "Annuler"
+      },
+      "notifications": {
+        "email": "Notifications par e-mail",
+        "push": "Notifications push",
+        "sms": "Notifications SMS",
+        "marketing": "E-mails marketing",
+        "emailDesc": "Recevoir les notifications par e-mail",
+        "pushDesc": "Recevoir les notifications push du navigateur",
+        "smsDesc": "Recevoir les notifications par SMS",
+        "marketingDesc": "Recevoir les offres promotionnelles et mises à jour"
+      },
+      "security": {
+        "currentPassword": "Mot de passe actuel",
+        "newPassword": "Nouveau mot de passe",
+        "confirmPassword": "Confirmer le nouveau mot de passe",
+        "updatePassword": "Mettre à jour le mot de passe",
+        "enable2FA": "Activer 2FA",
+        "twoFactorAuth": "Authentification à deux facteurs",
+        "addSecurity": "Ajoutez une couche de sécurité supplémentaire à votre compte"
+      },
+      "preferences": {
+        "language": "Langue",
+        "timezone": "Fuseau horaire",
+        "dateFormat": "Format de date",
+        "timeFormat": "Format d'heure",
+        "currency": "Devise",
+        "defaultDashboard": "Tableau de bord par défaut",
+        "selectLanguage": "Sélectionner la langue",
+        "selectTimezone": "Sélectionner le fuseau horaire",
+        "selectDateFormat": "Sélectionner le format de date",
+        "selectTimeFormat": "Sélectionner le format d'heure",
+        "selectCurrency": "Sélectionner la devise",
+        "selectDashboard": "Sélectionner le tableau de bord par défaut"
+      }
+    },
+    "products": {
+      "title": "Produits",
+      "subtitle": "Gérez votre inventaire de produits",
+      "buttons": {
+        "addProduct": "Ajouter un produit",
+        "manageCategories": "Gérer les catégories",
+        "add": "Ajouter",
+        "categories": "Catégories"
+      },
+      "categories": {
+        "title": "Gestion des catégories",
+        "addCategory": "Ajouter une catégorie",
+        "form": {
+          "name": "Nom",
+          "description": "Description"
+        },
+        "messages": {
+          "createSuccess": "Catégorie créée avec succès",
+          "updateSuccess": "Catégorie modifiée avec succès",
+          "deleteSuccess": "Catégorie supprimée avec succès",
+          "createError": "Erreur lors de la création de la catégorie",
+          "updateError": "Erreur lors de la modification de la catégorie",
+          "deleteError": "Erreur lors de la suppression de la catégorie",
+          "deleteConfirm": "Voulez-vous vraiment supprimer cette catégorie ?",
+          "fetchError": "Erreur lors du chargement des catégories"
+        }
+      },
+      "search": {
+        "placeholder": "Rechercher des produits..."
+      },
+      "filters": {
+        "allCategories": "Toutes les catégories"
+      },
+      "table": {
+        "product": "Produit",
+        "category": "Catégorie",
+        "price": "Prix",
+        "stock": "Stock",
+        "status": "Statut",
+        "actions": "Actions"
+      },
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif"
+      },
+      "add": {
+        "title": "Ajouter un produit",
+        "subtitle": "Créer une nouvelle fiche produit",
+        "backToProducts": "Retour aux produits",
+        "saveProduct": "Enregistrer le produit",
+        "cancel": "Annuler",
+        "basicInfo": "Informations de base",
+        "productName": "Nom du produit *",
+        "sku": "SKU *",
+        "category": "Catégorie *",
+        "description": "Description *",
+        "pricing": "Tarification",
+        "price": "Prix *",
+        "costPrice": "Prix de revient",
+        "discount": "Remise (%)",
+        "inventory": "Inventaire",
+        "stockQuantity": "Quantité en stock *",
+        "minStock": "Stock minimum",
+        "weight": "Poids (kg)",
+        "status": "Statut",
+        "features": "Caractéristiques du produit",
+        "addFeature": "Ajouter une caractéristique",
+        "enterFeature": "Entrer une caractéristique",
+        "productStatus": "Statut",
+        "active": "Actif",
+        "inactive": "Inactif",
+        "draft": "Brouillon",
+        "productImages": "Images du produit",
+        "upload": "Télécharger",
+        "uploadLimit": "Télécharge jusqu'à 5 images. Taille max : 2Mo chacune.",
+        "organization": "Organisation",
+        "brand": "Marque",
+        "tags": "Tags",
+        "addCategory": "Ajouter une catégorie"
+      },
+      "details": {
+        "title": "Détails du produit",
+        "subtitle": "Afficher et gérer les informations du produit",
+        "backToProducts": "Retour aux produits",
+        "delete": "Supprimer",
+        "editProduct": "Modifier le produit",
+        "productImage": "Image du produit",
+        "sku": "SKU",
+        "stock": "Stock",
+        "units": "unités",
+        "features": "Caractéristiques",
+        "quantity": "Quantité",
+        "addToCart": "Ajouter au panier",
+        "relatedProducts": "Produits connexes",
+        "outOfStock": "Rupture de stock",
+        "rating": "note",
+        "reviews": "avis"
+      },
+      "grid": {
+        "title": "Grille de produits",
+        "subtitle": "Afficher les produits en grille",
+        "searchPlaceholder": "Rechercher des produits...",
+        "allCategories": "Toutes les catégories",
+        "sortByPrice": "Trier par prix",
+        "priceLowToHigh": "Prix : Croissant",
+        "priceHighToLow": "Prix : Décroissant",
+        "outOfStock": "Rupture de stock",
+        "inStock": "en stock",
+        "edit": "Modifier",
+        "favorite": "Favori"
+      }
+    },
+    "orders": {
+      "title": "Commandes",
+      "subtitle": "Gérez les commandes clients et l'exécution",
+      "search": {
+        "placeholder": "Rechercher des commandes..."
+      },
+      "filters": {
+        "allStatus": "Tous les statuts",
+        "pending": "En attente",
+        "processing": "En cours",
+        "shipped": "Expédié",
+        "delivered": "Livré",
+        "cancelled": "Annulé"
+      },
+      "table": {
+        "orderId": "ID de commande",
+        "customer": "Client",
+        "items": "Articles",
+        "total": "Total",
+        "status": "Statut",
+        "date": "Date",
+        "actions": "Actions"
+      },
+      "itemsCount": "articles"
+    },
+    "orderDetails": {
+      "title": "Détails de la commande",
+      "subtitle": "Afficher et gérer les informations de commande",
+      "backToOrders": "Retour aux commandes",
+      "orderProgress": "Progression de la commande",
+      "orderItems": "Articles de la commande",
+      "orderId": "ID de commande",
+      "date": "Date",
+      "customer": "Client",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "total": "Total",
+      "status": "Statut",
+      "shippingAddress": "Adresse de livraison",
+      "billingAddress": "Adresse de facturation",
+      "paymentMethod": "Mode de paiement",
+      "orderInformation": "Informations de commande",
+      "orderActions": "Actions de commande",
+      "printInvoice": "Imprimer la facture",
+      "sendConfirmation": "Envoyer l'e-mail de confirmation",
+      "refundOrder": "Rembourser la commande",
+      "trackPackage": "Suivre le colis",
+      "updateStatus": "Mettre à jour le statut",
+      "paid": "Payé",
+      "trackingNumber": "Numéro de suivi",
+      "timeline": {
+        "orderPlaced": "Commande passée",
+        "processing": "En traitement",
+        "shipped": "Expédié",
+        "delivered": "Livré"
+      }
+    },
+    "customers": {
+      "title": "Clients",
+      "subtitle": "Gérez vos relations clients",
+      "search": {
+        "placeholder": "Rechercher des clients..."
+      },
+      "filters": {
+        "allCustomers": "Tous les clients",
+        "active": "Actif",
+        "inactive": "Inactif",
+        "sortJoinDate": "Trier par date d'inscription",
+        "sortOrders": "Trier par commandes",
+        "sortTotalSpent": "Trier par total dépensé"
+      },
+      "details": {
+        "orders": "Commandes",
+        "totalSpent": "Total dépensé",
+        "joined": "Inscrit le",
+        "avgOrderValue": "Valeur moyenne",
+        "lastOrder": "Dernière commande"
+      },
+      "buttons": {
+        "viewProfile": "Voir le profil",
+        "sendMessage": "Envoyer un message"
+      },
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif"
+      }
+    },
+    "customerDetails": {
+      "title": "Détails du client",
+      "subtitle": "Afficher et gérer les informations du client",
+      "backToCustomers": "Retour aux clients",
+      "contactInformation": "Coordonnées",
+      "notes": "Notes",
+      "quickActions": "Actions rapides",
+      "viewAllOrders": "Voir toutes les commandes",
+      "downloadInvoice": "Télécharger la facture",
+      "viewAddressBook": "Voir le carnet d'adresses",
+      "editCustomer": "Modifier le client",
+      "orderHistory": "Historique des commandes",
+      "editNotes": "Modifier les notes",
+      "location": "Lieu"
+    },
+    "users": {
+      "title": "Utilisateurs",
+      "subtitle": "Gérez les comptes utilisateurs et les rôles",
+      "buttons": {
+        "addUser": "Ajouter un utilisateur"
+      },
+      "search": {
+        "placeholder": "Rechercher des utilisateurs..."
+      },
+      "filters": {
+        "allRoles": "Tous les rôles",
+        "allStatus": "Tous les statuts",
+        "active": "Actif",
+        "inactive": "Inactif",
+        "pending": "En attente"
+      },
+      "table": {
+        "user": "Utilisateur",
+        "role": "Rôle",
+        "status": "Statut",
+        "joinDate": "Date d'inscription",
+        "lastLogin": "Dernière connexion",
+        "actions": "Actions"
+      },
+      "modal": {
+        "editRole": "Modifier le rôle de l'utilisateur",
+        "user": "Utilisateur",
+        "currentRole": "Rôle actuel",
+        "selectRole": "Sélectionner un nouveau rôle",
+        "cancel": "Annuler",
+        "save": "Enregistrer les modifications"
+      }
+    },
+    "roleManagement": {
+      "title": "Gestion des rôles",
+      "subtitle": "Définir les rôles et gérer les autorisations",
+      "createRole": "Créer un rôle",
+      "editRole": "Modifier le rôle",
+      "roleName": "Nom du rôle",
+      "description": "Description",
+      "permissions": "Autorisations",
+      "usersAssigned": "utilisateurs assignés",
+      "permissionsCount": "autorisations",
+      "availablePermissions": "Autorisations disponibles",
+      "cancel": "Annuler",
+      "saveChanges": "Enregistrer les modifications",
+      "deleteRole": "Supprimer le rôle",
+      "roleColor": {
+        "admin": "Administrateur",
+        "manager": "Gestionnaire",
+        "support": "Support",
+        "viewer": "Observateur"
+      },
+      "permissionCategories": {
+        "dashboard": "Tableau de bord",
+        "products": "Produits",
+        "orders": "Commandes",
+        "customers": "Clients",
+        "users": "Utilisateurs",
+        "billing": "Facturation"
+      }
+    },
+    "analytics": {
+      "title": "Analytique",
+      "subtitle": "Analyses commerciales complètes et indicateurs de performance",
+      "metrics": {
+        "totalRevenue": "Revenu total",
+        "totalOrders": "Total des commandes",
+        "newCustomers": "Nouveaux clients",
+        "productsSold": "Produits vendus"
+      },
+      "charts": {
+        "revenueTrend": "Tendances des revenus",
+        "salesByCategory": "Ventes par catégorie",
+        "ordersVsCustomers": "Commandes vs Nouveaux clients"
+      },
+      "tables": {
+        "topSelling": "Produits les plus vendus"
+      },
+      "table": {
+        "product": "Produit",
+        "sales": "Ventes",
+        "revenue": "Revenu",
+        "performance": "Performance"
+      },
+      "changes": {
+        "increase": "augmentation",
+        "decrease": "diminution"
+      },
+      "categories": {
+        "electronics": "Électronique",
+        "clothing": "Vêtements",
+        "homeGarden": "Maison et jardin",
+        "sports": "Sports",
+        "books": "Livres"
+      }
+    },
+    "events": {
+      "title": "Événements",
+      "subtitle": "Gérez et suivez tous les événements de l'entreprise",
+      "buttons": {
+        "createEvent": "Créer un événement",
+        "searchPlaceholder": "Rechercher des événements...",
+        "allCategories": "Toutes les catégories"
+      },
+      "stats": {
+        "totalEvents": "Total des événements",
+        "upcoming": "À venir",
+        "totalAttendees": "Total des participants",
+        "categories": "Catégories"
+      },
+      "table": {
+        "event": "Événement",
+        "schedule": "Planning",
+        "location": "Lieu",
+        "category": "Catégorie",
+        "attendees": "Participants",
+        "status": "Statut",
+        "actions": "Actions"
+      },
+      "fields": {
+        "description": "Description",
+        "startingDate": "Date de début",
+        "endingDate": "Date de fin",
+        "startingHours": "Heure de début",
+        "endingHours": "Heure de fin"
+      },
+      "status": {
+        "upcoming": "À venir",
+        "ongoing": "En cours",
+        "completed": "Terminé"
+      },
+      "modals": {
+        "createTitle": "Créer un événement",
+        "editTitle": "Modifier l'événement",
+        "detailsTitle": "Détails de l'événement",
+        "deleteTitle": "Supprimer l'événement",
+        "filterByCategory": "Filtrer par catégorie",
+        "validationTitleDate": "Le titre et la date de début sont requis.",
+        "deleteConfirm": "Voulez-vous vraiment supprimer {{title}} ?"
+      },
+      "errors": {
+        "invalidEventId": "Cet événement n'est pas disponible car son identifiant est invalide."
+      },
+      "noEvents": "Aucun événement trouvé correspondant à vos critères"
+    },
+    "activityLog": {
+      "title": "Journal d'activité",
+      "subtitle": "Suivez toutes les actions des utilisateurs et les événements système",
+      "summary": {
+        "totalActivities": "Total des activités",
+        "activeUsers": "Utilisateurs actifs",
+        "failedActions": "Actions échouées",
+        "categoriesCount": "Catégories"
+      },
+      "search": {
+        "placeholder": "Rechercher des activités..."
+      },
+      "filters": {
+        "allCategories": "Toutes les catégories",
+        "allUsers": "Tous les utilisateurs",
+        "allStatus": "Tous les statuts",
+        "allTime": "Toute la période",
+        "today": "Aujourd'hui",
+        "thisWeek": "Cette semaine",
+        "thisMonth": "Ce mois"
+      },
+      "table": {
+        "timestamp": "Horodatage",
+        "user": "Utilisateur",
+        "action": "Action",
+        "category": "Catégorie",
+        "description": "Description",
+        "ipAddress": "Adresse IP",
+        "status": "Statut"
+      },
+      "noActivities": "Aucune activité trouvée",
+      "showingEntries": "Affichage de {count} sur {total} entrées",
+      "exporting": "Exportation..."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Gérez vos notifications et restez informé",
+      "summary": {
+        "totalNotifications": "Total des notifications",
+        "highPriority": "Priorité élevée",
+        "unread": "Non lues",
+        "read": "Lues"
+      },
+      "search": {
+        "placeholder": "Rechercher des notifications..."
+      },
+      "filters": {
+        "allTypes": "Tous les types",
+        "allPriority": "Toutes les priorités",
+        "unreadOnly": "Non lues uniquement"
+      },
+      "types": {
+        "order": "Commandes",
+        "payment": "Paiements",
+        "product": "Produits",
+        "user": "Utilisateurs",
+        "system": "Système",
+        "email": "E-mail",
+        "alert": "Alertes",
+        "info": "Info"
+      },
+      "actions": {
+        "markAsRead": "Marquer comme lu",
+        "delete": "Supprimer"
+      },
+      "noNotifications": "Aucune notification trouvée",
+      "showingNotifications": "Affichage de {count} sur {total} notifications"
+    },
+    "checkout": {
+      "title": "Paiement",
+      "subtitle": "Finalisez votre commande",
+      "shippingAddress": "Adresse de livraison",
+      "fullName": "Nom complet",
+      "address": "Adresse",
+      "city": "Ville",
+      "zipCode": "Code postal",
+      "phone": "Téléphone",
+      "shippingMethod": "Mode de livraison",
+      "standardShipping": "Livraison standard",
+      "expressShipping": "Livraison express",
+      "nextDayDelivery": "Livraison demain",
+      "deliveryDays": "jours ouvrés",
+      "tomorrow": "demain",
+      "paymentMethod": "Mode de paiement",
+      "cardNumber": "Numéro de carte",
+      "expiryDate": "Date d'expiration",
+      "cvv": "CVV",
+      "nameOnCard": "Nom sur la carte",
+      "securePayment": "Vos informations de paiement sont sécurisées et cryptées",
+      "orderSummary": "Récapitulatif de la commande",
+      "subtotal": "Sous-total",
+      "shipping": "Livraison",
+      "tax": "Taxes",
+      "total": "Total"
+    },
+    "billing": {
+      "title": "Facturation",
+      "subtitle": "Gérez vos méthodes de paiement et factures",
+      "paymentMethods": "Moyens de paiement",
+      "addNewCard": "Ajouter une nouvelle carte",
+      "billingHistory": "Historique de facturation",
+      "accountBalance": "Solde du compte",
+      "currentBalance": "Solde actuel",
+      "noOutstandingBalance": "Aucun solde impayé",
+      "billingAddress": "Adresse de facturation",
+      "billingSettings": "Paramètres de facturation",
+      "emailReceipts": "Reçus par e-mail",
+      "autoPay": "Paiement automatique",
+      "invoice": "Facture",
+      "description": "Description",
+      "amount": "Montant",
+      "action": "Action"
+    },
+    "invoice": {
+      "title": "Facture",
+      "backToBilling": "Retour à la facturation",
+      "billTo": "Facturer à",
+      "invoiceDate": "Date de facturation",
+      "dueDate": "Date d'échéance",
+      "description": "Description",
+      "qty": "Qté",
+      "price": "Prix",
+      "itemsTotal": "Total",
+      "thankYou": "Merci pour votre confiance!",
+      "paymentDue": "Le paiement est dû dans les 15 jours suivant la date de facturation.",
+      "questions": "Questions?Contactez-nous à",
+      "freeReturns": "Retours gratuits sous 30 jours",
+      "securePayment": "Traitement de paiement sécurisé",
+      "subtotal": "Sous-total",
+      "shipping": "Livraison",
+      "tax": "Taxes",
+      "total": "Total"
+    },
+    "email": {
+      "title": "E-mail",
+      "subtitle": "Gérez vos e-mails et communications",
+      "compose": "Composer",
+      "inbox": "Boîte de réception",
+      "starred": "Favoris",
+      "sent": "Envoyés",
+      "drafts": "Brouillons",
+      "spam": "Spam",
+      "search": {
+        "placeholder": "Rechercher des e-mails..."
+      },
+      "labels": {
+        "work": "Travail",
+        "personal": "Personnel",
+        "important": "Important"
+      },
+      "noEmails": "Aucun e-mail trouvé",
+      "attachments": "Pièces jointes"
+    },
+    "chat": {
+      "title": "Discussion",
+      "subtitle": "Messagerie et communication",
+      "search": {
+        "placeholder": "Rechercher des contacts..."
+      },
+      "online": "En ligne",
+      "typeMessage": "Tapez un message..."
+    },
+    "login": {
+      "brandTagline": "la marque des rois et reines",
+      "secureSignIn": "Kingkunta, la marque royale qui révèle la noblesse en chacun de nous. Porte ta couronne, affirme ton style et ta puissance.",
+      "welcomeBack": "Bon retour",
+      "subtitle": "Connectez-vous pour acceder a votre tableau de bord.",
+      "identifierLabel": "E-mail ou nom d'utilisateur",
+      "identifierPlaceholder": "admin@kingkunta.com",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Entrez votre mot de passe",
+      "signIn": "Se connecter",
+      "signingIn": "Connexion en cours...",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe",
+      "validationMissingCredentials": "Entrez votre e-mail/nom d'utilisateur et votre mot de passe.",
+      "errorLoginFailed": "Echec de la connexion. Verifiez vos identifiants puis reessayez.",
+      "errorInvalidTokenRole": "Authentification reussie, mais aucun jeton ou role valide n'a ete renvoye.",
+      "errorUnableConnect": "Impossible de se connecter au backend."
+    },
+    "promotions": {
+      "title": "Promotions & Coupons",
+      "subtitle": "Créez, suivez et optimisez vos campagnes de coupons",
+      "buttons": {
+        "createCoupon": "Créer un coupon",
+        "generate": "Générer",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "cancel": "Annuler",
+        "saveChanges": "Enregistrer les modifications"
+      },
+      "stats": {
+        "totalCoupons": "Total des coupons",
+        "active": "Actifs",
+        "scheduled": "Programmés",
+        "expired": "Expirés",
+        "discountsGiven": "remises accordées"
+      },
+      "analytics": {
+        "title": "Analytique des coupons",
+        "usageOverTime": "Utilisation des coupons dans le temps",
+        "discountsByType": "Remises par type",
+        "topPerformingCoupons": "Coupons les plus performants",
+        "rank": "Rang",
+        "code": "Code",
+        "usesHeader": "Utilisations",
+        "totalDiscount": "Remise totale",
+        "revenueGenerated": "Revenu généré",
+        "uses": "utilisations",
+        "discounts": "remises"
+      },
+      "filters": {
+        "searchPlaceholder": "Rechercher par code...",
+        "statusAll": "Tous",
+        "statusActive": "Actifs",
+        "statusScheduled": "Programmés",
+        "statusExpired": "Expirés",
+        "statusDisabled": "Désactivés",
+        "typeAll": "Tous les types",
+        "typePercentage": "Pourcentage",
+        "typeFixedAmount": "Montant fixe",
+        "typeFreeShipping": "Livraison gratuite"
+      },
+      "table": {
+        "code": "Code",
+        "type": "Type",
+        "value": "Valeur",
+        "minOrder": "Commande min",
+        "usage": "Utilisation",
+        "validPeriod": "Période de validité",
+        "status": "Statut",
+        "actions": "Actions",
+        "noCoupons": "Aucun coupon trouvé"
+      },
+      "typeLabels": {
+        "percentOff": "% de réduction",
+        "fixed": "Fixe",
+        "freeShip": "Livraison gratuite",
+        "percentageLong": "Pourcentage",
+        "fixedAmountLong": "Montant fixe",
+        "freeShippingLong": "Livraison gratuite"
+      },
+      "valueLabels": {
+        "free": "Gratuit"
+      },
+      "statusLabels": {
+        "active": "Actif",
+        "scheduled": "Programmé",
+        "expired": "Expiré",
+        "disabled": "Désactivé"
+      },
+      "actions": {
+        "copyCode": "Copier le code",
+        "duplicate": "Dupliquer",
+        "edit": "Modifier",
+        "delete": "Supprimer",
+        "toggleEnable": "Activer le coupon",
+        "toggleDisable": "Désactiver le coupon",
+        "createdSuccess": "Coupon créé!",
+        "updatedSuccess": "Coupon mis à jour!",
+        "deletedSuccess": "Coupon supprimé!",
+        "duplicateSuccess": "Coupon dupliqué!",
+        "toggleSuccess": "Statut du coupon mis à jour!"
+      },
+      "modal": {
+        "createTitle": "Créer un coupon",
+        "editTitle": "Modifier le coupon",
+        "step1": "Étape 1 - Informations générales",
+        "step2": "Étape 2 - Conditions et limites",
+        "fields": {
+          "code": "Code",
+          "codePlaceholder": "Laisser vide pour générer automatiquement",
+          "type": "Type",
+          "value": "Valeur",
+          "valuePlaceholderPercent": "ex. 20 pour 20%",
+          "valuePlaceholderFixed": "ex. 10.00 pour 10€",
+          "minOrderAmount": "Montant minimum de commande",
+          "maxDiscountAmount": "Montant maximum de remise",
+          "startDate": "Date de début",
+          "endDate": "Date de fin",
+          "usageLimit": "Limite d'utilisation (total)",
+          "usageLimitPerUser": "Limite d'utilisation par utilisateur",
+          "applicableTo": "Applicable à",
+          "allProducts": "Tous les produits",
+          "specificCategories": "Catégories spécifiques",
+          "specificProducts": "Produits spécifiques",
+          "selectCategories": "Sélectionner les catégories",
+          "selectProducts": "Sélectionner les produits"
+        },
+        "validation": {
+          "typeRequired": "Le type de coupon est requis.",
+          "valueRequired": "La valeur doit être supérieure à 0.",
+          "percentageMax": "Le pourcentage doit être inférieur ou égal à 100.",
+          "dateRequired": "La date de début et la date de fin sont requises.",
+          "endAfterStart": "La date de fin doit être après la date de début.",
+          "categoryRequired": "Veuillez sélectionner au moins une catégorie.",
+          "productRequired": "Veuillez sélectionner au moins un produit."
+        }
+      },
+      "deleteConfirm": {
+        "title": "Supprimer le coupon",
+        "message": "Êtes-vous sûr de vouloir supprimer le coupon {{code}}?",
+        "confirm": "Supprimer"
+      }
+    }
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "analytics": "Analytique",
+    "customers": "Clients",
+    "products": "Produits",
+    "orders": "Commandes",
+    "inventory": "Inventaire",
+    "inventoryOverview": "Aperçu de l'inventaire",
+    "stockMovements": "Mouvements de stock",
+    "lowStockAlerts": "Alertes stock faible",
+    "events": "Événements",
+    "billing": "Facturation",
+    "invoice": "Facture",
+    "reports": "Rapports",
+    "email": "E-mail",
+    "chat": "Discussion",
+    "notifications": "Notifications",
+    "settings": "Paramètres",
+    "help": "Aide",
+    "profile": "Profil",
+    "activityLog": "Journal d'activité",
+    "users": "Utilisateurs",
+    "checkout": "Paiement",
+    "productList": "Liste des produits",
+    "productGrid": "Grille de produits",
+    "productDetails": "Détails du produit",
+    "addProduct": "Ajouter un produit",
+    "orderList": "Liste des commandes",
+    "orderDetails": "Détails de la commande",
+    "customerDetails": "Détails du client",
+    "userList": "Liste des utilisateurs",
+    "roleManagement": "Gestion des rôles",
+    "checkoutLabel": "Paiement",
+    "billingLabel": "Facturation",
+    "invoiceLabel": "Facture",
+    "analyticsLabel": "Analytique",
+    "chatLabel": "Discussion",
+    "emailLabel": "E-mail",
+    "eventsLabel": "Événements",
+    "settingsLabel": "Paramètres",
+    "promotions": "Promotions",
+    "promotionsLabel": "Promotions"
+  },
+  "language": {
+    "select": "Sélectionner la langue",
+    "english": "Anglais",
+    "french": "Français",
+    "spanish": "Espagnol",
+    "japanese": "Japonais",
+    "chinese": "Chinois (simplifié)"
+  },
+  "theme": {
+    "light": "Clair",
+    "dark": "Sombre",
+    "auto": "Automatique"
+  },
+  "user": {
+    "admin": "Administrateur",
+    "email": "admin@example.com",
+    "logout": "Déconnexion",
+    "settings": "Paramètres utilisateur"
+  },
+  "sidebar": {
+    "collapse": "Réduire la barre latérale",
+    "expand": "Développer la barre latérale"
+  }
+}

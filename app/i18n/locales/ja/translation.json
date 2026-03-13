@@ -1,0 +1,896 @@
+{
+  "common": {
+    "search": "検索...",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "edit": "編集",
+    "add": "追加",
+    "loading": "読み込み中...",
+    "noResults": "結果が見つかりません",
+    "confirm": "確認",
+    "back": "戻る",
+    "next": "次へ",
+    "submit": "送信",
+    "appName": "KingKunta",
+    "adminDashboard": "管理ダッシュボード",
+    "allRightsReserved": "全著作権所有。",
+    "view": "表示",
+    "send": "送信",
+    "enable": "有効にする",
+    "update": "更新",
+    "items": "品目",
+    "today": "今日",
+    "refresh": "更新",
+    "previous": "前へ",
+    "exportLogs": "ログをエクスポート",
+    "markAllRead": "すべて既読にする",
+    "clearAll": "すべてクリア"
+  },
+  "pages": {
+    "dashboard": {
+      "title": "ダッシュボード",
+      "subtitle": "ビジネス指標の概要",
+      "stats": {
+        "totalRevenue": "総収益",
+        "orders": "注文",
+        "customers": "顧客",
+        "refunds": "払い戻し",
+        "fromLastMonth": "先月比"
+      },
+      "charts": {
+        "sales": "売上概要",
+        "orders": "注文分析",
+        "orderStatuses": {
+          "completed": "完了",
+          "processing": "処理中",
+          "pending": "保留中",
+          "cancelled": "キャンセル済み"
+        }
+      },
+      "recentOrders": {
+        "title": "最近の注文",
+        "subtitle": "最新の顧客注文とそのステータス",
+        "table": {
+          "orderId": "注文ID",
+          "customer": "顧客",
+          "product": "製品",
+          "amount": "金額",
+          "status": "ステータス",
+          "date": "日付"
+        }
+      },
+      "inventory": {
+        "title": "在庫概要",
+        "totalProducts": "総製品数",
+        "stockIn": "入库",
+        "stockOut": "出庫",
+        "recentMovements": "最近の在庫移動",
+        "product": "製品",
+        "type": "タイプ",
+        "quantity": "数量",
+        "reference": "参照",
+        "date": "日付",
+        "in": "入库",
+        "out": "出庫",
+        "allMovements": "すべての移動を表示"
+      }
+    },
+    "inventory": {
+      "title": "在庫管理",
+      "subtitle": "在庫と移動の概要",
+      "stats": {
+        "totalProducts": "総製品数",
+        "totalValue": "総価値",
+        "stockIn": "入库（今月）",
+        "stockOut": "出庫（今月）",
+        "lowStock": "在庫低下品目",
+        "outOfStock": "在庫切れ"
+      },
+      "alerts": {
+        "title": "在庫低下アラート",
+        "critical": "危険な在庫",
+        "warning": "警告レベル",
+        "items": "最小を下回る品目",
+        "reorderPoint": "発注点"
+      },
+      "movements": {
+        "title": "在庫移動",
+        "filter": "タイプでフィルタ",
+        "all": "すべての移動",
+        "in": "入库",
+        "out": "出庫",
+        "byProduct": "製品別",
+        "byDate": "日付別",
+        "export": "レポートをエクスポート"
+      }
+    },
+    "settings": {
+      "title": "設定",
+      "subtitle": "アカウント設定と基本設定の管理",
+      "sections": {
+        "account": "アカウント設定",
+        "notifications": "通知",
+        "security": "セキュリティ",
+        "preferences": "基本設定"
+      },
+      "labels": {
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "メールアドレス",
+        "phone": "電話番号",
+        "bio": "自己紹介"
+      },
+      "buttons": {
+        "save": "変更を保存",
+        "saved": "保存されました！",
+        "cancel": "キャンセル"
+      },
+      "notifications": {
+        "email": "メール通知",
+        "push": "プッシュ通知",
+        "sms": "SMS通知",
+        "marketing": "マーケティングメール",
+        "emailDesc": "メールでの通知を受け取る",
+        "pushDesc": "ブラウザプッシュ通知を受け取る",
+        "smsDesc": "SMSでの通知を受け取る",
+        "marketingDesc": "プロモーショオファーと更新を受け取る"
+      },
+      "security": {
+        "currentPassword": "現在のパスワード",
+        "newPassword": "新しいパスワード",
+        "confirmPassword": "新しいパスワードを確認",
+        "updatePassword": "パスワードを更新",
+        "enable2FA": "2FAを有効にする",
+        "twoFactorAuth": "二要素認証",
+        "addSecurity": "アカウントにセキュリティのレイヤーを追加"
+      },
+      "preferences": {
+        "language": "言語",
+        "timezone": "タイムゾーン",
+        "dateFormat": "日付形式",
+        "timeFormat": "時間形式",
+        "currency": "通貨",
+        "defaultDashboard": "デフォルトダッシュボード",
+        "selectLanguage": "言語を選択",
+        "selectTimezone": "タイムゾーンを選択",
+        "selectDateFormat": "日付形式を選択",
+        "selectTimeFormat": "時間形式を選択",
+        "selectCurrency": "通貨を選択",
+        "selectDashboard": "デフォルトダッシュボードを選択"
+      }
+    },
+    "products": {
+      "title": "製品",
+      "subtitle": "製品在庫の管理",
+      "buttons": {
+        "addProduct": "製品を追加",
+        "manageCategories": "カテゴリーを管理",
+        "add": "追加"
+      },
+      "categories": {
+        "title": "カテゴリー管理",
+        "addCategory": "カテゴリーを追加",
+        "form": {
+          "name": "名前",
+          "description": "説明"
+        },
+        "messages": {
+          "createSuccess": "カテゴリーが正常に作成されました",
+          "updateSuccess": "カテゴリーが正常に更新されました",
+          "deleteSuccess": "カテゴリーが正常に削除されました",
+          "createError": "カテゴリーの作成中にエラーが発生しました",
+          "updateError": "カテゴリーの更新中にエラーが発生しました",
+          "deleteError": "カテゴリーの削除中にエラーが発生しました",
+          "deleteConfirm": "本当にこのカテゴリーを削除しますか？",
+          "fetchError": "カテゴリーの読み込みに失敗しました"
+        }
+      },
+      "search": {
+        "placeholder": "製品を検索..."
+      },
+      "filters": {
+        "allCategories": "すべてのカテゴリー"
+      },
+      "table": {
+        "product": "製品",
+        "category": "カテゴリー",
+        "price": "価格",
+        "stock": "在庫",
+        "status": "ステータス",
+        "actions": "アクション"
+      },
+      "status": {
+        "active": "アクティブ",
+        "inactive": "非アクティブ"
+      },
+      "add": {
+        "title": "製品を追加",
+        "subtitle": "新しい製品を作成する",
+        "backToProducts": "製品に戻る",
+        "saveProduct": "製品を保存",
+        "cancel": "キャンセル",
+        "basicInfo": "基本情報",
+        "productName": "製品名 *",
+        "sku": "SKU *",
+        "category": "カテゴリー *",
+        "description": "説明 *",
+        "pricing": "価格設定",
+        "price": "価格 *",
+        "costPrice": "原価",
+        "discount": "割引 (%)",
+        "inventory": "在庫",
+        "stockQuantity": "在庫数 *",
+        "minStock": "最小在庫",
+        "weight": "重量 (kg)",
+        "status": "ステータス",
+        "features": "製品の特徴",
+        "addFeature": "特徴を追加",
+        "enterFeature": "特徴を入力",
+        "productStatus": "ステータス",
+        "active": "アクティブ",
+        "inactive": "非アクティブ",
+        "draft": "下書き",
+        "productImages": "製品画像",
+        "upload": "アップロード",
+        "uploadLimit": "最大5枚の画像をアップロードできます。各2MBまで。",
+        "organization": "組織",
+        "brand": "ブランド",
+        "tags": "タグ",
+        "addCategory": "カテゴリーを追加"
+      },
+      "details": {
+        "title": "製品詳細",
+        "subtitle": "製品情報の表示と管理",
+        "backToProducts": "製品に戻る",
+        "delete": "削除",
+        "editProduct": "製品を編集",
+        "productImage": "製品画像",
+        "sku": "SKU",
+        "stock": "在庫",
+        "units": "個",
+        "features": "特徴",
+        "quantity": "数量",
+        "addToCart": "カートに追加",
+        "relatedProducts": "関連製品",
+        "outOfStock": "在庫切れ",
+        "rating": "評価",
+        "reviews": "レビュー"
+      },
+      "grid": {
+        "title": "製品グリッド",
+        "subtitle": "グリッドビューで製品を表示",
+        "searchPlaceholder": "製品を検索...",
+        "allCategories": "すべてのカテゴリー",
+        "sortByPrice": "価格で並べ替え",
+        "priceLowToHigh": "価格: 安い順",
+        "priceHighToLow": "価格: 高い順",
+        "outOfStock": "在庫切れ",
+        "inStock": "在庫あり",
+        "edit": "編集",
+        "favorite": "お気に入り"
+      }
+    },
+    "orders": {
+      "title": "注文",
+      "subtitle": "顧客注文と履行の管理",
+      "search": {
+        "placeholder": "注文を検索..."
+      },
+      "filters": {
+        "allStatus": "すべてのステータス",
+        "pending": "保留中",
+        "processing": "処理中",
+        "shipped": "出荷済み",
+        "delivered": "配達済み",
+        "cancelled": "キャンセル済み"
+      },
+      "table": {
+        "orderId": "注文ID",
+        "customer": "顧客",
+        "items": "品目",
+        "total": "合計",
+        "status": "ステータス",
+        "date": "日付",
+        "actions": "アクション"
+      },
+      "itemsCount": "品目"
+    },
+    "customers": {
+      "title": "顧客",
+      "subtitle": "顧客関係の管理",
+      "search": {
+        "placeholder": "顧客を検索..."
+      },
+      "filters": {
+        "allCustomers": "すべての顧客",
+        "active": "アクティブ",
+        "inactive": "非アクティブ",
+        "sortJoinDate": "参加日でソート",
+        "sortOrders": "注文数でソート",
+        "sortTotalSpent": "総支出でソート"
+      },
+      "details": {
+        "orders": "注文",
+        "totalSpent": "総支出",
+        "joined": "登録日"
+      },
+      "buttons": {
+        "viewProfile": "プロフィールを表示",
+        "sendMessage": "メッセージを送信"
+      },
+      "status": {
+        "active": "アクティブ",
+        "inactive": "非アクティブ"
+      }
+    },
+    "users": {
+      "title": "ユーザー",
+      "subtitle": "ユーザーアカウントとロールの管理",
+      "buttons": {
+        "addUser": "ユーザーを追加"
+      },
+      "search": {
+        "placeholder": "ユーザーを検索..."
+      },
+      "filters": {
+        "allRoles": "すべてのロール",
+        "allStatus": "すべてのステータス",
+        "active": "アクティブ",
+        "inactive": "非アクティブ",
+        "pending": "保留中"
+      },
+      "table": {
+        "user": "ユーザー",
+        "role": "ロール",
+        "status": "ステータス",
+        "joinDate": "登録日",
+        "lastLogin": "最終ログイン",
+        "actions": "アクション"
+      },
+      "modal": {
+        "editRole": "ユーザーロールの編集",
+        "user": "ユーザー",
+        "currentRole": "現在のロール",
+        "selectRole": "新しいロールを選択",
+        "cancel": "キャンセル",
+        "save": "変更を保存"
+      }
+    },
+    "analytics": {
+      "title": "分析",
+      "subtitle": "包括的なビジネスインサイトとパフォーマンス指標",
+      "metrics": {
+        "totalRevenue": "総収益",
+        "totalOrders": "総注文数",
+        "newCustomers": "新規顧客",
+        "productsSold": "販売製品数"
+      },
+      "charts": {
+        "revenueTrend": "収益トレンド",
+        "salesByCategory": "カテゴリー別売上",
+        "ordersVsCustomers": "注文数対新規顧客"
+      },
+      "tables": {
+        "topSelling": "売れ筋製品"
+      },
+      "table": {
+        "product": "製品",
+        "sales": "売上",
+        "revenue": "収益",
+        "performance": "パフォーマンス"
+      },
+      "changes": {
+        "increase": "増加",
+        "decrease": "減少"
+      },
+      "categories": {
+        "electronics": "電子機器",
+        "clothing": "衣服",
+        "homeGarden": "ホーム＆ガーデン",
+        "sports": "スポーツ",
+        "books": "書籍"
+      }
+    },
+    "events": {
+      "title": "イベント",
+      "subtitle": "すべての企業イベントの管理と追跡",
+      "buttons": {
+        "createEvent": "イベントを作成",
+        "searchPlaceholder": "イベントを検索...",
+        "allCategories": "すべてのカテゴリー"
+      },
+      "stats": {
+        "totalEvents": "総イベント数",
+        "upcoming": "今後",
+        "totalAttendees": "総参加者数",
+        "categories": "カテゴリー"
+      },
+      "table": {
+        "event": "イベント",
+        "schedule": "スケジュール",
+        "location": "場所",
+        "category": "カテゴリー",
+        "attendees": "参加者",
+        "status": "ステータス",
+        "actions": "アクション"
+      },
+      "fields": {
+        "description": "説明",
+        "startingDate": "開始日",
+        "endingDate": "終了日",
+        "startingHours": "開始時刻",
+        "endingHours": "終了時刻"
+      },
+      "status": {
+        "upcoming": "今後",
+        "ongoing": "進行中",
+        "completed": "完了"
+      },
+      "modals": {
+        "createTitle": "イベントを作成",
+        "editTitle": "イベントを編集",
+        "detailsTitle": "イベント詳細",
+        "deleteTitle": "イベントを削除",
+        "filterByCategory": "カテゴリーで絞り込む",
+        "validationTitleDate": "タイトルと開始日は必須です。",
+        "deleteConfirm": "{{title}} を削除してもよろしいですか？"
+      },
+      "errors": {
+        "invalidEventId": "このイベントはIDが無効なため利用できません。"
+      },
+      "noEvents": "条件に一致するイベントが見つかりません"
+    },
+    "activityLog": {
+      "title": "アクティビティログ",
+      "subtitle": "すべてのユーザーアクションとシステムイベントの追跡",
+      "summary": {
+        "totalActivities": "総アクティビティ",
+        "activeUsers": "アクティブユーザー",
+        "failedActions": "失敗したアクション",
+        "categoriesCount": "カテゴリー"
+      },
+      "search": {
+        "placeholder": "アクティビティを検索..."
+      },
+      "filters": {
+        "allCategories": "すべてのカテゴリー",
+        "allUsers": "すべてのユーザー",
+        "allStatus": "すべてのステータス",
+        "allTime": "すべての時間",
+        "today": "今日",
+        "thisWeek": "今週",
+        "thisMonth": "今月"
+      },
+      "table": {
+        "timestamp": "タイムスタンプ",
+        "user": "ユーザー",
+        "action": "アクション",
+        "category": "カテゴリー",
+        "description": "説明",
+        "ipAddress": "IPアドレス",
+        "status": "ステータス"
+      },
+      "noActivities": "アクティビティが見つかりません",
+      "showingEntries": "{total}件中{count}件を表示中",
+      "exporting": "エクスポート中..."
+    },
+    "notifications": {
+      "title": "通知",
+      "subtitle": "通知の管理と最新情報の入手",
+      "summary": {
+        "totalNotifications": "総通知",
+        "highPriority": "高優先度",
+        "unread": "未読",
+        "read": "既読"
+      },
+      "search": {
+        "placeholder": "通知を検索..."
+      },
+      "filters": {
+        "allTypes": "すべてのタイプ",
+        "allPriority": "すべての優先度",
+        "unreadOnly": "未読のみ"
+      },
+      "types": {
+        "order": "注文",
+        "payment": "支払い",
+        "product": "製品",
+        "user": "ユーザー",
+        "system": "システム",
+        "email": "メール",
+        "alert": "アラート",
+        "info": "情報"
+      },
+      "actions": {
+        "markAsRead": "既読にする",
+        "delete": "削除"
+      },
+      "noNotifications": "通知が見つかりません",
+      "showingNotifications": "{total}件中{count}件を表示中"
+    },
+    "checkout": {
+      "title": "チェックアウト",
+      "subtitle": "注文を完了する",
+      "shippingAddress": "配送先住所",
+      "fullName": "氏名",
+      "address": "住所",
+      "city": "市区町村",
+      "zipCode": "郵便番号",
+      "phone": "電話番号",
+      "shippingMethod": "配送方法",
+      "standardShipping": "標準配送",
+      "expressShipping": "速達配送",
+      "nextDayDelivery": "翌日配送",
+      "deliveryDays": "営業日",
+      "tomorrow": "明日",
+      "paymentMethod": "支払い方法",
+      "cardNumber": "カード番号",
+      "expiryDate": "有効期限",
+      "cvv": "CVV",
+      "nameOnCard": "カード名義人",
+      "securePayment": "お支払い情報は安全に暗号化されています",
+      "orderSummary": "注文概要",
+      "subtotal": "小計",
+      "shipping": "送料",
+      "tax": "税金",
+      "total": "合計"
+    },
+    "billing": {
+      "title": "請求",
+      "subtitle": "支払い方法と請求書の管理",
+      "paymentMethods": "支払い方法",
+      "addNewCard": "新しいカードを追加",
+      "billingHistory": "請求履歴",
+      "accountBalance": "アカウント残高",
+      "currentBalance": "現在残高",
+      "noOutstandingBalance": "未払いの残高はありません",
+      "billingAddress": "請求先住所",
+      "billingSettings": "請求設定",
+      "emailReceipts": "メール領収書",
+      "autoPay": "自動支払い",
+      "invoice": "請求書",
+      "description": "説明",
+      "amount": "金額",
+      "action": "アクション"
+    },
+    "invoice": {
+      "title": "請求書",
+      "backToBilling": "請求に戻る",
+      "billTo": "請求先",
+      "invoiceDate": "請求書発行日",
+      "dueDate": "支払い期限",
+      "description": "説明",
+      "qty": "数量",
+      "price": "価格",
+      "itemsTotal": "合計",
+      "thankYou": "ご注文ありがとうございます！",
+      "paymentDue": "請求書発行日から15日以内にお支払いください。",
+      "questions": "ご質問は、こちらまでお問い合わせください：",
+      "freeReturns": "30日以内は返品無料",
+      "securePayment": "安全な支払い処理",
+      "subtotal": "小計",
+      "shipping": "送料",
+      "tax": "税金",
+      "total": "合計"
+    },
+    "email": {
+      "title": "メール",
+      "subtitle": "メールとコミュニケーションの管理",
+      "compose": "作成",
+      "inbox": "受信トレイ",
+      "starred": "スター付き",
+      "sent": "送信済み",
+      "drafts": "下書き",
+      "spam": "スパム",
+      "search": {
+        "placeholder": "メールを検索..."
+      },
+      "labels": {
+        "work": "仕事",
+        "personal": "個人",
+        "important": "重要"
+      },
+      "noEmails": "メールが見つかりません",
+      "attachments": "添付ファイル"
+    },
+    "chat": {
+      "title": "チャット",
+      "subtitle": "メッセージとコミュニケーション",
+      "search": {
+        "placeholder": "連絡先を検索..."
+      },
+      "online": "オンライン",
+      "typeMessage": "メッセージを入力..."
+    },
+    "customerDetails": {
+      "title": "顧客詳細",
+      "subtitle": "顧客情報の表示と管理",
+      "backToCustomers": "顧客に戻る",
+      "contactInformation": "連絡先情報",
+      "notes": "メモ",
+      "quickActions": "クイックアクション",
+      "viewAllOrders": "すべての注文を表示",
+      "downloadInvoice": "請求書をダウンロード",
+      "viewAddressBook": "アドレス帳を表示",
+      "editCustomer": "顧客を編集",
+      "orderHistory": "注文履歴",
+      "editNotes": "メモを編集",
+      "location": "場所"
+    },
+    "orderDetails": {
+      "title": "注文詳細",
+      "subtitle": "注文情報の表示と管理",
+      "backToOrders": "注文に戻る",
+      "orderProgress": "注文進行状況",
+      "orderItems": "注文商品",
+      "orderId": "注文ID",
+      "date": "日付",
+      "customer": "顧客",
+      "email": "メール",
+      "phone": "電話番号",
+      "total": "合計",
+      "status": "ステータス",
+      "shippingAddress": "配送先住所",
+      "billingAddress": "請求先住所",
+      "paymentMethod": "支払い方法",
+      "orderInformation": "注文情報",
+      "orderActions": "注文アクション",
+      "printInvoice": "請求書を印刷",
+      "sendConfirmation": "確認メールを送信",
+      "refundOrder": "注文を返金",
+      "trackPackage": "パッケージを追跡",
+      "updateStatus": "ステータスを更新",
+      "paid": "支払い済み",
+      "trackingNumber": "追跡番号",
+      "timeline": {
+        "orderPlaced": "注文確定",
+        "processing": "処理中",
+        "shipped": "出荷済み",
+        "delivered": "配達済み"
+      }
+    },
+    "roleManagement": {
+      "title": "ロール管理",
+      "subtitle": "ロールの定義と権限の管理",
+      "createRole": "ロールを作成",
+      "editRole": "ロールを編集",
+      "roleName": "ロール名",
+      "description": "説明",
+      "permissions": "権限",
+      "usersAssigned": "割り当てられたユーザー",
+      "permissionsCount": "権限",
+      "availablePermissions": "利用可能な権限",
+      "cancel": "キャンセル",
+      "saveChanges": "変更を保存",
+      "deleteRole": "ロールを削除",
+      "roleColor": {
+        "admin": "管理者",
+        "manager": "マネージャー",
+        "support": "サポート",
+        "viewer": "ビューアー"
+      },
+      "permissionCategories": {
+        "dashboard": "ダッシュボード",
+        "products": "製品",
+        "orders": "注文",
+        "customers": "顧客",
+        "users": "ユーザー",
+        "billing": "請求"
+      }
+    },
+    "login": {
+      "brandTagline": "王と女王のブランド",
+      "secureSignIn": "Kingkuntaは、私たち一人ひとりの中にある気高さを引き出すロイヤルブランド。王冠をまとい、あなたのスタイルと力強さを示そう。",
+      "welcomeBack": "おかえりなさい",
+      "subtitle": "ダッシュボードにアクセスするにはサインインしてください。",
+      "identifierLabel": "メールまたはユーザー名",
+      "identifierPlaceholder": "admin@kingkunta.com",
+      "passwordLabel": "パスワード",
+      "passwordPlaceholder": "パスワードを入力",
+      "signIn": "サインイン",
+      "signingIn": "サインイン中...",
+      "showPassword": "パスワードを表示",
+      "hidePassword": "パスワードを非表示",
+      "validationMissingCredentials": "メール/ユーザー名とパスワードを入力してください。",
+      "errorLoginFailed": "サインインに失敗しました。認証情報を確認して再試行してください。",
+      "errorInvalidTokenRole": "認証されましたが、有効なアクセストークンまたはロールが返されませんでした。",
+      "errorUnableConnect": "バックエンドに接続できません。"
+    },
+    "promotions": {
+      "title": "プロモーション＆クーポン",
+      "subtitle": "Create, track and optimize your coupon campaigns",
+      "buttons": {
+        "createCoupon": "Create Coupon",
+        "generate": "Generate",
+        "previous": "Previous",
+        "next": "Next",
+        "cancel": "Cancel",
+        "saveChanges": "Save Changes"
+      },
+      "stats": {
+        "totalCoupons": "Total Coupons",
+        "active": "Active",
+        "scheduled": "Scheduled",
+        "expired": "Expired",
+        "discountsGiven": "discounts given"
+      },
+      "analytics": {
+        "title": "Coupons Analytics",
+        "usageOverTime": "Coupon Usage Over Time",
+        "discountsByType": "Discounts by Type",
+        "topPerformingCoupons": "Top Performing Coupons",
+        "rank": "Rank",
+        "code": "Code",
+        "usesHeader": "Uses",
+        "totalDiscount": "Total Discount",
+        "revenueGenerated": "Revenue Generated",
+        "uses": "uses",
+        "discounts": "discounts"
+      },
+      "filters": {
+        "searchPlaceholder": "Search by code...",
+        "statusAll": "All",
+        "statusActive": "Active",
+        "statusScheduled": "Scheduled",
+        "statusExpired": "Expired",
+        "statusDisabled": "Disabled",
+        "typeAll": "All Types",
+        "typePercentage": "Percentage",
+        "typeFixedAmount": "Fixed Amount",
+        "typeFreeShipping": "Free Shipping"
+      },
+      "table": {
+        "code": "Code",
+        "type": "Type",
+        "value": "Value",
+        "minOrder": "Min Order",
+        "usage": "Usage",
+        "validPeriod": "Valid Period",
+        "status": "Status",
+        "actions": "Actions",
+        "noCoupons": "No coupons found"
+      },
+      "typeLabels": {
+        "percentOff": "% Off",
+        "fixed": "Fixed",
+        "freeShip": "Free Ship",
+        "percentageLong": "Percentage",
+        "fixedAmountLong": "Fixed Amount",
+        "freeShippingLong": "Free Shipping"
+      },
+      "valueLabels": {
+        "free": "Free"
+      },
+      "statusLabels": {
+        "active": "Active",
+        "scheduled": "Scheduled",
+        "expired": "Expired",
+        "disabled": "Disabled"
+      },
+      "actions": {
+        "copyCode": "Copy code",
+        "duplicate": "Duplicate",
+        "edit": "Edit",
+        "delete": "Delete",
+        "toggleEnable": "Enable coupon",
+        "toggleDisable": "Disable coupon",
+        "createdSuccess": "Coupon created!",
+        "updatedSuccess": "Coupon updated!",
+        "deletedSuccess": "Coupon deleted!",
+        "duplicateSuccess": "Coupon duplicated!",
+        "toggleSuccess": "Coupon status updated!"
+      },
+      "modal": {
+        "createTitle": "Create Coupon",
+        "editTitle": "Edit Coupon",
+        "step1": "Step 1 - General Info",
+        "step2": "Step 2 - Conditions & Limits",
+        "fields": {
+          "code": "Code",
+          "codePlaceholder": "Leave empty to auto-generate",
+          "type": "Type",
+          "value": "Value",
+          "valuePlaceholderPercent": "e.g. 20 for 20%",
+          "valuePlaceholderFixed": "e.g. 10.00 for $10",
+          "minOrderAmount": "Min Order Amount",
+          "maxDiscountAmount": "Max Discount Amount",
+          "startDate": "Start Date",
+          "endDate": "End Date",
+          "usageLimit": "Usage Limit (total)",
+          "usageLimitPerUser": "Usage Limit per User",
+          "applicableTo": "Applicable To",
+          "allProducts": "All Products",
+          "specificCategories": "Specific Categories",
+          "specificProducts": "Specific Products",
+          "selectCategories": "Select categories",
+          "selectProducts": "Select products"
+        },
+        "validation": {
+          "typeRequired": "Coupon type is required.",
+          "valueRequired": "Value must be greater than 0.",
+          "percentageMax": "Percentage must be less than or equal to 100.",
+          "dateRequired": "Start date and end date are required.",
+          "endAfterStart": "End date must be after start date.",
+          "categoryRequired": "Please select at least one category.",
+          "productRequired": "Please select at least one product."
+        }
+      },
+      "deleteConfirm": {
+        "title": "Delete Coupon",
+        "message": "Are you sure you want to delete coupon {{code}}?",
+        "confirm": "Delete"
+      }
+    }
+  },
+  "nav": {
+    "dashboard": "ダッシュボード",
+    "analytics": "分析",
+    "customers": "顧客",
+    "products": "製品",
+    "orders": "注文",
+    "inventory": "在庫",
+    "inventoryOverview": "在庫概要",
+    "stockMovements": "在庫移動",
+    "lowStockAlerts": "在庫低下アラート",
+    "events": "イベント",
+    "billing": "請求",
+    "invoice": "請求書",
+    "reports": "レポート",
+    "email": "メール",
+    "chat": "チャット",
+    "notifications": "通知",
+    "settings": "設定",
+    "help": "ヘルプ",
+    "profile": "プロフィール",
+    "activityLog": "アクティビティログ",
+    "users": "ユーザー",
+    "checkout": "チェックアウト",
+    "productList": "製品リスト",
+    "productGrid": "製品グリッド",
+    "productDetails": "製品詳細",
+    "addProduct": "製品を追加",
+    "orderList": "注文リスト",
+    "orderDetails": "注文詳細",
+    "customerDetails": "顧客詳細",
+    "userList": "ユーザーリスト",
+    "roleManagement": "ロール管理",
+    "checkoutLabel": "チェックアウト",
+    "billingLabel": "請求",
+    "invoiceLabel": "請求書",
+    "analyticsLabel": "分析",
+    "chatLabel": "チャット",
+    "emailLabel": "メール",
+    "eventsLabel": "イベント",
+    "settingsLabel": "設定",
+    "promotions": "プロモーション",
+    "promotionsLabel": "プロモーション"
+  },
+  "language": {
+    "select": "言語を選択",
+    "english": "英語",
+    "french": "フランス語",
+    "spanish": "スペイン語",
+    "japanese": "日本語",
+    "chinese": "中国語",
+    "italian": "イタリア語",
+    "german": "ドイツ語",
+    "portuguese": "ポルトガル語",
+    "luxembourgish": "ルクセンブルク語"
+  },
+  "theme": {
+    "light": "ライト",
+    "dark": "ダーク",
+    "auto": "自動"
+  },
+  "user": {
+    "admin": "管理者ユーザー",
+    "email": "admin@example.com",
+    "logout": "ログアウト",
+    "settings": "ユーザー設定"
+  },
+  "sidebar": {
+    "collapse": "サイドバーを縮小",
+    "expand": "サイドバーを展開"
+  }
+}

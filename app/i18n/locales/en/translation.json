@@ -1,0 +1,934 @@
+{
+  "common": {
+    "search": "Search...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "confirm": "Confirm",
+    "back": "Back",
+    "submit": "Submit",
+    "appName": "KingKunta",
+    "adminDashboard": "Admin Dashboard",
+    "allRightsReserved": "All rights reserved.",
+    "view": "View",
+    "send": "Send",
+    "enable": "Enable",
+    "update": "Update",
+    "items": "items",
+    "today": "Today",
+    "refresh": "Refresh",
+    "previous": "Previous",
+    "next": "Next",
+    "exportLogs": "Export Logs",
+    "markAllRead": "Mark All Read",
+    "clearAll": "Clear All",
+    "previousPage": "Previous",
+    "nextPage": "Next",
+    "share": "Share",
+    "print": "Print",
+    "download": "Download",
+    "downloadPDF": "Download PDF",
+    "printInvoice": "Print Invoice",
+    "apply": "Apply",
+    "continueShopping": "Continue Shopping",
+    "proceedToCheckout": "Proceed to Checkout",
+    "placeOrder": "Place Order",
+    "payBalance": "Pay Balance",
+    "compose": "Compose",
+    "reply": "Reply",
+    "forward": "Forward",
+    "typeMessage": "Type a message...",
+    "searchContacts": "Search contacts...",
+    "searchEmails": "Search emails...",
+    "online": "Online",
+    "offline": "Offline",
+    "searchPlaceholder": "Search...",
+    "filterByCategory": "Filter by category",
+    "selectAll": "Select All",
+    "deselectAll": "Deselect All",
+    "success": "Success",
+    "failed": "Failed",
+    "pending": "Pending",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Overview of your business metrics",
+      "stats": {
+        "totalRevenue": "Total Revenue",
+        "orders": "Orders",
+        "customers": "Customers",
+        "refunds": "Refunds",
+        "fromLastMonth": "from last month"
+      },
+      "charts": {
+        "sales": "Sales Overview",
+        "orders": "Orders Analysis",
+        "orderStatuses": {
+          "completed": "Completed",
+          "processing": "Processing",
+          "pending": "Pending",
+          "cancelled": "Cancelled"
+        }
+      },
+      "recentOrders": {
+        "title": "Recent Orders",
+        "subtitle": "Latest customer orders and their status",
+        "table": {
+          "orderId": "Order ID",
+          "customer": "Customer",
+          "product": "Product",
+          "amount": "Amount",
+          "status": "Status",
+          "date": "Date"
+        }
+      },
+      "inventory": {
+        "title": "Inventory Overview",
+        "totalProducts": "Total Products",
+        "stockIn": "Stock In",
+        "stockOut": "Stock Out",
+        "recentMovements": "Recent Stock Movements",
+        "product": "Product",
+        "type": "Type",
+        "quantity": "Quantity",
+        "reference": "Reference",
+        "date": "Date",
+        "in": "In",
+        "out": "Out",
+        "allMovements": "View All Movements"
+      }
+    },
+    "inventory": {
+      "title": "Inventory Management",
+      "subtitle": "Overview of your stock and movements",
+      "stats": {
+        "totalProducts": "Total Products",
+        "totalValue": "Total Value",
+        "stockIn": "Stock In (This Month)",
+        "stockOut": "Stock Out (This Month)",
+        "lowStock": "Low Stock Items",
+        "outOfStock": "Out of Stock"
+      },
+      "alerts": {
+        "title": "Low Stock Alerts",
+        "critical": "Critical Stock",
+        "warning": "Warning Level",
+        "items": "Items Below Minimum",
+        "reorderPoint": "Reorder Point",
+        "lastRestocked": "Last Restocked",
+        "addStock": "Add Stock",
+        "product": "Product",
+        "category": "Category",
+        "stock": "Stock",
+        "minStock": "Min Stock",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "movements": {
+        "title": "Stock Movements",
+        "filter": "Filter by Type",
+        "all": "All Movements",
+        "in": "Stock In",
+        "out": "Stock Out",
+        "byProduct": "By Product",
+        "byDate": "By Date",
+        "export": "Export Report",
+        "exportShort": "Export"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Manage your account settings and preferences",
+      "sections": {
+        "account": "Account Settings",
+        "notifications": "Notifications",
+        "security": "Security",
+        "preferences": "Preferences"
+      },
+      "labels": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "bio": "Bio"
+      },
+      "buttons": {
+        "save": "Save Changes",
+        "saved": "Saved!",
+        "cancel": "Cancel"
+      },
+      "notifications": {
+        "email": "Email Notifications",
+        "push": "Push Notifications",
+        "sms": "SMS Notifications",
+        "marketing": "Marketing Emails",
+        "emailDesc": "Receive notifications via email",
+        "pushDesc": "Receive browser push notifications",
+        "smsDesc": "Receive notifications via SMS",
+        "marketingDesc": "Receive promotional offers and updates"
+      },
+      "security": {
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm New Password",
+        "updatePassword": "Update Password",
+        "enable2FA": "Enable 2FA",
+        "twoFactorAuth": "Two-Factor Authentication",
+        "addSecurity": "Add an extra layer of security to your account"
+      },
+      "preferences": {
+        "language": "Language",
+        "timezone": "Timezone",
+        "dateFormat": "Date Format",
+        "timeFormat": "Time Format",
+        "currency": "Currency",
+        "defaultDashboard": "Default Dashboard",
+        "selectLanguage": "Select Language",
+        "selectTimezone": "Select Timezone",
+        "selectDateFormat": "Select Date Format",
+        "selectTimeFormat": "Select Time Format",
+        "selectCurrency": "Select Currency",
+        "selectDashboard": "Select Default Dashboard"
+      }
+    },
+    "products": {
+      "title": "Products",
+      "subtitle": "Manage your product inventory",
+      "buttons": {
+        "addProduct": "Add Product",
+        "manageCategories": "Manage Categories",
+        "add": "Add",
+        "categories": "Categories"
+      },
+      "categories": {
+        "title": "Category Management",
+        "addCategory": "Add Category",
+        "form": {
+          "name": "Name",
+          "description": "Description"
+        },
+        "messages": {
+          "createSuccess": "Category created successfully",
+          "updateSuccess": "Category updated successfully",
+          "deleteSuccess": "Category deleted successfully",
+          "createError": "Error creating category",
+          "updateError": "Error updating category",
+          "deleteError": "Error deleting category",
+          "deleteConfirm": "Are you sure you want to delete this category?",
+          "fetchError": "Failed to fetch categories"
+        }
+      },
+      "search": {
+        "placeholder": "Search products..."
+      },
+      "filters": {
+        "allCategories": "All Categories"
+      },
+      "table": {
+        "product": "Product",
+        "category": "Category",
+        "price": "Price",
+        "stock": "Stock",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "add": {
+        "title": "Add Product",
+        "subtitle": "Create a new product listing",
+        "backToProducts": "Back to Products",
+        "saveProduct": "Save Product",
+        "cancel": "Cancel",
+        "basicInfo": "Basic Information",
+        "productName": "Product Name *",
+        "sku": "SKU *",
+        "category": "Category *",
+        "description": "Description *",
+        "pricing": "Pricing",
+        "price": "Price *",
+        "costPrice": "Cost Price",
+        "discount": "Discount (%)",
+        "inventory": "Inventory",
+        "stockQuantity": "Stock Quantity *",
+        "minStock": "Minimum Stock",
+        "weight": "Weight (kg)",
+        "status": "Status",
+        "features": "Product Features",
+        "addFeature": "Add Feature",
+        "enterFeature": "Enter feature",
+        "productStatus": "Status",
+        "active": "Active",
+        "inactive": "Inactive",
+        "draft": "Draft",
+        "productImages": "Product Images",
+        "upload": "Upload",
+        "uploadLimit": "Upload up to 5 images. Max size: 2MB each.",
+        "organization": "Organization",
+        "brand": "Brand",
+        "tags": "Tags",
+        "addCategory": "Add Category"
+      },
+      "details": {
+        "title": "Product Details",
+        "subtitle": "View and manage product information",
+        "backToProducts": "Back to Products",
+        "delete": "Delete",
+        "editProduct": "Edit Product",
+        "productImage": "Product Image",
+        "sku": "SKU",
+        "stock": "Stock",
+        "units": "units",
+        "features": "Features",
+        "quantity": "Quantity",
+        "addToCart": "Add to Cart",
+        "relatedProducts": "Related Products",
+        "outOfStock": "Out of Stock",
+        "rating": "rating",
+        "reviews": "reviews"
+      },
+      "grid": {
+        "title": "Product Grid",
+        "subtitle": "View products in grid layout",
+        "searchPlaceholder": "Search products...",
+        "allCategories": "All Categories",
+        "sortByPrice": "Sort by Price",
+        "priceLowToHigh": "Price: Low to High",
+        "priceHighToLow": "Price: High to Low",
+        "outOfStock": "Out of Stock",
+        "inStock": "in stock",
+        "edit": "Edit",
+        "favorite": "Favorite"
+      }
+    },
+    "orders": {
+      "title": "Orders",
+      "subtitle": "Manage customer orders and fulfillment",
+      "search": {
+        "placeholder": "Search orders..."
+      },
+      "filters": {
+        "allStatus": "All Status",
+        "pending": "Pending",
+        "processing": "Processing",
+        "shipped": "Shipped",
+        "delivered": "Delivered",
+        "cancelled": "Cancelled"
+      },
+      "table": {
+        "orderId": "Order ID",
+        "customer": "Customer",
+        "items": "Items",
+        "total": "Total",
+        "status": "Status",
+        "date": "Date",
+        "actions": "Actions"
+      },
+      "itemsCount": "items"
+    },
+    "orderDetails": {
+      "title": "Order Details",
+      "subtitle": "View and manage order information",
+      "backToOrders": "Back to Orders",
+      "orderProgress": "Order Progress",
+      "orderItems": "Order Items",
+      "orderId": "Order ID",
+      "date": "Date",
+      "customer": "Customer",
+      "email": "Email",
+      "phone": "Phone",
+      "total": "Total",
+      "status": "Status",
+      "shippingAddress": "Shipping Address",
+      "billingAddress": "Billing Address",
+      "paymentMethod": "Payment Method",
+      "orderInformation": "Order Information",
+      "orderActions": "Order Actions",
+      "printInvoice": "Print Invoice",
+      "sendConfirmation": "Send Confirmation Email",
+      "refundOrder": "Refund Order",
+      "trackPackage": "Track Package",
+      "updateStatus": "Update Status",
+      "paid": "Paid",
+      "trackingNumber": "Tracking Number",
+      "timeline": {
+        "orderPlaced": "Order Placed",
+        "processing": "Processing",
+        "shipped": "Shipped",
+        "delivered": "Delivered"
+      }
+    },
+    "customers": {
+      "title": "Customers",
+      "subtitle": "Manage your customer relationships",
+      "search": {
+        "placeholder": "Search customers..."
+      },
+      "filters": {
+        "allCustomers": "All Customers",
+        "active": "Active",
+        "inactive": "Inactive",
+        "sortJoinDate": "Sort by Join Date",
+        "sortOrders": "Sort by Orders",
+        "sortTotalSpent": "Sort by Total Spent"
+      },
+      "details": {
+        "orders": "Orders",
+        "totalSpent": "Total Spent",
+        "joined": "Joined",
+        "avgOrderValue": "Avg. Order Value",
+        "lastOrder": "Last Order"
+      },
+      "buttons": {
+        "viewProfile": "View Profile",
+        "sendMessage": "Send Message"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      }
+    },
+    "customerDetails": {
+      "title": "Customer Details",
+      "subtitle": "View and manage customer information",
+      "backToCustomers": "Back to Customers",
+      "contactInformation": "Contact Information",
+      "notes": "Notes",
+      "quickActions": "Quick Actions",
+      "viewAllOrders": "View All Orders",
+      "downloadInvoice": "Download Invoice",
+      "viewAddressBook": "View Address Book",
+      "editCustomer": "Edit Customer",
+      "orderHistory": "Order History",
+      "editNotes": "Edit Notes",
+      "location": "Location"
+    },
+    "users": {
+      "title": "Users",
+      "subtitle": "Manage user accounts and roles",
+      "buttons": {
+        "addUser": "Add User"
+      },
+      "search": {
+        "placeholder": "Search users..."
+      },
+      "filters": {
+        "allRoles": "All Roles",
+        "allStatus": "All Status",
+        "active": "Active",
+        "inactive": "Inactive",
+        "pending": "Pending"
+      },
+      "table": {
+        "user": "User",
+        "role": "Role",
+        "status": "Status",
+        "joinDate": "Join Date",
+        "lastLogin": "Last Login",
+        "actions": "Actions"
+      },
+      "modal": {
+        "editRole": "Edit User Role",
+        "user": "User",
+        "currentRole": "Current Role",
+        "selectRole": "Select New Role",
+        "cancel": "Cancel",
+        "save": "Save Changes"
+      }
+    },
+    "roleManagement": {
+      "title": "Role Management",
+      "subtitle": "Define roles and manage permissions",
+      "createRole": "Create Role",
+      "editRole": "Edit Role",
+      "roleName": "Role Name",
+      "description": "Description",
+      "permissions": "Permissions",
+      "usersAssigned": "users assigned",
+      "permissionsCount": "permissions",
+      "availablePermissions": "Available Permissions",
+      "cancel": "Cancel",
+      "saveChanges": "Save Changes",
+      "deleteRole": "Delete Role",
+      "roleColor": {
+        "admin": "Admin",
+        "manager": "Manager",
+        "support": "Support",
+        "viewer": "Viewer"
+      },
+      "permissionCategories": {
+        "dashboard": "Dashboard",
+        "products": "Products",
+        "orders": "Orders",
+        "customers": "Customers",
+        "users": "Users",
+        "billing": "Billing"
+      }
+    },
+    "analytics": {
+      "title": "Analytics",
+      "subtitle": "Comprehensive business insights and performance metrics",
+      "metrics": {
+        "totalRevenue": "Total Revenue",
+        "totalOrders": "Total Orders",
+        "newCustomers": "New Customers",
+        "productsSold": "Products Sold"
+      },
+      "charts": {
+        "revenueTrend": "Revenue Trend",
+        "salesByCategory": "Sales by Category",
+        "ordersVsCustomers": "Orders vs New Customers"
+      },
+      "tables": {
+        "topSelling": "Top Selling Products"
+      },
+      "table": {
+        "product": "Product",
+        "sales": "Sales",
+        "revenue": "Revenue",
+        "performance": "Performance"
+      },
+      "changes": {
+        "increase": "increase",
+        "decrease": "decrease"
+      },
+      "categories": {
+        "electronics": "Electronics",
+        "clothing": "Clothing",
+        "homeGarden": "Home & Garden",
+        "sports": "Sports",
+        "books": "Books"
+      }
+    },
+    "events": {
+      "title": "Events",
+      "subtitle": "Manage and track all company events",
+      "buttons": {
+        "createEvent": "Create Event",
+        "searchPlaceholder": "Search events...",
+        "allCategories": "All Categories"
+      },
+      "stats": {
+        "totalEvents": "Total Events",
+        "upcoming": "Upcoming",
+        "totalAttendees": "Total Attendees",
+        "categories": "Categories"
+      },
+      "table": {
+        "event": "Event",
+        "schedule": "Schedule",
+        "location": "Location",
+        "category": "Category",
+        "attendees": "Attendees",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "fields": {
+        "description": "Description",
+        "startingDate": "Starting Date",
+        "endingDate": "Ending Date",
+        "startingHours": "Starting Hours",
+        "endingHours": "Ending Hours"
+      },
+      "status": {
+        "upcoming": "Upcoming",
+        "ongoing": "Ongoing",
+        "completed": "Completed"
+      },
+      "modals": {
+        "createTitle": "Create Event",
+        "editTitle": "Edit Event",
+        "detailsTitle": "Event Details",
+        "deleteTitle": "Delete Event",
+        "filterByCategory": "Filter by category",
+        "validationTitleDate": "Title and starting date are required.",
+        "deleteConfirm": "Are you sure you want to delete {{title}}?"
+      },
+      "errors": {
+        "invalidEventId": "This event is unavailable because it has an invalid ID."
+      },
+      "noEvents": "No events found matching your criteria"
+    },
+    "activityLog": {
+      "title": "Activity Log",
+      "subtitle": "Track all user actions and system events",
+      "summary": {
+        "totalActivities": "Total Activities",
+        "activeUsers": "Active Users",
+        "failedActions": "Failed Actions",
+        "categoriesCount": "Categories"
+      },
+      "search": {
+        "placeholder": "Search activities..."
+      },
+      "filters": {
+        "allCategories": "All Categories",
+        "allUsers": "All Users",
+        "allStatus": "All Status",
+        "allTime": "All Time",
+        "today": "Today",
+        "thisWeek": "This Week",
+        "thisMonth": "This Month"
+      },
+      "table": {
+        "timestamp": "Timestamp",
+        "user": "User",
+        "action": "Action",
+        "category": "Category",
+        "description": "Description",
+        "ipAddress": "IP Address",
+        "status": "Status"
+      },
+      "noActivities": "No activities found",
+      "showingEntries": "Showing {count} of {total} entries",
+      "exporting": "Exporting..."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Manage your notifications and stay updated",
+      "summary": {
+        "totalNotifications": "Total Notifications",
+        "highPriority": "High Priority",
+        "unread": "Unread",
+        "read": "Read"
+      },
+      "search": {
+        "placeholder": "Search notifications..."
+      },
+      "filters": {
+        "allTypes": "All Types",
+        "allPriority": "All Priority",
+        "unreadOnly": "Unread only"
+      },
+      "types": {
+        "order": "Orders",
+        "payment": "Payments",
+        "product": "Products",
+        "user": "Users",
+        "system": "System",
+        "email": "Email",
+        "alert": "Alerts",
+        "info": "Info"
+      },
+      "actions": {
+        "markAsRead": "Mark as read",
+        "delete": "Delete"
+      },
+      "noNotifications": "No notifications found",
+      "showingNotifications": "Showing {count} of {total} notifications"
+    },
+    "checkout": {
+      "title": "Checkout",
+      "subtitle": "Complete your order",
+      "shippingAddress": "Shipping Address",
+      "fullName": "Full Name",
+      "address": "Address",
+      "city": "City",
+      "zipCode": "ZIP Code",
+      "phone": "Phone",
+      "shippingMethod": "Shipping Method",
+      "standardShipping": "Standard Shipping",
+      "expressShipping": "Express Shipping",
+      "nextDayDelivery": "Next Day Delivery",
+      "deliveryDays": "business days",
+      "tomorrow": "Tomorrow",
+      "paymentMethod": "Payment Method",
+      "cardNumber": "Card Number",
+      "expiryDate": "Expiry Date",
+      "cvv": "CVV",
+      "nameOnCard": "Name on Card",
+      "securePayment": "Your payment information is secure and encrypted",
+      "orderSummary": "Order Summary",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "total": "Total"
+    },
+    "billing": {
+      "title": "Billing",
+      "subtitle": "Manage your payment methods and invoices",
+      "paymentMethods": "Payment Methods",
+      "addNewCard": "Add New Card",
+      "billingHistory": "Billing History",
+      "accountBalance": "Account Balance",
+      "currentBalance": "Current Balance",
+      "noOutstandingBalance": "No outstanding balance",
+      "billingAddress": "Billing Address",
+      "billingSettings": "Billing Settings",
+      "emailReceipts": "Email receipts",
+      "autoPay": "Auto-pay",
+      "invoice": "Invoice",
+      "description": "Description",
+      "amount": "Amount",
+      "action": "Action"
+    },
+    "invoice": {
+      "title": "Invoice",
+      "backToBilling": "Back to Billing",
+      "billTo": "Bill To",
+      "invoiceDate": "Invoice Date",
+      "dueDate": "Due Date",
+      "description": "Description",
+      "qty": "Qty",
+      "price": "Price",
+      "itemsTotal": "Total",
+      "thankYou": "Thank you for your business!",
+      "paymentDue": "Payment is due within 15 days of invoice date.",
+      "questions": "Questions? Contact us at",
+      "freeReturns": "Free returns within 30 days",
+      "securePayment": "Secure payment processing",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "total": "Total"
+    },
+    "email": {
+      "title": "Email",
+      "subtitle": "Manage your emails and communications",
+      "compose": "Compose",
+      "inbox": "Inbox",
+      "starred": "Starred",
+      "sent": "Sent",
+      "drafts": "Drafts",
+      "spam": "Spam",
+      "search": {
+        "placeholder": "Search emails..."
+      },
+      "labels": {
+        "work": "Work",
+        "personal": "Personal",
+        "important": "Important"
+      },
+      "noEmails": "No emails found",
+      "attachments": "Attachments"
+    },
+    "chat": {
+      "title": "Chat",
+      "subtitle": "Messaging and communication",
+      "search": {
+        "placeholder": "Search contacts..."
+      },
+      "online": "Online",
+      "typeMessage": "Type a message..."
+    },
+    "login": {
+      "brandTagline": "the brand of kings and queens",
+      "secureSignIn": "Kingkunta, the royal brand that reveals the nobility in each of us. Wear your crown, assert your style and your power.",
+      "welcomeBack": "Welcome back",
+      "subtitle": "Sign in to access your dashboard.",
+      "identifierLabel": "Email or username",
+      "identifierPlaceholder": "admin@kingkunta.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "signIn": "Sign in",
+      "signingIn": "Signing in...",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "validationMissingCredentials": "Enter your email/username and password.",
+      "errorLoginFailed": "Login failed. Check your credentials and try again.",
+      "errorInvalidTokenRole": "Authenticated, but no valid access token or role was returned.",
+      "errorUnableConnect": "Unable to connect to backend."
+    },
+    "promotions": {
+      "title": "Promotions & Coupons",
+      "subtitle": "Create, track and optimize your coupon campaigns",
+      "buttons": {
+        "createCoupon": "Create Coupon",
+        "generate": "Generate",
+        "previous": "Previous",
+        "next": "Next",
+        "cancel": "Cancel",
+        "saveChanges": "Save Changes"
+      },
+      "stats": {
+        "totalCoupons": "Total Coupons",
+        "active": "Active",
+        "scheduled": "Scheduled",
+        "expired": "Expired",
+        "discountsGiven": "discounts given"
+      },
+      "analytics": {
+        "title": "Coupons Analytics",
+        "usageOverTime": "Coupon Usage Over Time",
+        "discountsByType": "Discounts by Type",
+        "topPerformingCoupons": "Top Performing Coupons",
+        "rank": "Rank",
+        "code": "Code",
+        "usesHeader": "Uses",
+        "totalDiscount": "Total Discount",
+        "revenueGenerated": "Revenue Generated",
+        "uses": "uses",
+        "discounts": "discounts"
+      },
+      "filters": {
+        "searchPlaceholder": "Search by code...",
+        "statusAll": "All",
+        "statusActive": "Active",
+        "statusScheduled": "Scheduled",
+        "statusExpired": "Expired",
+        "statusDisabled": "Disabled",
+        "typeAll": "All Types",
+        "typePercentage": "Percentage",
+        "typeFixedAmount": "Fixed Amount",
+        "typeFreeShipping": "Free Shipping"
+      },
+      "table": {
+        "code": "Code",
+        "type": "Type",
+        "value": "Value",
+        "minOrder": "Min Order",
+        "usage": "Usage",
+        "validPeriod": "Valid Period",
+        "status": "Status",
+        "actions": "Actions",
+        "noCoupons": "No coupons found"
+      },
+      "typeLabels": {
+        "percentOff": "% Off",
+        "fixed": "Fixed",
+        "freeShip": "Free Ship",
+        "percentageLong": "Percentage",
+        "fixedAmountLong": "Fixed Amount",
+        "freeShippingLong": "Free Shipping"
+      },
+      "valueLabels": {
+        "free": "Free"
+      },
+      "statusLabels": {
+        "active": "Active",
+        "scheduled": "Scheduled",
+        "expired": "Expired",
+        "disabled": "Disabled"
+      },
+      "actions": {
+        "copyCode": "Copy code",
+        "duplicate": "Duplicate",
+        "edit": "Edit",
+        "delete": "Delete",
+        "toggleEnable": "Enable coupon",
+        "toggleDisable": "Disable coupon",
+        "createdSuccess": "Coupon created!",
+        "updatedSuccess": "Coupon updated!",
+        "deletedSuccess": "Coupon deleted!",
+        "duplicateSuccess": "Coupon duplicated!",
+        "toggleSuccess": "Coupon status updated!"
+      },
+      "modal": {
+        "createTitle": "Create Coupon",
+        "editTitle": "Edit Coupon",
+        "step1": "Step 1 - General Info",
+        "step2": "Step 2 - Conditions & Limits",
+        "fields": {
+          "code": "Code",
+          "codePlaceholder": "Leave empty to auto-generate",
+          "type": "Type",
+          "value": "Value",
+          "valuePlaceholderPercent": "e.g. 20 for 20%",
+          "valuePlaceholderFixed": "e.g. 10.00 for $10",
+          "minOrderAmount": "Min Order Amount",
+          "maxDiscountAmount": "Max Discount Amount",
+          "startDate": "Start Date",
+          "endDate": "End Date",
+          "usageLimit": "Usage Limit (total)",
+          "usageLimitPerUser": "Usage Limit per User",
+          "applicableTo": "Applicable To",
+          "allProducts": "All Products",
+          "specificCategories": "Specific Categories",
+          "specificProducts": "Specific Products",
+          "selectCategories": "Select categories",
+          "selectProducts": "Select products"
+        },
+        "validation": {
+          "typeRequired": "Coupon type is required.",
+          "valueRequired": "Value must be greater than 0.",
+          "percentageMax": "Percentage must be less than or equal to 100.",
+          "dateRequired": "Start date and end date are required.",
+          "endAfterStart": "End date must be after start date.",
+          "categoryRequired": "Please select at least one category.",
+          "productRequired": "Please select at least one product."
+        }
+      },
+      "deleteConfirm": {
+        "title": "Delete Coupon",
+        "message": "Are you sure you want to delete coupon {{code}}?",
+        "confirm": "Delete"
+      }
+    }
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "analytics": "Analytics",
+    "customers": "Customers",
+    "products": "Products",
+    "orders": "Orders",
+    "inventory": "Inventory",
+    "inventoryOverview": "Inventory Overview",
+    "stockMovements": "Stock Movements",
+    "lowStockAlerts": "Low Stock Alerts",
+    "events": "Events",
+    "billing": "Billing",
+    "invoice": "Invoice",
+    "reports": "Reports",
+    "email": "Email",
+    "chat": "Chat",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "help": "Help",
+    "profile": "Profile",
+    "activityLog": "Activity Log",
+    "users": "Users",
+    "checkout": "Checkout",
+    "productList": "Product list",
+    "productGrid": "Product grid",
+    "productDetails": "Product details",
+    "addProduct": "Add product",
+    "orderList": "Order list",
+    "orderDetails": "Order details",
+    "customerDetails": "Customer details",
+    "userList": "User list",
+    "roleManagement": "Role management",
+    "checkoutLabel": "Checkout",
+    "billingLabel": "Billing",
+    "invoiceLabel": "Invoice",
+    "analyticsLabel": "Analytics",
+    "chatLabel": "Chat",
+    "emailLabel": "Email",
+    "eventsLabel": "Events",
+    "settingsLabel": "Settings",
+    "promotions": "Promotions",
+    "promotionsLabel": "Promotions"
+  },
+  "language": {
+    "select": "Select Language",
+    "english": "English",
+    "french": "French",
+    "spanish": "Spanish",
+    "japanese": "Japanese",
+    "chinese": "Chinese (Simplified)"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "auto": "Auto"
+  },
+  "user": {
+    "admin": "Admin User",
+    "email": "admin@example.com",
+    "logout": "Logout",
+    "settings": "User Settings"
+  },
+  "sidebar": {
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar"
+  }
+}

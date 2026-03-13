@@ -1,0 +1,896 @@
+{
+  "common": {
+    "search": "Sichen...",
+    "save": "Späicheren",
+    "cancel": "Ofbriechen",
+    "delete": "Läschen",
+    "edit": "Änneren",
+    "add": "Derbäisetzen",
+    "loading": "Lueden...",
+    "noResults": "Keng Resultater fonnt",
+    "confirm": "Bestätegen",
+    "back": "Zréck",
+    "next": "Nächst",
+    "submit": "Ofschécken",
+    "appName": "KingKunta",
+    "adminDashboard": "Admin Dashboard",
+    "allRightsReserved": "All Rechter virbehalen.",
+    "view": "Kucken",
+    "send": "Schécken",
+    "enable": "Aktivéieren",
+    "update": "Aktualiséieren",
+    "items": "Elementer",
+    "today": "Haut",
+    "refresh": "Aktualiséieren",
+    "previous": "Vireg",
+    "exportLogs": "Loge exportéieren",
+    "markAllRead": "All als gelies markéieren",
+    "clearAll": "All läschen"
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Iwwersiicht vun Äre Geschäftsmetriken",
+      "stats": {
+        "totalRevenue": "Total Revenu",
+        "orders": "Bestellungen",
+        "customers": "Kunden",
+        "refunds": "Restitutiounen",
+        "fromLastMonth": "vum leschte Mount"
+      },
+      "charts": {
+        "sales": "Iwwersiicht Verkaf",
+        "orders": "Bestellungsanalyse",
+        "orderStatuses": {
+          "completed": "Ofgeschloss",
+          "processing": "Am gaang",
+          "pending": "Oppasse",
+          "cancelled": "Annuléiert"
+        }
+      },
+      "recentOrders": {
+        "title": "Rezent Bestellungen",
+        "subtitle": "Lescht Kundebestellungen an hire Status",
+        "table": {
+          "orderId": "Bestellungs ID",
+          "customer": "Kund",
+          "product": "Produkt",
+          "amount": "Betrag",
+          "status": "Status",
+          "date": "Datum"
+        }
+      },
+      "inventory": {
+        "title": "Inventar Iwwersiicht",
+        "totalProducts": "Total Produkter",
+        "stockIn": "Stock eran",
+        "stockOut": "Stock eraus",
+        "recentMovements": "Rezent Stockbewegungen",
+        "product": "Produkt",
+        "type": "Typ",
+        "quantity": "Quantitéit",
+        "reference": "Referenz",
+        "date": "Datum",
+        "in": "An",
+        "out": "Eraus",
+        "allMovements": "All Bewegunge kucken"
+      }
+    },
+    "inventory": {
+      "title": "Inventar Gestion",
+      "subtitle": "Iwwersiicht vun Ärem Stock an Bewegungen",
+      "stats": {
+        "totalProducts": "Total Produkter",
+        "totalValue": "Total Wäert",
+        "stockIn": "Stock eran (Dëse Mount)",
+        "stockOut": "Stock eraus (Dëse Mount)",
+        "lowStock": "Artikele mat nidderegem Stock",
+        "outOfStock": "Ausverkaaft"
+      },
+      "alerts": {
+        "title": "Alert bei nidderegem Stock",
+        "critical": "Kritische Stock",
+        "warning": "Warnniveau",
+        "items": "Artikele ënner dem Minimum",
+        "reorderPoint": "Bestellpunkt"
+      },
+      "movements": {
+        "title": "Stockbewegungen",
+        "filter": "No Typ filteren",
+        "all": "All Bewegungen",
+        "in": "Stock eran",
+        "out": "Stock eraus",
+        "byProduct": "No Produkt",
+        "byDate": "No Datum",
+        "export": "Rapport exportéieren"
+      }
+    },
+    "settings": {
+      "title": "Astellungen",
+      "subtitle": "Geréier Är Kont astellungen a Präferenzen",
+      "sections": {
+        "account": "Kont Astellungen",
+        "notifications": "Notifikatiounen",
+        "security": "Sécherheet",
+        "preferences": "Präferenzen"
+      },
+      "labels": {
+        "firstName": "Virnumm",
+        "lastName": "Familljennumm",
+        "email": "E-Mail Adress",
+        "phone": "Telefonsnummer",
+        "bio": "Bio"
+      },
+      "buttons": {
+        "save": "Ännerunge späicheren",
+        "saved": "Gespäichert!",
+        "cancel": "Ofbriechen"
+      },
+      "notifications": {
+        "email": "E-Mail Notifikatiounen",
+        "push": "Push Notifikatiounen",
+        "sms": "SMS Notifikatiounen",
+        "marketing": "Marketing E-Maile",
+        "emailDesc": "Notifikatiounen per E-Mail kréien",
+        "pushDesc": "Browser Push Notifikatiounen kréien",
+        "smsDesc": "Notifikatiounen per SMS kréien",
+        "marketingDesc": "Promotiounsofferten an Updates kréien"
+      },
+      "security": {
+        "currentPassword": "Aktuelle Passwuert",
+        "newPassword": "Neit Passwuert",
+        "confirmPassword": "Neit Passwuert bestätegen",
+        "updatePassword": "Passwuert aktualiséieren",
+        "enable2FA": "2FA aktivéieren",
+        "twoFactorAuth": "Zwei-Faktor Authentifikatioun",
+        "addSecurity": "Füügt eng extra Sécherheetsschicht zu Ärem Kont bäi"
+      },
+      "preferences": {
+        "language": "Sprooch",
+        "timezone": "Zäitzon",
+        "dateFormat": "Datumsformat",
+        "timeFormat": "Zäitformat",
+        "currency": "Währung",
+        "defaultDashboard": "Standard Dashboard",
+        "selectLanguage": "Sprooch auswielen",
+        "selectTimezone": "Zäitzon auswielen",
+        "selectDateFormat": "Datumsformat auswielen",
+        "selectTimeFormat": "Zäitformat auswielen",
+        "selectCurrency": "Währung auswielen",
+        "selectDashboard": "Standard Dashboard auswielen"
+      }
+    },
+    "products": {
+      "title": "Produkter",
+      "subtitle": "Geréier Äert Produktinventar",
+      "buttons": {
+        "addProduct": "Produkt derbäisetzen",
+        "manageCategories": "Kategorien geréieren",
+        "add": "Derbäisetzen"
+      },
+      "categories": {
+        "title": "Kategorie Gestion",
+        "addCategory": "Kategorie derbäisetzen",
+        "form": {
+          "name": "Numm",
+          "description": "Beschreiwung"
+        },
+        "messages": {
+          "createSuccess": "Kategorie erfollegräich erstallt",
+          "updateSuccess": "Kategorie erfollegräich aktualiséiert",
+          "deleteSuccess": "Kategorie erfollegräich geläscht",
+          "createError": "Feeler beim Erstelle vun der Kategorie",
+          "updateError": "Feeler beim Aktualiséiere vun der Kategorie",
+          "deleteError": "Feeler beim Läsche vun der Kategorie",
+          "deleteConfirm": "Sief dir wierklech sécher dës Kategorie ze läschen?",
+          "fetchError": "Feeler beim Luede vun de Kategorien"
+        }
+      },
+      "search": {
+        "placeholder": "Produkter sichen..."
+      },
+      "filters": {
+        "allCategories": "All Kategorien"
+      },
+      "table": {
+        "product": "Produkt",
+        "category": "Kategorie",
+        "price": "Präis",
+        "stock": "Stock",
+        "status": "Status",
+        "actions": "Aktiounen"
+      },
+      "status": {
+        "active": "Aktiv",
+        "inactive": "Inaktiv"
+      },
+      "add": {
+        "title": "Produkt derbäisetzen",
+        "subtitle": "Nei Produktkaart erstellen",
+        "backToProducts": "Zréck zu Produkter",
+        "saveProduct": "Produkt späicheren",
+        "cancel": "Ofbriechen",
+        "basicInfo": "Basisinformatiounen",
+        "productName": "Produktnumm *",
+        "sku": "SKU *",
+        "category": "Kategorie *",
+        "description": "Beschreiwung *",
+        "pricing": " Präisgestaltung",
+        "price": "Präis *",
+        "costPrice": "Kostenpräis",
+        "discount": "Rabatt (%)",
+        "inventory": "Inventar",
+        "stockQuantity": "Stockquantitéit *",
+        "minStock": "Mindeststock",
+        "weight": "Gewiicht (kg)",
+        "status": "Status",
+        "features": "Produkteegenschaften",
+        "addFeature": "Eegenschaft derbäisetzen",
+        "enterFeature": "Eegenschaft aginn",
+        "productStatus": "Status",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "draft": "Entworf",
+        "productImages": "Produktbiller",
+        "upload": "Eroplueden",
+        "uploadLimit": "Lued bis zu 5 Biller erop. Max Gréisst: 2MB jiddweren.",
+        "organization": "Organisatioun",
+        "brand": "Mark",
+        "tags": "Tags",
+        "addCategory": "Kategorie derbäisetzen"
+      },
+      "details": {
+        "title": "Produktdetailer",
+        "subtitle": "Produktinformatiounen kucken a geréieren",
+        "backToProducts": "Zréck zu Produkter",
+        "delete": "Läschen",
+        "editProduct": "Produkt änneren",
+        "productImage": "Produktbild",
+        "sku": "SKU",
+        "stock": "Stock",
+        "units": " Eenheete",
+        "features": "Eegenschaften",
+        "quantity": "Quantitéit",
+        "addToCart": "Akafswagen dobäisetzen",
+        "relatedProducts": "Ähnlech Produkter",
+        "outOfStock": "Ausverkaaft",
+        "rating": "Bewäertung",
+        "reviews": "Bewäertungen"
+      },
+      "grid": {
+        "title": "Produktraster",
+        "subtitle": "Produkter an Raster vue weisen",
+        "searchPlaceholder": "Produkter sichen...",
+        "allCategories": "All Kategorien",
+        "sortByPrice": "No Präis sortéieren",
+        "priceLowToHigh": "Präis: Kleng zu Grouss",
+        "priceHighToLow": "Präis: Grouss zu Kleng",
+        "outOfStock": "Ausverkaaft",
+        "inStock": "op Lager",
+        "edit": "Änneren",
+        "favorite": "Favorit"
+      }
+    },
+    "orders": {
+      "title": "Bestellungen",
+      "subtitle": "Geréier Kundebestellungen an Ausféierung",
+      "search": {
+        "placeholder": "Bestellungen sichen..."
+      },
+      "filters": {
+        "allStatus": "All Status",
+        "pending": "Oppasse",
+        "processing": "Am gaang",
+        "shipped": "Verschéckt",
+        "delivered": "Geliwwert",
+        "cancelled": "Annuléiert"
+      },
+      "table": {
+        "orderId": "Bestellungs ID",
+        "customer": "Kund",
+        "items": "Artikelen",
+        "total": "Total",
+        "status": "Status",
+        "date": "Datum",
+        "actions": "Aktiounen"
+      },
+      "itemsCount": "Artikelen"
+    },
+    "customers": {
+      "title": "Kunden",
+      "subtitle": "Geréier Är Kundebezéiungen",
+      "search": {
+        "placeholder": "Kunden sichen..."
+      },
+      "filters": {
+        "allCustomers": "All Kunden",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "sortJoinDate": "No Beitrëttsdatum sortéieren",
+        "sortOrders": "No Bestellungen sortéieren",
+        "sortTotalSpent": "No total ausgegeben sortéieren"
+      },
+      "details": {
+        "orders": "Bestellungen",
+        "totalSpent": "Total ausgegeben",
+        "joined": "Bäigetrueden"
+      },
+      "buttons": {
+        "viewProfile": "Profil kucken",
+        "sendMessage": "Message schécken"
+      },
+      "status": {
+        "active": "Aktiv",
+        "inactive": "Inaktiv"
+      }
+    },
+    "users": {
+      "title": "Benotzer",
+      "subtitle": "Geréier Benotzerkonten a Rollen",
+      "buttons": {
+        "addUser": "Benotzer derbäisetzen"
+      },
+      "search": {
+        "placeholder": "Benotzer sichen..."
+      },
+      "filters": {
+        "allRoles": "All Rollen",
+        "allStatus": "All Status",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "pending": "Oppasse"
+      },
+      "table": {
+        "user": "Benotzer",
+        "role": "Rol",
+        "status": "Status",
+        "joinDate": "Beitrëttsdatum",
+        "lastLogin": "Leschten Login",
+        "actions": "Aktiounen"
+      },
+      "modal": {
+        "editRole": "Benotzerrol änneren",
+        "user": "Benotzer",
+        "currentRole": "Aktuell Rol",
+        "selectRole": "Nei Rol auswielen",
+        "cancel": "Ofbriechen",
+        "save": "Ännerunge späicheren"
+      }
+    },
+    "analytics": {
+      "title": "Analysen",
+      "subtitle": "Zesummenhängend Geschichtsinsechten a Performance Metriken",
+      "metrics": {
+        "totalRevenue": "Total Revenu",
+        "totalOrders": "Total Bestellungen",
+        "newCustomers": "Nei Kunden",
+        "productsSold": "Verkafte Produkter"
+      },
+      "charts": {
+        "revenueTrend": "Revenu Trend",
+        "salesByCategory": "Verkaf no Kategorie",
+        "ordersVsCustomers": "Bestellungen vs. Nei Kunden"
+      },
+      "tables": {
+        "topSelling": "Bescht verkafte Produkter"
+      },
+      "table": {
+        "product": "Produkt",
+        "sales": "Verkaf",
+        "revenue": "Revenu",
+        "performance": "Performance"
+      },
+      "changes": {
+        "increase": "Erhéigung",
+        "decrease": "Decrease"
+      },
+      "categories": {
+        "electronics": "Elektronik",
+        "clothing": "Kleedung",
+        "homeGarden": "Doheem a Gaart",
+        "sports": "Sport",
+        "books": "Bicher"
+      }
+    },
+    "events": {
+      "title": "Eventer",
+      "subtitle": "Geréier a verfollegt all Firmaseventer",
+      "buttons": {
+        "createEvent": "Event erstellen",
+        "searchPlaceholder": "Eventer sichen...",
+        "allCategories": "All Kategorien"
+      },
+      "stats": {
+        "totalEvents": "Total Eventer",
+        "upcoming": "Kommend",
+        "totalAttendees": "Total Deelnehmer",
+        "categories": "Kategorien"
+      },
+      "table": {
+        "event": "Event",
+        "schedule": "Plang",
+        "location": "Standuert",
+        "category": "Kategorie",
+        "attendees": "Deelnehmer",
+        "status": "Status",
+        "actions": "Aktiounen"
+      },
+      "fields": {
+        "description": "Beschreiwung",
+        "startingDate": "Startdatum",
+        "endingDate": "Enndatum",
+        "startingHours": "Startzäit",
+        "endingHours": "Ennzäit"
+      },
+      "status": {
+        "upcoming": "Kommend",
+        "ongoing": "Am gaang",
+        "completed": "Ofgeschloss"
+      },
+      "modals": {
+        "createTitle": "Event erstellen",
+        "editTitle": "Event änneren",
+        "detailsTitle": "Eventdetailer",
+        "deleteTitle": "Event läschen",
+        "filterByCategory": "No Kategorie filteren",
+        "validationTitleDate": "Titel a Startdatum si verlaangt.",
+        "deleteConfirm": "Wëllt Dir {{title}} wierklech läschen?"
+      },
+      "errors": {
+        "invalidEventId": "Dësen Event ass net verfügbar well seng ID ongëlteg ass."
+      },
+      "noEvents": "Keng Eventer fonnt déi Äre Kriterien entspriechen"
+    },
+    "activityLog": {
+      "title": "Aktivitéitslog",
+      "subtitle": "Verfollegt all Benotzeraktione Systemeventer",
+      "summary": {
+        "totalActivities": "Total Aktivitéiten",
+        "activeUsers": "Aktiv Benotzer",
+        "failedActions": "Fehlgeschlagene Aktiounen",
+        "categoriesCount": "Kategorien"
+      },
+      "search": {
+        "placeholder": "Sichen Aktivitéiten..."
+      },
+      "filters": {
+        "allCategories": "All Kategorien",
+        "allUsers": "All Benotzer",
+        "allStatus": "All Status",
+        "allTime": "All Zäit",
+        "today": "Haut",
+        "thisWeek": "Dës Woche",
+        "thisMonth": "Dëse Mount"
+      },
+      "table": {
+        "timestamp": "Zäitstempel",
+        "user": "Benotzer",
+        "action": "Aktioun",
+        "category": "Kategorie",
+        "description": "Beschreiwung",
+        "ipAddress": "IP Adress",
+        "status": "Status"
+      },
+      "noActivities": "Keng Aktivitéiten fonnt",
+      "showingEntries": "Weist {count} vun {total} Einträger",
+      "exporting": "Exporteieren..."
+    },
+    "notifications": {
+      "title": "Notifikatiounen",
+      "subtitle": "Geréier Är Notifikatiounen a bleift op dem lafenden",
+      "summary": {
+        "totalNotifications": "Total Notifikatiounen",
+        "highPriority": "Héich Prioritéit",
+        "unread": "Netgelies",
+        "read": "Gelies"
+      },
+      "search": {
+        "placeholder": "Sichen Notifikatiounen..."
+      },
+      "filters": {
+        "allTypes": "All Typen",
+        "allPriority": "All Prioritéiten",
+        "unreadOnly": "Nëmmen netgelies"
+      },
+      "types": {
+        "order": "Bestellungen",
+        "payment": "Zuelungen",
+        "product": "Produkter",
+        "user": "Benotzer",
+        "system": "System",
+        "email": "E-Mail",
+        "alert": "Alerten",
+        "info": "Info"
+      },
+      "actions": {
+        "markAsRead": "Als gelies markéieren",
+        "delete": "Läschen"
+      },
+      "noNotifications": "Keng Notifikatiounen fonnt",
+      "showingNotifications": "Weist {count} vun {total} Notifikatiounen"
+    },
+    "checkout": {
+      "title": "Kass",
+      "subtitle": "Bestellung ofschléissen",
+      "shippingAddress": "Lieweradress",
+      "fullName": "Fullen Numm",
+      "address": "Adress",
+      "city": "Stad",
+      "zipCode": "Postleitzuel",
+      "phone": "Telefon",
+      "shippingMethod": "Liewermethod",
+      "standardShipping": "Standard Liewerung",
+      "expressShipping": "Express Liewerung",
+      "nextDayDelivery": "Nächste Dag Liewerung",
+      "deliveryDays": "Arbechtsdeeg",
+      "tomorrow": "Muer",
+      "paymentMethod": "Zuelmethod",
+      "cardNumber": "Kaartennumm",
+      "expiryDate": "Gültegkeetsdatum",
+      "cvv": "CVV",
+      "nameOnCard": "Numm op der Kaart",
+      "securePayment": "Är Zuelinformatiounen sinn sécher verschlësselt",
+      "orderSummary": "Bestellungsübersicht",
+      "subtotal": "Total ouni MWSt",
+      "shipping": "Liewerung",
+      "tax": "MWSt",
+      "total": "Total"
+    },
+    "billing": {
+      "title": "Fakturatioun",
+      "subtitle": "Geréier Är Zuelmethoden a Rechnungen",
+      "paymentMethods": "Zuelmethoden",
+      "addNewCard": "Nei Kaart derbäisetzen",
+      "billingHistory": "Fakturatiounshistorique",
+      "accountBalance": "Kontosald",
+      "currentBalance": "Aktuelle Sald",
+      "noOutstandingBalance": "Keng ausstehend Schold",
+      "billingAddress": "Fakturatiounsadress",
+      "billingSettings": "Fakturatiounsinstellungen",
+      "emailReceipts": "E-Mail Rechnung",
+      "autoPay": "Auto-Zuel",
+      "invoice": "Rechnung",
+      "description": "Beschreiwung",
+      "amount": "Betrag",
+      "action": "Aktioun"
+    },
+    "invoice": {
+      "title": "Facture",
+      "backToBilling": "Zréck zur Fakturatioun",
+      "billTo": "Facturéieren un",
+      "invoiceDate": "Facturedatum",
+      "dueDate": "Fälligkeitsdatum",
+      "description": "Beschreiwung",
+      "qty": "Unzuel",
+      "price": "Präis",
+      "itemsTotal": "Total",
+      "thankYou": "Merci fir Äre Geschäft!",
+      "paymentDue": "Zuelung fällig bannent 15 Deeg no Rechnungsdatum.",
+      "questions": "Fro? Kontaktéiert eis bei",
+      "freeReturns": "Gratis Retournen bannent 30 Deeg",
+      "securePayment": "Sécher Zuelungsveraarbechtung",
+      "subtotal": "Total ouni MWSt",
+      "shipping": "Liewerung",
+      "tax": "MWSt",
+      "total": "Total"
+    },
+    "email": {
+      "title": "E-Mail",
+      "subtitle": "Geréier Är E-Maile a Kommunikatioun",
+      "compose": "Schreiwen",
+      "inbox": "Postefiach",
+      "starred": "Markéiert",
+      "sent": "Geschéckt",
+      "drafts": "Entwërf",
+      "spam": "Spam",
+      "search": {
+        "placeholder": "E-Maile sichen..."
+      },
+      "labels": {
+        "work": "Schaffen",
+        "personal": "Perséinlech",
+        "important": "Wichteg"
+      },
+      "noEmails": "Keng E-Maile fonnt",
+      "attachments": "Unhänge"
+    },
+    "chat": {
+      "title": "Chat",
+      "subtitle": "Messagerie a Kommunikatioun",
+      "search": {
+        "placeholder": "Kontakter sichen..."
+      },
+      "online": "Online",
+      "typeMessage": "Message tippen..."
+    },
+    "customerDetails": {
+      "title": "Kundedetailer",
+      "subtitle": "Kundinformatiounen kucken a geréieren",
+      "backToCustomers": "Zréck zu Kunden",
+      "contactInformation": "Kontaktinformatiounen",
+      "notes": "Notizen",
+      "quickActions": "Schnellaktione",
+      "viewAllOrders": "All Bestellungen kucken",
+      "downloadInvoice": "Rechnung eroflueden",
+      "viewAddressBook": "Adressbuch kucken",
+      "editCustomer": "Kund änneren",
+      "orderHistory": "Bestellungshistorique",
+      "editNotes": "Notizen änneren",
+      "location": "Standuert"
+    },
+    "orderDetails": {
+      "title": "Bestellungsdetailer",
+      "subtitle": "Bestellungsinformatiounen kucken a geréieren",
+      "backToOrders": "Zréck zu Bestellungen",
+      "orderProgress": "Bestellungsfortschrëtt",
+      "orderItems": "Bestellungsartikelen",
+      "orderId": "Bestellungs ID",
+      "date": "Datum",
+      "customer": "Kund",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "total": "Total",
+      "status": "Status",
+      "shippingAddress": "Lieweradress",
+      "billingAddress": "Fakturatiounsadress",
+      "paymentMethod": "Zuelmethod",
+      "orderInformation": "Bestellungsinformatiounen",
+      "orderActions": "Bestellungsaktiounen",
+      "printInvoice": "Rechnung drécken",
+      "sendConfirmation": "Bestätegungs-E-Mail schécken",
+      "refundOrder": "Bestellung rembourséieren",
+      "trackPackage": "Paket verfollegen",
+      "updateStatus": "Status aktualiséieren",
+      "paid": "Bezuelt",
+      "trackingNumber": "Trackingnummer",
+      "timeline": {
+        "orderPlaced": "Bestellung opginn",
+        "processing": "Amgaang",
+        "shipped": "Verschéckt",
+        "delivered": "Geliwwert"
+      }
+    },
+    "roleManagement": {
+      "title": "Rollegestion",
+      "subtitle": "Rollen definéieren a Berechtigungen geréieren",
+      "createRole": "Rol erstellen",
+      "editRole": "Rol änneren",
+      "roleName": "Rolnumm",
+      "description": "Beschreiwung",
+      "permissions": "Berechtigungen",
+      "usersAssigned": "zouginn Benotzer",
+      "permissionsCount": "Berechtigungen",
+      "availablePermissions": "Verfügoar Berechtigungen",
+      "cancel": "Ofbriechen",
+      "saveChanges": "Ännerungen späicheren",
+      "deleteRole": "Rol läschen",
+      "roleColor": {
+        "admin": "Administrateur",
+        "manager": "Manager",
+        "support": "Support",
+        "viewer": "Kucker"
+      },
+      "permissionCategories": {
+        "dashboard": "Dashboard",
+        "products": "Produkter",
+        "orders": "Bestellungen",
+        "customers": "Kunden",
+        "users": "Benotzer",
+        "billing": "Fakturatioun"
+      }
+    },
+    "login": {
+      "brandTagline": "d'Mark vun de Kinneken a Kinniginnen",
+      "secureSignIn": "Kingkunta, déi kinneklech Mark, déi den Adel an jidderengem vun eis weist. Droe deng Kroun, behaapt däi Stil an deng Kraaft.",
+      "welcomeBack": "Wellekomm zreck",
+      "subtitle": "Mellt Iech un fir op den Dashboard zouzegräifen.",
+      "identifierLabel": "E-Mail oder Benotzernumm",
+      "identifierPlaceholder": "admin@kingkunta.com",
+      "passwordLabel": "Passwuert",
+      "passwordPlaceholder": "Gitt aert Passwuert an",
+      "signIn": "Umellen",
+      "signingIn": "Amgaang unzemellen...",
+      "showPassword": "Passwuert weisen",
+      "hidePassword": "Passwuert verstoppen",
+      "validationMissingCredentials": "Gitt E-Mail/Benotzernumm a Passwuert an.",
+      "errorLoginFailed": "Umellung feelgeschloen. Kontrolléiert Är Donnéeën a probéiert nach eng Kéier.",
+      "errorInvalidTokenRole": "Authentifizéiert, mee kee valabelen Token oder Roll gouf zeréckginn.",
+      "errorUnableConnect": "Keng Verbindung mam Backend méiglech."
+    },
+    "promotions": {
+      "title": "Promotiounen & Couponen",
+      "subtitle": "Create, track and optimize your coupon campaigns",
+      "buttons": {
+        "createCoupon": "Create Coupon",
+        "generate": "Generate",
+        "previous": "Previous",
+        "next": "Next",
+        "cancel": "Cancel",
+        "saveChanges": "Save Changes"
+      },
+      "stats": {
+        "totalCoupons": "Total Coupons",
+        "active": "Active",
+        "scheduled": "Scheduled",
+        "expired": "Expired",
+        "discountsGiven": "discounts given"
+      },
+      "analytics": {
+        "title": "Coupons Analytics",
+        "usageOverTime": "Coupon Usage Over Time",
+        "discountsByType": "Discounts by Type",
+        "topPerformingCoupons": "Top Performing Coupons",
+        "rank": "Rank",
+        "code": "Code",
+        "usesHeader": "Uses",
+        "totalDiscount": "Total Discount",
+        "revenueGenerated": "Revenue Generated",
+        "uses": "uses",
+        "discounts": "discounts"
+      },
+      "filters": {
+        "searchPlaceholder": "Search by code...",
+        "statusAll": "All",
+        "statusActive": "Active",
+        "statusScheduled": "Scheduled",
+        "statusExpired": "Expired",
+        "statusDisabled": "Disabled",
+        "typeAll": "All Types",
+        "typePercentage": "Percentage",
+        "typeFixedAmount": "Fixed Amount",
+        "typeFreeShipping": "Free Shipping"
+      },
+      "table": {
+        "code": "Code",
+        "type": "Type",
+        "value": "Value",
+        "minOrder": "Min Order",
+        "usage": "Usage",
+        "validPeriod": "Valid Period",
+        "status": "Status",
+        "actions": "Actions",
+        "noCoupons": "No coupons found"
+      },
+      "typeLabels": {
+        "percentOff": "% Off",
+        "fixed": "Fixed",
+        "freeShip": "Free Ship",
+        "percentageLong": "Percentage",
+        "fixedAmountLong": "Fixed Amount",
+        "freeShippingLong": "Free Shipping"
+      },
+      "valueLabels": {
+        "free": "Free"
+      },
+      "statusLabels": {
+        "active": "Active",
+        "scheduled": "Scheduled",
+        "expired": "Expired",
+        "disabled": "Disabled"
+      },
+      "actions": {
+        "copyCode": "Copy code",
+        "duplicate": "Duplicate",
+        "edit": "Edit",
+        "delete": "Delete",
+        "toggleEnable": "Enable coupon",
+        "toggleDisable": "Disable coupon",
+        "createdSuccess": "Coupon created!",
+        "updatedSuccess": "Coupon updated!",
+        "deletedSuccess": "Coupon deleted!",
+        "duplicateSuccess": "Coupon duplicated!",
+        "toggleSuccess": "Coupon status updated!"
+      },
+      "modal": {
+        "createTitle": "Create Coupon",
+        "editTitle": "Edit Coupon",
+        "step1": "Step 1 - General Info",
+        "step2": "Step 2 - Conditions & Limits",
+        "fields": {
+          "code": "Code",
+          "codePlaceholder": "Leave empty to auto-generate",
+          "type": "Type",
+          "value": "Value",
+          "valuePlaceholderPercent": "e.g. 20 for 20%",
+          "valuePlaceholderFixed": "e.g. 10.00 for $10",
+          "minOrderAmount": "Min Order Amount",
+          "maxDiscountAmount": "Max Discount Amount",
+          "startDate": "Start Date",
+          "endDate": "End Date",
+          "usageLimit": "Usage Limit (total)",
+          "usageLimitPerUser": "Usage Limit per User",
+          "applicableTo": "Applicable To",
+          "allProducts": "All Products",
+          "specificCategories": "Specific Categories",
+          "specificProducts": "Specific Products",
+          "selectCategories": "Select categories",
+          "selectProducts": "Select products"
+        },
+        "validation": {
+          "typeRequired": "Coupon type is required.",
+          "valueRequired": "Value must be greater than 0.",
+          "percentageMax": "Percentage must be less than or equal to 100.",
+          "dateRequired": "Start date and end date are required.",
+          "endAfterStart": "End date must be after start date.",
+          "categoryRequired": "Please select at least one category.",
+          "productRequired": "Please select at least one product."
+        }
+      },
+      "deleteConfirm": {
+        "title": "Delete Coupon",
+        "message": "Are you sure you want to delete coupon {{code}}?",
+        "confirm": "Delete"
+      }
+    }
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "analytics": "Analysen",
+    "customers": "Kunden",
+    "products": "Produkter",
+    "orders": "Bestellungen",
+    "inventory": "Inventar",
+    "inventoryOverview": "Inventar Iwwersiicht",
+    "stockMovements": "Stockbewegungen",
+    "lowStockAlerts": "Alert bei nidderegem Stock",
+    "events": "Eventer",
+    "billing": "Fakturatioun",
+    "invoice": "Facture",
+    "reports": "Rapporten",
+    "email": "E-Mail",
+    "chat": "Chat",
+    "notifications": "Notifikatiounen",
+    "settings": "Astellungen",
+    "help": "Hëllef",
+    "profile": "Profil",
+    "activityLog": "Aktivitéitslog",
+    "users": "Benotzer",
+    "checkout": "Kass",
+    "productList": "Produktlëscht",
+    "productGrid": "Produktraster",
+    "productDetails": "Produktdetailer",
+    "addProduct": "Produkt derbäisetzen",
+    "orderList": "Bestellungslëscht",
+    "orderDetails": "Bestellungsdetailer",
+    "customerDetails": "Kundedetailer",
+    "userList": "Benotzerlëscht",
+    "roleManagement": "Rollegestion",
+    "checkoutLabel": "Kass",
+    "billingLabel": "Fakturatioun",
+    "invoiceLabel": "Facture",
+    "analyticsLabel": "Analysen",
+    "chatLabel": "Chat",
+    "emailLabel": "E-Mail",
+    "eventsLabel": "Eventer",
+    "settingsLabel": "Astellungen",
+    "promotions": "Promotiounen",
+    "promotionsLabel": "Promotiounen"
+  },
+  "language": {
+    "select": "Sprooch auswielen",
+    "english": "Englesch",
+    "french": "Franséisch",
+    "spanish": "Spuenesch",
+    "japanese": "Japanesch",
+    "chinese": "Chinesesch (vereinfacht)",
+    "italian": "Italienesch",
+    "german": "Däitsch",
+    "portuguese": "Portugisesch",
+    "luxembourgish": "Lëtzebuergesch"
+  },
+  "theme": {
+    "light": "Lichten",
+    "dark": "Däischter",
+    "auto": "Auto"
+  },
+  "user": {
+    "admin": "Administrateur",
+    "email": "admin@example.com",
+    "logout": "Ausloggen",
+    "settings": "Benotzer Astellungen"
+  },
+  "sidebar": {
+    "collapse": "Säiteleischt verklengeren",
+    "expand": "Säiteleischt vergréisseren"
+  }
+}

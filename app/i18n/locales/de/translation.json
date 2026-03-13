@@ -1,0 +1,896 @@
+{
+  "common": {
+    "search": "Suchen...",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "add": "Hinzufügen",
+    "loading": "Laden...",
+    "noResults": "Keine Ergebnisse gefunden",
+    "confirm": "Bestätigen",
+    "back": "Zurück",
+    "next": "Nächste",
+    "submit": "Absenden",
+    "appName": "KingKunta",
+    "adminDashboard": "Admin-Dashboard",
+    "allRightsReserved": "Alle Rechte vorbehalten.",
+    "view": "Ansehen",
+    "send": "Senden",
+    "enable": "Aktivieren",
+    "update": "Aktualisieren",
+    "items": "Elemente",
+    "today": "Heute",
+    "refresh": "Aktualisieren",
+    "previous": "Vorherige",
+    "exportLogs": "Protokolle exportieren",
+    "markAllRead": "Alle als gelesen markieren",
+    "clearAll": "Alle löschen"
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Übersicht Ihrer Geschäftsmetriken",
+      "stats": {
+        "totalRevenue": "Gesamtumsatz",
+        "orders": "Bestellungen",
+        "customers": "Kunden",
+        "refunds": "Erstattungen",
+        "fromLastMonth": "vom letzten Monat"
+      },
+      "charts": {
+        "sales": "Verkaufsübersicht",
+        "orders": "Bestellungsanalyse",
+        "orderStatuses": {
+          "completed": "Abgeschlossen",
+          "processing": "In Bearbeitung",
+          "pending": "Ausstehend",
+          "cancelled": "Storniert"
+        }
+      },
+      "recentOrders": {
+        "title": "Aktuelle Bestellungen",
+        "subtitle": "Neueste Kundenbestellungen und ihr Status",
+        "table": {
+          "orderId": "Bestell-ID",
+          "customer": "Kunde",
+          "product": "Produkt",
+          "amount": "Betrag",
+          "status": "Status",
+          "date": "Datum"
+        }
+      },
+      "inventory": {
+        "title": "Bestandsübersicht",
+        "totalProducts": "Gesamtprodukte",
+        "stockIn": "Bestandseingang",
+        "stockOut": "Bestandsausgang",
+        "recentMovements": "Aktuelle Bestandsbewegungen",
+        "product": "Produkt",
+        "type": "Typ",
+        "quantity": "Menge",
+        "reference": "Referenz",
+        "date": "Datum",
+        "in": "Eingang",
+        "out": "Ausgang",
+        "allMovements": "Alle Bewegungen anzeigen"
+      }
+    },
+    "inventory": {
+      "title": "Bestandsverwaltung",
+      "subtitle": "Übersicht Ihres Bestands und Bewegungen",
+      "stats": {
+        "totalProducts": "Gesamtprodukte",
+        "totalValue": "Gesamtwert",
+        "stockIn": "Bestandseingang (Dieser Monat)",
+        "stockOut": "Bestandsausgang (Dieser Monat)",
+        "lowStock": "Artikel mit niedrigem Bestand",
+        "outOfStock": "Ausverkauft"
+      },
+      "alerts": {
+        "title": "Niedriger-Bestand-Warnungen",
+        "critical": "Kritischer Bestand",
+        "warning": "Warnstufe",
+        "items": "Artikel unter dem Minimum",
+        "reorderPoint": "Mindestbestellmenge"
+      },
+      "movements": {
+        "title": "Bestandsbewegungen",
+        "filter": "Nach Typ filtern",
+        "all": "Alle Bewegungen",
+        "in": "Bestandseingang",
+        "out": "Bestandsausgang",
+        "byProduct": "Nach Produkt",
+        "byDate": "Nach Datum",
+        "export": "Bericht exportieren"
+      }
+    },
+    "settings": {
+      "title": "Einstellungen",
+      "subtitle": "Verwalten Sie Ihre Kontoeinstellungen und Präferenzen",
+      "sections": {
+        "account": "Kontoeinstellungen",
+        "notifications": "Benachrichtigungen",
+        "security": "Sicherheit",
+        "preferences": "Präferenzen"
+      },
+      "labels": {
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "email": "E-Mail-Adresse",
+        "phone": "Telefonnummer",
+        "bio": "Bio"
+      },
+      "buttons": {
+        "save": "Änderungen speichern",
+        "saved": "Gespeichert!",
+        "cancel": "Abbrechen"
+      },
+      "notifications": {
+        "email": "E-Mail-Benachrichtigungen",
+        "push": "Push-Benachrichtigungen",
+        "sms": "SMS-Benachrichtigungen",
+        "marketing": "Marketing-E-Mails",
+        "emailDesc": "Benachrichtigungen per E-Mail erhalten",
+        "pushDesc": "Browser-Push-Benachrichtigungen erhalten",
+        "smsDesc": "Benachrichtigungen per SMS erhalten",
+        "marketingDesc": "Werbeangebote und Updates erhalten"
+      },
+      "security": {
+        "currentPassword": "Aktuelles Passwort",
+        "newPassword": "Neues Passwort",
+        "confirmPassword": "Neues Passwort bestätigen",
+        "updatePassword": "Passwort aktualisieren",
+        "enable2FA": "2FA aktivieren",
+        "twoFactorAuth": "Zwei-Faktor-Authentifizierung",
+        "addSecurity": "Fügen Sie eine zusätzliche Sicherheitsebene zu Ihrem Konto hinzu"
+      },
+      "preferences": {
+        "language": "Sprache",
+        "timezone": "Zeitzone",
+        "dateFormat": "Datumsformat",
+        "timeFormat": "Zeitformat",
+        "currency": "Währung",
+        "defaultDashboard": "Standard-Dashboard",
+        "selectLanguage": "Sprache auswählen",
+        "selectTimezone": "Zeitzone auswählen",
+        "selectDateFormat": "Datumsformat auswählen",
+        "selectTimeFormat": "Zeitformat auswählen",
+        "selectCurrency": "Währung auswählen",
+        "selectDashboard": "Standard-Dashboard auswählen"
+      }
+    },
+    "products": {
+      "title": "Produkte",
+      "subtitle": "Verwalten Sie Ihren Produktbestand",
+      "buttons": {
+        "addProduct": "Produkt hinzufügen",
+        "manageCategories": "Kategorien verwalten",
+        "add": "Hinzufügen"
+      },
+      "categories": {
+        "title": "Kategorienverwaltung",
+        "addCategory": "Kategorie hinzufügen",
+        "form": {
+          "name": "Name",
+          "description": "Beschreibung"
+        },
+        "messages": {
+          "createSuccess": "Kategorie erfolgreich erstellt",
+          "updateSuccess": "Kategorie erfolgreich aktualisiert",
+          "deleteSuccess": "Kategorie erfolgreich gelöscht",
+          "createError": "Fehler beim Erstellen der Kategorie",
+          "updateError": "Fehler beim Aktualisieren der Kategorie",
+          "deleteError": "Fehler beim Löschen der Kategorie",
+          "deleteConfirm": "Möchten Sie diese Kategorie wirklich löschen?",
+          "fetchError": "Fehler beim Laden der Kategorien"
+        }
+      },
+      "search": {
+        "placeholder": "Produkte suchen..."
+      },
+      "filters": {
+        "allCategories": "Alle Kategorien"
+      },
+      "table": {
+        "product": "Produkt",
+        "category": "Kategorie",
+        "price": "Preis",
+        "stock": "Bestand",
+        "status": "Status",
+        "actions": "Aktionen"
+      },
+      "status": {
+        "active": "Aktiv",
+        "inactive": "Inaktiv"
+      },
+      "add": {
+        "title": "Produkt hinzufügen",
+        "subtitle": "Neue Produktkarte erstellen",
+        "backToProducts": "Zurück zu Produkten",
+        "saveProduct": "Produkt speichern",
+        "cancel": "Abbrechen",
+        "basicInfo": "Grundinformationen",
+        "productName": "Produktname *",
+        "sku": "SKU *",
+        "category": "Kategorie *",
+        "description": "Beschreibung *",
+        "pricing": "Preisgestaltung",
+        "price": "Preis *",
+        "costPrice": "Kostenpreis",
+        "discount": "Rabatt (%)",
+        "inventory": "Inventar",
+        "stockQuantity": "Bestandsmenge *",
+        "minStock": "Mindestbestand",
+        "weight": "Gewicht (kg)",
+        "status": "Status",
+        "features": "Produkteigenschaften",
+        "addFeature": "Eigenschaft hinzufügen",
+        "enterFeature": "Eigenschaft eingeben",
+        "productStatus": "Status",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "draft": "Entwurf",
+        "productImages": "Produktbilder",
+        "upload": "Hochladen",
+        "uploadLimit": "Laden Sie bis zu 5 Bilder hoch. Max. Größe: 2MB jedes.",
+        "organization": "Organisation",
+        "brand": "Marke",
+        "tags": "Tags",
+        "addCategory": "Kategorie hinzufügen"
+      },
+      "details": {
+        "title": "Produktdetails",
+        "subtitle": "Produktinformationen anzeigen und verwalten",
+        "backToProducts": "Zurück zu Produkten",
+        "delete": "Löschen",
+        "editProduct": "Produkt bearbeiten",
+        "productImage": "Produktbild",
+        "sku": "SKU",
+        "stock": "Bestand",
+        "units": "Einheiten",
+        "features": "Eigenschaften",
+        "quantity": "Menge",
+        "addToCart": "In den Warenkorb",
+        "relatedProducts": "Ähnliche Produkte",
+        "outOfStock": "Ausverkauft",
+        "rating": "Bewertung",
+        "reviews": "Bewertungen"
+      },
+      "grid": {
+        "title": "Produktraster",
+        "subtitle": "Produkte in Rasteransicht anzeigen",
+        "searchPlaceholder": "Produkte suchen...",
+        "allCategories": "Alle Kategorien",
+        "sortByPrice": "Nach Preis sortieren",
+        "priceLowToHigh": "Preis: Aufsteigend",
+        "priceHighToLow": "Preis: Absteigend",
+        "outOfStock": "Ausverkauft",
+        "inStock": "auf Lager",
+        "edit": "Bearbeiten",
+        "favorite": "Favorit"
+      }
+    },
+    "orders": {
+      "title": "Bestellungen",
+      "subtitle": "Verwalten Sie Kundenbestellungen und -abwicklung",
+      "search": {
+        "placeholder": "Bestellungen suchen..."
+      },
+      "filters": {
+        "allStatus": "Alle Status",
+        "pending": "Ausstehend",
+        "processing": "In Bearbeitung",
+        "shipped": "Versendet",
+        "delivered": "Geliefert",
+        "cancelled": "Storniert"
+      },
+      "table": {
+        "orderId": "Bestell-ID",
+        "customer": "Kunde",
+        "items": "Artikel",
+        "total": "Gesamt",
+        "status": "Status",
+        "date": "Datum",
+        "actions": "Aktionen"
+      },
+      "itemsCount": "Artikel"
+    },
+    "customers": {
+      "title": "Kunden",
+      "subtitle": "Verwalten Sie Ihre Kundenbeziehungen",
+      "search": {
+        "placeholder": "Kunden suchen..."
+      },
+      "filters": {
+        "allCustomers": "Alle Kunden",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "sortJoinDate": "Nach Beitrettungsdatum sortieren",
+        "sortOrders": "Nach Bestellungen sortieren",
+        "sortTotalSpent": "Nach Gesamtumsatz sortieren"
+      },
+      "details": {
+        "orders": "Bestellungen",
+        "totalSpent": "Gesamtumsatz",
+        "joined": "Beigetreten"
+      },
+      "buttons": {
+        "viewProfile": "Profil anzeigen",
+        "sendMessage": "Nachricht senden"
+      },
+      "status": {
+        "active": "Aktiv",
+        "inactive": "Inaktiv"
+      }
+    },
+    "users": {
+      "title": "Benutzer",
+      "subtitle": "Verwalten Sie Benutzerkonten und Rollen",
+      "buttons": {
+        "addUser": "Benutzer hinzufügen"
+      },
+      "search": {
+        "placeholder": "Benutzer suchen..."
+      },
+      "filters": {
+        "allRoles": "Alle Rollen",
+        "allStatus": "Alle Status",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "pending": "Ausstehend"
+      },
+      "table": {
+        "user": "Benutzer",
+        "role": "Rolle",
+        "status": "Status",
+        "joinDate": "Beitrettungsdatum",
+        "lastLogin": "Letzte Anmeldung",
+        "actions": "Aktionen"
+      },
+      "modal": {
+        "editRole": "Benutzerrolle bearbeiten",
+        "user": "Benutzer",
+        "currentRole": "Aktuelle Rolle",
+        "selectRole": "Neue Rolle auswählen",
+        "cancel": "Abbrechen",
+        "save": "Änderungen speichern"
+      }
+    },
+    "analytics": {
+      "title": "Analysen",
+      "subtitle": "Umfassende Geschäftseinblicke und Leistungskennzahlen",
+      "metrics": {
+        "totalRevenue": "Gesamtumsatz",
+        "totalOrders": "Gesamtbestellungen",
+        "newCustomers": "Neue Kunden",
+        "productsSold": "Verkaufte Produkte"
+      },
+      "charts": {
+        "revenueTrend": "Umsatzentwicklung",
+        "salesByCategory": "Verkäufe nach Kategorie",
+        "ordersVsCustomers": "Bestellungen vs. Neue Kunden"
+      },
+      "tables": {
+        "topSelling": "Top-Verkäufe Produkte"
+      },
+      "table": {
+        "product": "Produkt",
+        "sales": "Verkäufe",
+        "revenue": "Umsatz",
+        "performance": "Leistung"
+      },
+      "changes": {
+        "increase": "Anstieg",
+        "decrease": "Rückgang"
+      },
+      "categories": {
+        "electronics": "Elektronik",
+        "clothing": "Bekleidung",
+        "homeGarden": "Haus & Garten",
+        "sports": "Sport",
+        "books": "Bücher"
+      }
+    },
+    "events": {
+      "title": "Ereignisse",
+      "subtitle": "Verwalten und verfolgen Sie alle Unternehmensereignisse",
+      "buttons": {
+        "createEvent": "Ereignis erstellen",
+        "searchPlaceholder": "Ereignisse suchen...",
+        "allCategories": "Alle Kategorien"
+      },
+      "stats": {
+        "totalEvents": "Gesamtereignisse",
+        "upcoming": "Kommende",
+        "totalAttendees": "Gesamtteilnehmer",
+        "categories": "Kategorien"
+      },
+      "table": {
+        "event": "Ereignis",
+        "schedule": "Zeitplan",
+        "location": "Ort",
+        "category": "Kategorie",
+        "attendees": "Teilnehmer",
+        "status": "Status",
+        "actions": "Aktionen"
+      },
+      "fields": {
+        "description": "Beschreibung",
+        "startingDate": "Startdatum",
+        "endingDate": "Enddatum",
+        "startingHours": "Startzeit",
+        "endingHours": "Endzeit"
+      },
+      "status": {
+        "upcoming": "Kommend",
+        "ongoing": "Laufend",
+        "completed": "Abgeschlossen"
+      },
+      "modals": {
+        "createTitle": "Ereignis erstellen",
+        "editTitle": "Ereignis bearbeiten",
+        "detailsTitle": "Ereignisdetails",
+        "deleteTitle": "Ereignis löschen",
+        "filterByCategory": "Nach Kategorie filtern",
+        "validationTitleDate": "Titel und Startdatum sind erforderlich.",
+        "deleteConfirm": "Möchten Sie {{title}} wirklich löschen?"
+      },
+      "errors": {
+        "invalidEventId": "Dieses Ereignis ist nicht verfügbar, weil seine ID ungültig ist."
+      },
+      "noEvents": "Keine Ereignisse gefunden, die Ihren Kriterien entsprechen"
+    },
+    "activityLog": {
+      "title": "Aktivitätsprotokoll",
+      "subtitle": "Verfolgen Sie alle Benutzeraktionen und Systemereignisse",
+      "summary": {
+        "totalActivities": "Gesamtaktivitäten",
+        "activeUsers": "Aktive Benutzer",
+        "failedActions": "Fehlgeschlagene Aktionen",
+        "categoriesCount": "Kategorien"
+      },
+      "search": {
+        "placeholder": "Aktivitäten suchen..."
+      },
+      "filters": {
+        "allCategories": "Alle Kategorien",
+        "allUsers": "Alle Benutzer",
+        "allStatus": "Alle Status",
+        "allTime": "Alle Zeit",
+        "today": "Heute",
+        "thisWeek": "Diese Woche",
+        "thisMonth": "Dieser Monat"
+      },
+      "table": {
+        "timestamp": "Zeitstempel",
+        "user": "Benutzer",
+        "action": "Aktion",
+        "category": "Kategorie",
+        "description": "Beschreibung",
+        "ipAddress": "IP-Adresse",
+        "status": "Status"
+      },
+      "noActivities": "Keine Aktivitäten gefunden",
+      "showingEntries": "Zeige {count} von {total} Einträgen",
+      "exporting": "Exportieren..."
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "subtitle": "Verwalten Sie Ihre Benachrichtigungen und bleiben Sie auf dem Laufenden",
+      "summary": {
+        "totalNotifications": "Gesamtbenachrichtigungen",
+        "highPriority": "Hohe Priorität",
+        "unread": "Ungelesen",
+        "read": "Gelesen"
+      },
+      "search": {
+        "placeholder": "Benachrichtigungen suchen..."
+      },
+      "filters": {
+        "allTypes": "Alle Typen",
+        "allPriority": "Alle Prioritäten",
+        "unreadOnly": "Nur ungelesen"
+      },
+      "types": {
+        "order": "Bestellungen",
+        "payment": "Zahlungen",
+        "product": "Produkte",
+        "user": "Benutzer",
+        "system": "System",
+        "email": "E-Mail",
+        "alert": "Warnungen",
+        "info": "Info"
+      },
+      "actions": {
+        "markAsRead": "Als gelesen markieren",
+        "delete": "Löschen"
+      },
+      "noNotifications": "Keine Benachrichtigungen gefunden",
+      "showingNotifications": "Zeige {count} von {total} Benachrichtigungen"
+    },
+    "checkout": {
+      "title": "Kasse",
+      "subtitle": "Schließen Sie Ihre Bestellung ab",
+      "shippingAddress": "Lieferadresse",
+      "fullName": "Vollständiger Name",
+      "address": "Adresse",
+      "city": "Stadt",
+      "zipCode": "PLZ",
+      "phone": "Telefon",
+      "shippingMethod": "Versandart",
+      "standardShipping": "Standardversand",
+      "expressShipping": "Expressversand",
+      "nextDayDelivery": "Lieferung am nächsten Tag",
+      "deliveryDays": "Werktage",
+      "tomorrow": "Morgen",
+      "paymentMethod": "Zahlungsmethode",
+      "cardNumber": "Kartennummer",
+      "expiryDate": "Ablaufdatum",
+      "cvv": "CVV",
+      "nameOnCard": "Name auf der Karte",
+      "securePayment": "Ihre Zahlungsinformationen sind sicher verschlüsselt",
+      "orderSummary": "Bestellübersicht",
+      "subtotal": "Zwischensumme",
+      "shipping": "Versand",
+      "tax": "Steuer",
+      "total": "Gesamt"
+    },
+    "billing": {
+      "title": "Abrechnung",
+      "subtitle": "Verwalten Sie Ihre Zahlungsmethoden und Rechnungen",
+      "paymentMethods": "Zahlungsmethoden",
+      "addNewCard": "Neue Karte hinzufügen",
+      "billingHistory": "Abrechnungsverlauf",
+      "accountBalance": "Kontostand",
+      "currentBalance": "Aktueller Saldo",
+      "noOutstandingBalance": "Kein ausstehender Saldo",
+      "billingAddress": "Rechnungsadresse",
+      "billingSettings": "Abrechnungseinstellungen",
+      "emailReceipts": "E-Mail-Belege",
+      "autoPay": "Automatische Zahlung",
+      "invoice": "Rechnung",
+      "description": "Beschreibung",
+      "amount": "Betrag",
+      "action": "Aktion"
+    },
+    "invoice": {
+      "title": "Rechnung",
+      "backToBilling": "Zurück zur Abrechnung",
+      "billTo": "Rechnung an",
+      "invoiceDate": "Rechnungsdatum",
+      "dueDate": "Fälligkeitsdatum",
+      "description": "Beschreibung",
+      "qty": "Menge",
+      "price": "Preis",
+      "itemsTotal": "Gesamt",
+      "thankYou": "Danke für Ihr Geschäft!",
+      "paymentDue": "Die Zahlung ist innerhalb von 15 Tagen nach Rechnungsdatum fällig.",
+      "questions": "Fragen? Kontaktieren Sie uns unter",
+      "freeReturns": "Kostenlose Rücksendungen innerhalb von 30 Tagen",
+      "securePayment": "Sichere Zahlungsabwicklung",
+      "subtotal": "Zwischensumme",
+      "shipping": "Versand",
+      "tax": "Steuer",
+      "total": "Gesamt"
+    },
+    "email": {
+      "title": "E-Mail",
+      "subtitle": "Verwalten Sie Ihre E-Mails und Kommunikation",
+      "compose": "Verfassen",
+      "inbox": "Posteingang",
+      "starred": "Markiert",
+      "sent": "Gesendet",
+      "drafts": "Entwürfe",
+      "spam": "Spam",
+      "search": {
+        "placeholder": "E-Mails suchen..."
+      },
+      "labels": {
+        "work": "Arbeit",
+        "personal": "Persönlich",
+        "important": "Wichtig"
+      },
+      "noEmails": "Keine E-Mails gefunden",
+      "attachments": "Anhänge"
+    },
+    "chat": {
+      "title": "Chat",
+      "subtitle": "Messaging und Kommunikation",
+      "search": {
+        "placeholder": "Kontakte suchen..."
+      },
+      "online": "Online",
+      "typeMessage": "Nachricht eingeben..."
+    },
+    "customerDetails": {
+      "title": "Kundendetails",
+      "subtitle": "Kundeninformationen anzeigen und verwalten",
+      "backToCustomers": "Zurück zu Kunden",
+      "contactInformation": "Kontaktinformationen",
+      "notes": "Notizen",
+      "quickActions": "Schnellaktionen",
+      "viewAllOrders": "Alle Bestellungen anzeigen",
+      "downloadInvoice": "Rechnung herunterladen",
+      "viewAddressBook": "Adressbuch anzeigen",
+      "editCustomer": "Kunden bearbeiten",
+      "orderHistory": "Bestellverlauf",
+      "editNotes": "Notizen bearbeiten",
+      "location": "Standort"
+    },
+    "orderDetails": {
+      "title": "Bestelldetails",
+      "subtitle": "Bestellinformationen anzeigen und verwalten",
+      "backToOrders": "Zurück zu Bestellungen",
+      "orderProgress": "Bestellfortschritt",
+      "orderItems": "Bestellartikel",
+      "orderId": "Bestell-ID",
+      "date": "Datum",
+      "customer": "Kunde",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "total": "Gesamt",
+      "status": "Status",
+      "shippingAddress": "Lieferadresse",
+      "billingAddress": "Rechnungsadresse",
+      "paymentMethod": "Zahlungsmethode",
+      "orderInformation": "Bestellinformationen",
+      "orderActions": "Bestellaktionen",
+      "printInvoice": "Rechnung drucken",
+      "sendConfirmation": "Bestätigungs-E-Mail senden",
+      "refundOrder": "Bestellung erstatten",
+      "trackPackage": "Paket verfolgen",
+      "updateStatus": "Status aktualisieren",
+      "paid": "Bezahlt",
+      "trackingNumber": "Sendungsnummer",
+      "timeline": {
+        "orderPlaced": "Bestellung aufgegeben",
+        "processing": "In Bearbeitung",
+        "shipped": "Versendet",
+        "delivered": "Geliefert"
+      }
+    },
+    "roleManagement": {
+      "title": "Rollenverwaltung",
+      "subtitle": "Rollen definieren und Berechtigungen verwalten",
+      "createRole": "Rolle erstellen",
+      "editRole": "Rolle bearbeiten",
+      "roleName": "Rollenname",
+      "description": "Beschreibung",
+      "permissions": "Berechtigungen",
+      "usersAssigned": "zugewiesene Benutzer",
+      "permissionsCount": "Berechtigungen",
+      "availablePermissions": "Verfügbare Berechtigungen",
+      "cancel": "Abbrechen",
+      "saveChanges": "Änderungen speichern",
+      "deleteRole": "Rolle löschen",
+      "roleColor": {
+        "admin": "Administrator",
+        "manager": "Manager",
+        "support": "Support",
+        "viewer": "Betrachter"
+      },
+      "permissionCategories": {
+        "dashboard": "Dashboard",
+        "products": "Produkte",
+        "orders": "Bestellungen",
+        "customers": "Kunden",
+        "users": "Benutzer",
+        "billing": "Abrechnung"
+      }
+    },
+    "login": {
+      "brandTagline": "die Marke der Könige und Königinnen",
+      "secureSignIn": "Kingkunta, die royale Marke, die den Adel in jedem von uns sichtbar macht. Trage deine Krone und behaupte deinen Stil und deine Stärke.",
+      "welcomeBack": "Willkommen zurueck",
+      "subtitle": "Melden Sie sich an, um auf Ihr Dashboard zuzugreifen.",
+      "identifierLabel": "E-Mail oder Benutzername",
+      "identifierPlaceholder": "admin@kingkunta.com",
+      "passwordLabel": "Passwort",
+      "passwordPlaceholder": "Passwort eingeben",
+      "signIn": "Anmelden",
+      "signingIn": "Anmeldung laeuft...",
+      "showPassword": "Passwort anzeigen",
+      "hidePassword": "Passwort ausblenden",
+      "validationMissingCredentials": "Bitte E-Mail/Benutzername und Passwort eingeben.",
+      "errorLoginFailed": "Anmeldung fehlgeschlagen. Pruefen Sie Ihre Zugangsdaten und versuchen Sie es erneut.",
+      "errorInvalidTokenRole": "Authentifiziert, aber kein gueltiges Zugriffstoken oder keine gueltige Rolle erhalten.",
+      "errorUnableConnect": "Verbindung zum Backend nicht moeglich."
+    },
+    "promotions": {
+      "title": "Werbeaktionen & Gutscheine",
+      "subtitle": "Create, track and optimize your coupon campaigns",
+      "buttons": {
+        "createCoupon": "Create Coupon",
+        "generate": "Generate",
+        "previous": "Previous",
+        "next": "Next",
+        "cancel": "Cancel",
+        "saveChanges": "Save Changes"
+      },
+      "stats": {
+        "totalCoupons": "Total Coupons",
+        "active": "Active",
+        "scheduled": "Scheduled",
+        "expired": "Expired",
+        "discountsGiven": "discounts given"
+      },
+      "analytics": {
+        "title": "Coupons Analytics",
+        "usageOverTime": "Coupon Usage Over Time",
+        "discountsByType": "Discounts by Type",
+        "topPerformingCoupons": "Top Performing Coupons",
+        "rank": "Rank",
+        "code": "Code",
+        "usesHeader": "Uses",
+        "totalDiscount": "Total Discount",
+        "revenueGenerated": "Revenue Generated",
+        "uses": "uses",
+        "discounts": "discounts"
+      },
+      "filters": {
+        "searchPlaceholder": "Search by code...",
+        "statusAll": "All",
+        "statusActive": "Active",
+        "statusScheduled": "Scheduled",
+        "statusExpired": "Expired",
+        "statusDisabled": "Disabled",
+        "typeAll": "All Types",
+        "typePercentage": "Percentage",
+        "typeFixedAmount": "Fixed Amount",
+        "typeFreeShipping": "Free Shipping"
+      },
+      "table": {
+        "code": "Code",
+        "type": "Type",
+        "value": "Value",
+        "minOrder": "Min Order",
+        "usage": "Usage",
+        "validPeriod": "Valid Period",
+        "status": "Status",
+        "actions": "Actions",
+        "noCoupons": "No coupons found"
+      },
+      "typeLabels": {
+        "percentOff": "% Off",
+        "fixed": "Fixed",
+        "freeShip": "Free Ship",
+        "percentageLong": "Percentage",
+        "fixedAmountLong": "Fixed Amount",
+        "freeShippingLong": "Free Shipping"
+      },
+      "valueLabels": {
+        "free": "Free"
+      },
+      "statusLabels": {
+        "active": "Active",
+        "scheduled": "Scheduled",
+        "expired": "Expired",
+        "disabled": "Disabled"
+      },
+      "actions": {
+        "copyCode": "Copy code",
+        "duplicate": "Duplicate",
+        "edit": "Edit",
+        "delete": "Delete",
+        "toggleEnable": "Enable coupon",
+        "toggleDisable": "Disable coupon",
+        "createdSuccess": "Coupon created!",
+        "updatedSuccess": "Coupon updated!",
+        "deletedSuccess": "Coupon deleted!",
+        "duplicateSuccess": "Coupon duplicated!",
+        "toggleSuccess": "Coupon status updated!"
+      },
+      "modal": {
+        "createTitle": "Create Coupon",
+        "editTitle": "Edit Coupon",
+        "step1": "Step 1 - General Info",
+        "step2": "Step 2 - Conditions & Limits",
+        "fields": {
+          "code": "Code",
+          "codePlaceholder": "Leave empty to auto-generate",
+          "type": "Type",
+          "value": "Value",
+          "valuePlaceholderPercent": "e.g. 20 for 20%",
+          "valuePlaceholderFixed": "e.g. 10.00 for $10",
+          "minOrderAmount": "Min Order Amount",
+          "maxDiscountAmount": "Max Discount Amount",
+          "startDate": "Start Date",
+          "endDate": "End Date",
+          "usageLimit": "Usage Limit (total)",
+          "usageLimitPerUser": "Usage Limit per User",
+          "applicableTo": "Applicable To",
+          "allProducts": "All Products",
+          "specificCategories": "Specific Categories",
+          "specificProducts": "Specific Products",
+          "selectCategories": "Select categories",
+          "selectProducts": "Select products"
+        },
+        "validation": {
+          "typeRequired": "Coupon type is required.",
+          "valueRequired": "Value must be greater than 0.",
+          "percentageMax": "Percentage must be less than or equal to 100.",
+          "dateRequired": "Start date and end date are required.",
+          "endAfterStart": "End date must be after start date.",
+          "categoryRequired": "Please select at least one category.",
+          "productRequired": "Please select at least one product."
+        }
+      },
+      "deleteConfirm": {
+        "title": "Delete Coupon",
+        "message": "Are you sure you want to delete coupon {{code}}?",
+        "confirm": "Delete"
+      }
+    }
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "analytics": "Analysen",
+    "customers": "Kunden",
+    "products": "Produkte",
+    "orders": "Bestellungen",
+    "inventory": "Bestand",
+    "inventoryOverview": "Bestandsübersicht",
+    "stockMovements": "Bestandsbewegungen",
+    "lowStockAlerts": "Niedriger-Bestand-Warnungen",
+    "events": "Ereignisse",
+    "billing": "Abrechnung",
+    "invoice": "Rechnung",
+    "reports": "Berichte",
+    "email": "E-Mail",
+    "chat": "Chat",
+    "notifications": "Benachrichtigungen",
+    "settings": "Einstellungen",
+    "help": "Hilfe",
+    "profile": "Profil",
+    "activityLog": "Aktivitätsprotokoll",
+    "users": "Benutzer",
+    "checkout": "Kasse",
+    "productList": "Produktliste",
+    "productGrid": "Produktraster",
+    "productDetails": "Produktdetails",
+    "addProduct": "Produkt hinzufügen",
+    "orderList": "Bestellungsliste",
+    "orderDetails": "Bestelldetails",
+    "customerDetails": "Kundendetails",
+    "userList": "Benutzerliste",
+    "roleManagement": "Rollenverwaltung",
+    "checkoutLabel": "Kasse",
+    "billingLabel": "Abrechnung",
+    "invoiceLabel": "Rechnung",
+    "analyticsLabel": "Analysen",
+    "chatLabel": "Chat",
+    "emailLabel": "E-Mail",
+    "eventsLabel": "Ereignisse",
+    "settingsLabel": "Einstellungen",
+    "promotions": "Werbeaktionen",
+    "promotionsLabel": "Werbeaktionen"
+  },
+  "language": {
+    "select": "Sprache auswählen",
+    "english": "Englisch",
+    "french": "Französisch",
+    "spanish": "Spanisch",
+    "japanese": "Japanisch",
+    "chinese": "Chinesisch (vereinfacht)",
+    "italian": "Italienisch",
+    "german": "Deutsch",
+    "portuguese": "Portugiesisch",
+    "luxembourgish": "Luxemburgisch"
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "auto": "Automatisch"
+  },
+  "user": {
+    "admin": "Administrator",
+    "email": "admin@example.com",
+    "logout": "Abmelden",
+    "settings": "Benutzereinstellungen"
+  },
+  "sidebar": {
+    "collapse": "Seitenleiste reduzieren",
+    "expand": "Seitenleiste erweitern"
+  }
+}

@@ -10,6 +10,7 @@ export interface Order {
   status: OrderStatus;
   date: string;
   items: number;
+  stock_status?: string | null;
 }
 
 export interface OrderItem {
@@ -50,26 +51,26 @@ export interface RefundPayload {
 interface OrderListPayload {
   id?: string | number;
   customer?:
-    | number
-    | string
-    | {
-        id?: string | number;
-        name?: string;
-        full_name?: string;
-        first_name?: string;
-        last_name?: string;
-        email?: string;
-        username?: string;
-        user?: {
-          id?: string | number;
-          name?: string;
-          full_name?: string;
-          first_name?: string;
-          last_name?: string;
-          email?: string;
-          username?: string;
-        };
-      };
+  | number
+  | string
+  | {
+    id?: string | number;
+    name?: string;
+    full_name?: string;
+    first_name?: string;
+    last_name?: string;
+    email?: string;
+    username?: string;
+    user?: {
+      id?: string | number;
+      name?: string;
+      full_name?: string;
+      first_name?: string;
+      last_name?: string;
+      email?: string;
+      username?: string;
+    };
+  };
   customer_name?: string;
   customer_full_name?: string;
   customer_email?: string;
@@ -89,6 +90,7 @@ interface OrderListPayload {
   grand_total?: number | string;
   status?: string;
   order_status?: string;
+  stock_status?: string;
   date?: string;
   created_at?: string;
   order_date?: string;
@@ -276,26 +278,26 @@ const resolveCustomerReference = (payload: OrderListPayload): string => {
 
   const directReference = toIdString(
     payload.customer_id ??
-      payload.customer_uuid ??
-      payload.customer_reference ??
-      payload.customer_ref ??
-      payload.client_id ??
-      payload.client_uuid ??
-      payload.user_id ??
-      customerRecord.id ??
-      customerRecord.pk ??
-      customerRecord.uuid ??
-      customerRecord.customer_uuid ??
-      customerRecord.customer_id ??
-      customerRecord.user_id ??
-      nestedUser.id ??
-      nestedUser.pk ??
-      nestedUser.uuid ??
-      clientRecord.id ??
-      clientRecord.pk ??
-      clientRecord.uuid ??
-      (typeof payload.customer === 'number' ? payload.customer : undefined) ??
-      (typeof payload.client === 'number' ? payload.client : undefined)
+    payload.customer_uuid ??
+    payload.customer_reference ??
+    payload.customer_ref ??
+    payload.client_id ??
+    payload.client_uuid ??
+    payload.user_id ??
+    customerRecord.id ??
+    customerRecord.pk ??
+    customerRecord.uuid ??
+    customerRecord.customer_uuid ??
+    customerRecord.customer_id ??
+    customerRecord.user_id ??
+    nestedUser.id ??
+    nestedUser.pk ??
+    nestedUser.uuid ??
+    clientRecord.id ??
+    clientRecord.pk ??
+    clientRecord.uuid ??
+    (typeof payload.customer === 'number' ? payload.customer : undefined) ??
+    (typeof payload.client === 'number' ? payload.client : undefined)
   );
 
   if (directReference) return directReference;
@@ -447,6 +449,7 @@ const normalizeOrder = (payload: OrderListPayload): Order => ({
   email: resolveCustomerEmail(payload),
   total: resolveOrderTotal(payload),
   status: normalizeStatus(payload.order_status ?? payload.status),
+  stock_status: payload.stock_status || null,
   date: resolveOrderDate(payload),
   items: resolveItemsCount(payload),
 });

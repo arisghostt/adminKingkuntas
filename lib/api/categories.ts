@@ -5,7 +5,11 @@ export const categoriesApi = {
     getAll: async (): Promise<Category[]> => {
         const data = await apiFetch<any>('/api/categories/');
         // Gestion de pagination DRF ou array simple
-        return Array.isArray(data) ? data : (data.results || data.data || []);
+        const items = Array.isArray(data) ? data : (data.results || data.data || []);
+        return items.map((item: any) => ({
+            ...item,
+            productCount: item.product_count ?? item.productCount ?? 0
+        }));
     },
 
     getById: async (id: string): Promise<Category> => {

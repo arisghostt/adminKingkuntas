@@ -82,13 +82,21 @@ export default function CategoryModal({
     setIsSubmitting(true);
     setErrorMsg('');
 
+    const notifyCategoriesUpdated = () => {
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('categories-updated'));
+      }
+    };
+
     try {
       if (editingCategory) {
         const updated = await categoriesApi.update(editingCategory.id, formData);
         setCategories(prev => prev.map(c => c.id === updated.id ? updated : c));
+        notifyCategoriesUpdated();
       } else {
         const created = await categoriesApi.create(formData);
         setCategories(prev => [...prev, created]);
+        notifyCategoriesUpdated();
         if (onCategoryCreated) {
           onCategoryCreated(created);
         }
@@ -107,6 +115,9 @@ export default function CategoryModal({
     try {
       await categoriesApi.delete(id);
       setCategories(prev => prev.filter(c => c.id !== id));
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('categories-updated'));
+      }
     } catch (error: any) {
       setErrorMsg(error.message || t('pages.products.categories.messages.deleteError'));
     }

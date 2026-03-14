@@ -1,6 +1,7 @@
 import { useSyncExternalStore } from 'react';
 import { getAuthSession, type AuthSession } from '@/app/lib/auth';
 import { apiClient } from '@/services/apiClient';
+import type { ModulePermission } from '@/src/types/rbac';
 
 export interface PermissionItem {
   id?: number;
@@ -25,6 +26,7 @@ export interface AdminUserState {
   profile_image?: string;
   is_active?: boolean;
   is_superuser?: boolean;
+  is_superadmin?: boolean;
   role?: {
     id: number;
     name: string;
@@ -36,6 +38,7 @@ export interface AuthDataState {
   user: AdminUserState | null;
   role: RolePermissionProfile | null;
   permissions: string[];
+  modulePermissions: ModulePermission[];
   isSuperAdmin: boolean;
 }
 
@@ -45,6 +48,7 @@ interface AuthActions {
   hydrateFromSession: () => void;
   refreshAuthData: () => Promise<void>;
   syncFromLoginPayload: (payload: unknown, fallbackSession?: AuthSession | null) => void;
+  getModulePermission: (moduleUrl: string) => ModulePermission | null;
 }
 
 export type AuthStore = AuthDataState & AuthActions;
@@ -55,6 +59,7 @@ const defaultState: AuthDataState = {
   user: null,
   role: null,
   permissions: [],
+  modulePermissions: [],
   isSuperAdmin: false,
 };
 
@@ -185,6 +190,28 @@ const extractDirectPermissionCodenames = (payload: unknown): string[] => {
   return merged.map((permission) => permission.codename);
 };
 
+const extractModulePermissions = (payload: unknown): ModulePermission[] => {
+  const root = toRecord(payload);
+  const rootUser = toRecord(root.user);
+
+  const source = Array.isArray(root.permissions)
+    ? root.permissions
+    : Array.isArray(rootUser.permissions)
+      ? rootUser.permissions
+      : [];
+
+  return source.map((p: any) => ({
+    module_id: toNumber(p.module_id || p.id),
+    module_name: toText(p.module_name || p.name || p.label),
+    module_url: toText(p.module_url || p.url || p.href),
+    is_menu: Boolean(p.is_menu),
+    is_view: Boolean(p.is_view),
+    is_add: Boolean(p.is_add),
+    is_edit: Boolean(p.is_edit),
+    is_delete: Boolean(p.is_delete),
+  }));
+};
+
 const extractRoleFromPayload = (payload: unknown): RolePermissionProfile | null => {
   const root = toRecord(payload);
   const rootUser = toRecord(root.user);
@@ -251,7 +278,8 @@ const extractUserFromPayload = (payload: unknown): AdminUserState | null => {
         rawProfile.profileImage
       ) || undefined,
     is_active: typeof rawUser.is_active === 'boolean' ? rawUser.is_active : undefined,
-    is_superuser: Boolean(rawUser.is_superuser),
+    is_superuser: Boolean(rawUser.is_superuser || rawUser.is_superadmin),
+    is_superadmin: Boolean(rawUser.is_superuser || rawUser.is_superadmin),
     role: roleRaw
       ? {
           id: toNumber(roleRaw.id),
@@ -308,6 +336,7 @@ const setState = (updater: Partial<AuthDataState> | ((current: AuthDataState) =>
   nextState.isSuperAdmin =
     Boolean(nextState.isSuperAdmin) ||
     Boolean(nextState.user?.is_superuser) ||
+    Boolean(nextState.user?.is_superadmin) ||
     nextState.permissions.includes('superadmin') ||
     nextState.permissions.includes('manage_all');
 
@@ -334,6 +363,7 @@ const hydrate = () => {
             first_name: session.user.firstName,
             last_name: session.user.lastName,
             is_superuser: /super\s*admin|superadmin/i.test(session.role),
+            is_superadmin: /super\s*admin|superadmin/i.test(session.role),
           }
         : null,
       role: {
@@ -342,6 +372,7 @@ const hydrate = () => {
         permissions: [],
       },
       permissions: [],
+      modulePermissions: [],
       isSuperAdmin: /super\s*admin|superadmin/i.test(session.role),
     });
     return;
@@ -353,6 +384,7 @@ const hydrate = () => {
       user: parsed.user ?? null,
       role: parsed.role ?? null,
       permissions: Array.isArray(parsed.permissions) ? parsed.permissions : [],
+      modulePermissions: Array.isArray(parsed.modulePermissions) ? parsed.modulePermissions : [],
       isSuperAdmin: Boolean(parsed.isSuperAdmin),
     });
   } catch {
@@ -431,6 +463,8 @@ const actions: AuthActions = {
         last_name: current.user?.last_name ?? session.user?.lastName,
         avatar: current.user?.avatar ?? session.user?.avatar,
         profile_image: current.user?.profile_image ?? session.user?.avatar,
+        is_superadmin: current.user?.is_superadmin || /super\s*admin|superadmin/i.test(session.role),
+        is_superuser: current.user?.is_superuser || /super\s*admin|superadmin/i.test(session.role),
       },
       role:
         current.role ??
@@ -541,6 +575,7 @@ const actions: AuthActions = {
     const role = extractRoleFromPayload(payload);
     const user = extractUserFromPayload(payload);
     const directPermissionCodenames = extractDirectPermissionCodenames(payload);
+    const modulePermissions = extractModulePermissions(payload);
 
     const fallback = fallbackSession ?? getAuthSession();
 
@@ -554,6 +589,7 @@ const actions: AuthActions = {
           avatar: fallback.user.avatar,
           profile_image: fallback.user.avatar,
           is_superuser: /super\s*admin|superadmin/i.test(fallback.role),
+          is_superadmin: /super\s*admin|superadmin/i.test(fallback.role),
         }
       : null;
 
@@ -610,12 +646,17 @@ const actions: AuthActions = {
         user: nextUser,
         role: nextRole,
         permissions,
+        modulePermissions,
         isSuperAdmin:
           current.isSuperAdmin ||
           Boolean(nextUser?.is_superuser) ||
+          Boolean(nextUser?.is_superadmin) ||
           /super\s*admin|superadmin/i.test(nextRole?.name ?? fallback?.role ?? ''),
       };
     });
+  },
+  getModulePermission: (moduleUrl: string) => {
+    return state.modulePermissions.find((p) => p.module_url === moduleUrl) || null;
   },
 };
 

@@ -10,11 +10,12 @@ import { usePermissions } from '@/app/hooks/usePermissions';
 
 interface MenuItem {
   icon: React.ComponentType<{ className?: string }>;
-  labelKey: string; // Translation key instead of hardcoded label
+  labelKey: string;
   href?: string;
   children?: MenuItem[];
   isExpanded?: boolean;
-  permissionCodename?: string | string[];
+  permissionModule?: string;
+  permissionAction?: 'is_view' | 'is_add' | 'is_edit' | 'is_delete';
 }
 
 interface SidebarProps {
@@ -24,28 +25,29 @@ interface SidebarProps {
 }
 
 const menuItems: MenuItem[] = [
-  { icon: Home, labelKey: 'nav.dashboard', href: '/dashboard', permissionCodename: 'view_dashboard' },
+  { icon: Home, labelKey: 'nav.dashboard', href: '/dashboard', permissionModule: '/dashboard' },
   {
     icon: Package,
     labelKey: 'nav.products',
-    permissionCodename: ['view_products', 'add_products', 'create_products', 'edit_products', 'manage_products'],
+    permissionModule: '/products',
     children: [
-      { icon: Grid, labelKey: 'nav.productList', href: '/products', permissionCodename: 'view_products' },
-      { icon: Grid, labelKey: 'nav.productGrid', href: '/products/grid', permissionCodename: 'view_products' },
+      { icon: Grid, labelKey: 'nav.productList', href: '/products', permissionModule: '/products', permissionAction: 'is_view' },
+      { icon: Grid, labelKey: 'nav.productGrid', href: '/products/grid', permissionModule: '/products', permissionAction: 'is_view' },
       {
         icon: Plus,
         labelKey: 'nav.addProduct',
         href: '/products/add',
-        permissionCodename: ['add_products', 'create_products', 'edit_products', 'manage_products'],
+        permissionModule: '/products',
+        permissionAction: 'is_add',
       },
     ],
   },
   {
     icon: ShoppingCart,
     labelKey: 'nav.orders',
-    permissionCodename: 'view_orders',
+    permissionModule: '/orders',
     children: [
-      { icon: Grid, labelKey: 'nav.orderList', href: '/orders', permissionCodename: 'view_orders' },
+      { icon: Grid, labelKey: 'nav.orderList', href: '/orders', permissionModule: '/orders', permissionAction: 'is_view' },
     ],
   },
   {
@@ -60,25 +62,25 @@ const menuItems: MenuItem[] = [
   {
     icon: Users,
     labelKey: 'nav.customers',
-    permissionCodename: 'view_customers',
+    permissionModule: '/customers',
     children: [
-      { icon: Eye, labelKey: 'nav.customerDetails', href: '/customers/details', permissionCodename: 'view_customers' },
+      { icon: Eye, labelKey: 'nav.customerDetails', href: '/customers/details', permissionModule: '/customers', permissionAction: 'is_view' },
     ],
   },
   {
     icon: UserCog,
     labelKey: 'nav.users',
-    permissionCodename: ['view_users', 'manage_users', 'view_roles', 'manage_roles'],
+    permissionModule: '/settings/users',
     children: [
-      { icon: Users, labelKey: 'nav.userList', href: '/settings/users', permissionCodename: ['view_users', 'manage_users'] },
-      { icon: Shield, labelKey: 'nav.roleManagement', href: '/settings/users?tab=roles', permissionCodename: ['view_roles', 'manage_roles'] },
+      { icon: Users, labelKey: 'nav.userList', href: '/settings/users', permissionModule: '/settings/users', permissionAction: 'is_view' },
+      { icon: Shield, labelKey: 'nav.roleManagement', href: '/settings/users?tab=roles', permissionModule: '/settings/users', permissionAction: 'is_add' },
     ],
   },
-  { icon: Tag, labelKey: 'nav.promotionsLabel', href: '/promotions', permissionCodename: 'manage_promotions' },
-  { icon: CreditCard, labelKey: 'nav.checkoutLabel', href: '/checkout', permissionCodename: 'manage_billing' },
-  { icon: FileText, labelKey: 'nav.billingLabel', href: '/billing', permissionCodename: 'manage_billing' },
-  { icon: FileText, labelKey: 'nav.invoiceLabel', href: '/invoice', permissionCodename: 'manage_billing' },
-  { icon: BarChart3, labelKey: 'nav.analyticsLabel', href: '/analytics', permissionCodename: 'view_analytics' },
+  { icon: Tag, labelKey: 'nav.promotionsLabel', href: '/promotions', permissionModule: '/promotions', permissionAction: 'is_add' },
+  { icon: CreditCard, labelKey: 'nav.checkoutLabel', href: '/checkout', permissionModule: '/billing', permissionAction: 'is_view' },
+  { icon: FileText, labelKey: 'nav.billingLabel', href: '/billing', permissionModule: '/billing', permissionAction: 'is_view' },
+  { icon: FileText, labelKey: 'nav.invoiceLabel', href: '/invoice', permissionModule: '/billing', permissionAction: 'is_view' },
+  { icon: BarChart3, labelKey: 'nav.analyticsLabel', href: '/analytics', permissionModule: '/analytics', permissionAction: 'is_view' },
   { icon: MessageCircle, labelKey: 'nav.chatLabel', href: '/chat' },
   { icon: Mail, labelKey: 'nav.emailLabel', href: '/email' },
   { icon: CalendarDays, labelKey: 'nav.eventsLabel', href: '/events' },
@@ -96,11 +98,8 @@ export default function Sidebar({
   const showCollapsedMode = isSidebarCollapsed && canCollapse;
 
   const hasItemAccess = (item: MenuItem): boolean => {
-    if (!item.permissionCodename) return true;
-    if (Array.isArray(item.permissionCodename)) {
-      return item.permissionCodename.some((codename) => hasPermission(codename));
-    }
-    return hasPermission(item.permissionCodename);
+    if (!item.permissionModule) return true;
+    return hasPermission(item.permissionModule, item.permissionAction ?? 'is_view');
   };
 
   const visibleMenuItems = useMemo(() => {

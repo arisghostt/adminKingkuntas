@@ -26,6 +26,9 @@ export default function ProductDetailsPage() {
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
   const [relatedImageErrors, setRelatedImageErrors] = useState<Record<string, boolean>>({});
 
+  // Nouveaux états pour le modal Lightbox
+  const [zoomOpen, setZoomOpen] = useState(false);
+
   useEffect(() => {
     if (!id) return;
 
@@ -36,8 +39,10 @@ export default function ProductDetailsPage() {
         const data = await productsApi.getById(id as string);
         setProduct(data);
 
+        // Map product.gallery_images if strictly necessary
+        const rawData = data as any;
         const images = Array.from(
-          new Set([data.image, ...(data.galleryImages ?? [])].filter((img) => typeof img === 'string' && img.length > 0))
+          new Set([data.image, ...(rawData.galleryImages ?? []), ...(data.gallery_images ?? [])].filter((img) => typeof img === 'string' && img.length > 0))
         );
         setSelectedImage(images[0] ?? '');
       } catch (fetchError) {
@@ -50,6 +55,50 @@ export default function ProductDetailsPage() {
 
     fetchProduct();
   }, [id]);
+
+  // Log de debug comme demandé
+  useEffect(() => {
+    if (product) {
+      const raw = product as any;
+      console.log('product.gallery_images:', product.gallery_images);
+      console.log('product.galleryImages:', raw.galleryImages);
+    }
+  }, [product]);
+
+  // Navigation clavier pour le Lightbox
+  useEffect(() => {
+    if (!zoomOpen || !product) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setZoomOpen(false);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        const raw = product as any;
+        const allImages = [
+          product.image,
+          ...(raw.galleryImages ?? []),
+          ...(product.gallery_images ?? []),
+        ].filter((img): img is string => typeof img === 'string' && img.length > 0);
+
+        const galleryImages = Array.from(new Set(allImages));
+        if (galleryImages.length <= 1) return;
+
+        setSelectedImage((prev) => {
+          const currentIndex = galleryImages.indexOf(prev || galleryImages[0] || '');
+          if (e.key === 'ArrowLeft') {
+            const prevIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            return galleryImages[prevIndex] || '';
+          } else {
+            const nextIndex = (currentIndex + 1) % galleryImages.length;
+            return galleryImages[nextIndex] || '';
+          }
+        });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [zoomOpen, product]);
 
   const handleDelete = async () => {
     if (!id) return;
@@ -94,9 +143,13 @@ export default function ProductDetailsPage() {
     );
   }
 
-  const galleryImages = Array.from(
-    new Set([product.image, ...(product.galleryImages ?? [])].filter((img) => typeof img === 'string' && img.length > 0))
-  );
+  const raw = product as any;
+  const allImages = [
+    product.image,
+    ...(raw.galleryImages ?? []),
+    ...(product.gallery_images ?? []),
+  ].filter((img): img is string => typeof img === 'string' && img.length > 0);
+  const galleryImages = Array.from(new Set(allImages));
 
   const activeImage = selectedImage || galleryImages[0] || '';
 
@@ -149,7 +202,10 @@ export default function ProductDetailsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <div className="h-80 bg-gray-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+              <div
+                className="h-80 bg-gray-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden relative cursor-zoom-in"
+                onClick={() => setZoomOpen(true)}
+              >
                 {activeImage && !imageErrors[activeImage] ? (
                   <img
                     src={activeImage}
@@ -295,6 +351,76 @@ export default function ProductDetailsPage() {
           </div>
         </div>
       </motion.div>
+
+      {/* Lightbox / Zoom Modal */}
+      {zoomOpen && (
+        <div
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center"
+          onClick={() => setZoomOpen(false)}
+        >
+          <button
+            type="button"
+            className="absolute top-4 right-4 text-white hover:text-gray-300 z-[60] p-2 bg-black/50 rounded-full transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoomOpen(false);
+            }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          <div
+            className="relative flex items-center justify-center max-w-[90vw] max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {activeImage && !imageErrors[activeImage] ? (
+              <img
+                src={activeImage}
+                alt={product.name}
+                className="max-h-[90vh] max-w-[90vw] object-contain"
+              />
+            ) : null}
+
+            {galleryImages.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-black/50 p-3 rounded-full transition-colors z-[60]"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const currentIndex = galleryImages.indexOf(activeImage);
+                    const prevIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+                    setSelectedImage(galleryImages[prevIndex] || '');
+                  }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-black/50 p-3 rounded-full transition-colors z-[60]"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const currentIndex = galleryImages.indexOf(activeImage);
+                    const nextIndex = (currentIndex + 1) % galleryImages.length;
+                    setSelectedImage(galleryImages[nextIndex] || '');
+                  }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+                <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-white/90 px-4 py-1.5 rounded-full text-sm font-medium">
+                  {galleryImages.indexOf(activeImage) + 1} / {galleryImages.length}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </DashboardLayout>
   );
 }

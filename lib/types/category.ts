@@ -3,6 +3,7 @@ export interface Category {
     name: string;
     description: string;
     productCount: number;
+    product_count?: number;
     createdAt: string;
     updatedAt: string;
 }

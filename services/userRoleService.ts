@@ -372,15 +372,14 @@ const stripTrailingSlash = (value: string): string => value.replace(/\/+$/, '');
 
 const toDetailPath = (collectionPath: string, id: number): string => {
   const base = stripTrailingSlash(collectionPath);
-  return collectionPath.endsWith('/') ? `${base}/${id}/` : `${base}/${id}`;
+  return `${base}/${id}/`;
 };
 
 const toActionPath = (detailPath: string, action: string): string => {
-  const normalizedAction = action.replace(/^\/+/, '');
+  const normalizedAction = action.replace(/^\/+/, '').replace(/\/+$/, '');
   if (!normalizedAction) return detailPath;
-  return detailPath.endsWith('/')
-    ? `${detailPath}${normalizedAction}`
-    : `${detailPath}/${normalizedAction}`;
+  const base = detailPath.endsWith('/') ? detailPath : `${detailPath}/`;
+  return `${base}${normalizedAction}/`;
 };
 
 const isNotFoundError = (error: unknown): boolean =>

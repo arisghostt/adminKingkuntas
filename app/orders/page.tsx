@@ -132,7 +132,7 @@ export default function OrdersPage() {
 
   return (
     <DashboardLayout>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -140,9 +140,15 @@ export default function OrdersPage() {
       >
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('pages.orders.title')}</h1>
-            <p className="text-gray-600 text-sm">{t('pages.orders.subtitle')}</p>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('pages.orders.title', 'Commandes')}</h1>
+            <p className="text-gray-600 text-sm">{t('pages.orders.subtitle', 'Gérez vos commandes ici.')}</p>
           </div>
+          <button
+            onClick={() => router.push('/orders/workflow')}
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
+          >
+            {t('pages.orders.newWorkflow', 'Nouveau workflow commande')}
+          </button>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 mb-4 sm:mb-6">
@@ -184,7 +190,7 @@ export default function OrdersPage() {
         </div>
       ) : null}
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
@@ -236,9 +242,19 @@ export default function OrdersPage() {
                     ${order.total.toFixed(2)}
                   </td>
                   <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
-                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(order.status)}`}>
-                      {t(`pages.orders.filters.${order.status}`)}
-                    </span>
+                    <div className="flex flex-col gap-1">
+                      <span className={`inline-flex px-2 py-1 w-fit text-xs font-semibold rounded-full ${getStatusColor(order.status)}`}>
+                        {t(`pages.orders.filters.${order.status}`)}
+                      </span>
+                      {(order.status === 'pending' || order.status === 'processing') && order.stock_status && (
+                        <span className={`inline-flex px-2 py-1 w-fit text-xs font-semibold rounded-full ${order.stock_status === 'ok' ? 'bg-green-100 text-green-800' :
+                            order.stock_status === 'partial' ? 'bg-orange-100 text-orange-800' :
+                              'bg-red-100 text-red-800'
+                          }`}>
+                          Stock {order.stock_status.toUpperCase()}
+                        </span>
+                      )}
+                    </div>
                   </td>
                   <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm text-gray-900 hidden lg:table-cell">
                     {order.date}

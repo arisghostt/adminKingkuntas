@@ -59,6 +59,12 @@ export default function AddProductPage() {
       }
     };
     fetchCategories();
+
+    const handleCategoriesUpdated = () => fetchCategories();
+    if (typeof window !== 'undefined') {
+      window.addEventListener('categories-updated', handleCategoriesUpdated);
+      return () => window.removeEventListener('categories-updated', handleCategoriesUpdated);
+    }
   }, [router]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

@@ -44,7 +44,7 @@ export default function ProductImageManager({
         };
     }, []); // Only on unmount to prevent flickering if state changes
 
-    const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
+    const handleDrop = useCallback((e: React.DragEvent<HTMLElement>) => {
         e.preventDefault();
         const droppedFiles = Array.from(e.dataTransfer.files).filter((file) =>
             file.type.startsWith('image/')
@@ -72,7 +72,7 @@ export default function ProductImageManager({
         }
     }, [mainImage, clearMainExisting, mainNewFile]);
 
-    const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleDragOver = (e: React.DragEvent<HTMLElement>) => {
         e.preventDefault();
     };
 

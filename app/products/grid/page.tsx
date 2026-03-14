@@ -40,6 +40,15 @@ export default function ProductGridPage() {
     fetchCategories();
   }, [fetchCategories]);
 
+  useEffect(() => {
+    const handleUpdated = () => {
+      fetchCategories();
+      refetch();
+    };
+    window.addEventListener('categories-updated', handleUpdated);
+    return () => window.removeEventListener('categories-updated', handleUpdated);
+  }, [fetchCategories, refetch]);
+
   const handleDelete = async (id: string) => {
     try {
       if (!window.confirm(t('pages.products.deleteConfirm', 'Are you sure you want to delete this product?'))) return;
@@ -171,7 +180,7 @@ export default function ProductGridPage() {
               </div>
               <div className="p-4">
                 <div className="flex justify-between items-start mb-2">
-                  <span className="text-xs font-medium text-gray-500 truncate max-w-[50%]">{product.category || (categories.find(c => c.id === product.category_id)?.name || '—')}</span>
+                  <span className="text-xs font-medium text-gray-500 truncate max-w-[50%]">{categories.find(c => c.id === product.category_id)?.name || product.category || '—'}</span>
                   <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(product.status, product.stock)}`}>
                     {product.stock === 0 ? t('pages.products.grid.outOfStock') : t(`pages.products.status.${product.status}`, product.status)}
                   </span>

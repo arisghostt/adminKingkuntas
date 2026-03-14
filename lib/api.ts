@@ -259,16 +259,24 @@ const normalizeProduct = (payload: unknown): Product => {
     resolveAssetUrl(product.imageUrl) ||
     resolveAssetUrl(product.thumbnail);
 
+  const category_id =
+    typeof product.category_id === 'string'
+      ? product.category_id
+      : product.category && typeof product.category === 'object' && typeof (product.category as any).id === 'string'
+        ? (product.category as any).id
+        : null;
+
   return {
     id: String(product.id ?? ''),
     name: typeof product.name === 'string' ? product.name : '',
     category,
+    category_id,
     price: toNumber(product.price ?? product.unit_price ?? product.unitPrice ?? product.sale_price),
     stock: Math.trunc(toNumber(product.stock ?? product.quantity ?? product.stock_quantity ?? product.stockQuantity)),
     status,
     image,
     rating: toNumber(product.rating ?? product.average_rating ?? product.avg_rating),
-  };
+  } as Product;
 };
 
 const normalizeProductDetail = (payload: unknown): ProductDetail => {
@@ -287,7 +295,7 @@ const normalizeProductDetail = (payload: unknown): ProductDetail => {
         ? product.images
         : Array.isArray(product.gallery)
           ? product.gallery
-      : [];
+          : [];
 
   const galleryImages = galleryRaw
     .map((image) => resolveAssetUrl(image))

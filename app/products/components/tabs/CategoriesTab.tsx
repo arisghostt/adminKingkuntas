@@ -1,14 +1,11 @@
-'use client';
-
 import { useState, useEffect, useMemo } from 'react';
-import DashboardLayout from '../components/layout/DashboardLayout';
 import { Plus, Search, Edit, Trash2, Loader2, AlertTriangle, ArrowUpDown, FolderOpen, AlertCircle } from 'lucide-react';
-import { useLanguage } from '../hooks/useLanguage';
+import { useLanguage } from '@/app/hooks/useLanguage';
 import { categoriesApi } from '@/lib/api/categories';
 import { Category } from '@/lib/types/category';
 import { usePermissions } from '@/app/hooks/usePermissions';
 
-export default function CategoriesPage() {
+export default function CategoriesTab() {
     const { t } = useLanguage();
     const { canEditProducts } = usePermissions();
 
@@ -46,6 +43,12 @@ export default function CategoriesPage() {
     useEffect(() => {
         fetchCategories();
     }, []);
+
+    const notifyCategoriesUpdated = () => {
+        if (typeof window !== 'undefined') {
+            window.dispatchEvent(new Event('categories-updated'));
+        }
+    };
 
     const showToast = (message: string, type: 'success' | 'error') => {
         setToast({ message, type });
@@ -111,20 +114,15 @@ export default function CategoriesPage() {
             return;
         }
 
-        if (!window.confirm(t('pages.products.categories.messages.deleteConfirm'))) return;
+        if (!window.confirm(t('pages.products.categories.messages.deleteConfirm', 'Voulez-vous vraiment supprimer cette catégorie ?'))) return;
 
         try {
             await categoriesApi.delete(category.id);
             setCategories(prev => prev.filter(c => c.id !== category.id));
-            showToast(t('pages.products.categories.messages.deleteSuccess'), 'success');
+            notifyCategoriesUpdated();
+            showToast(t('pages.products.categories.messages.deleteSuccess', 'Catégorie supprimée avec succès.'), 'success');
         } catch (error: any) {
             showToast(error.message || t('pages.products.categories.messages.deleteError'), 'error');
-        }
-    };
-
-    const notifyCategoriesUpdated = () => {
-        if (typeof window !== 'undefined') {
-            window.dispatchEvent(new Event('categories-updated'));
         }
     };
 
@@ -135,7 +133,7 @@ export default function CategoriesPage() {
         // Check unique name locally
         const duplicate = categories.find(c => c.name.toLowerCase() === formData.name.toLowerCase() && c.id !== editingId);
         if (duplicate) {
-            showToast(t('pages.products.categories.messages.duplicateName') || 'Ce nom de catégorie existe déjà.', 'error');
+            showToast(t('pages.products.categories.messages.duplicateName', 'Ce nom de catégorie existe déjà.'), 'error');
             return;
         }
 
@@ -145,12 +143,12 @@ export default function CategoriesPage() {
                 const updated = await categoriesApi.update(editingId, formData);
                 setCategories(prev => prev.map(c => c.id === updated.id ? updated : c));
                 notifyCategoriesUpdated();
-                showToast(t('pages.products.categories.messages.updateSuccess'), 'success');
+                showToast(t('pages.products.categories.messages.updateSuccess', 'Catégorie mise à jour avec succès.'), 'success');
             } else {
                 const created = await categoriesApi.create(formData);
                 setCategories(prev => [...prev, created]);
                 notifyCategoriesUpdated();
-                showToast(t('pages.products.categories.messages.createSuccess'), 'success');
+                showToast(t('pages.products.categories.messages.createSuccess', 'Catégorie créée avec succès.'), 'success');
             }
             resetForm();
         } catch (error: any) {
@@ -161,7 +159,7 @@ export default function CategoriesPage() {
     };
 
     return (
-        <DashboardLayout>
+        <div className="space-y-6">
             {toast && (
                 <div className={`fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all flex items-center gap-2 ${toast.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
                     }`}>
@@ -170,10 +168,10 @@ export default function CategoriesPage() {
                 </div>
             )}
 
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Catégories</h1>
-                    <p className="text-gray-600">Gérez les catégories de produits de votre catalogue.</p>
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Catégories</h2>
+                    <p className="text-gray-600 text-sm">Gérez les catégories de produits de votre catalogue.</p>
                 </div>
                 {!isFormOpen && canEditProducts && (
                     <button
@@ -186,7 +184,7 @@ export default function CategoriesPage() {
             </div>
 
             {!loading && !errorMsg && categories.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                         <div className="flex items-center gap-4">
                             <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
@@ -304,39 +302,41 @@ export default function CategoriesPage() {
                                     </th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
                                     <th onClick={() => handleSort('productCount')} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100">
-                                        <div className="flex items-center gap-1">Produits liés {sortConfig.key === 'productCount' && <ArrowUpDown className="w-3 h-3" />}</div>
+                                        <div className="flex items-center gap-1">Nb Produits {sortConfig.key === 'productCount' && <ArrowUpDown className="w-3 h-3" />}</div>
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date création</th>
                                     {canEditProducts && <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>}
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
-                                {filteredAndSortedCategories.length > 0 ? filteredAndSortedCategories.map((category) => (
-                                    <tr key={category.id} className="hover:bg-gray-50 transition-colors">
-                                        <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{category.name}</td>
-                                        <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{category.description || '-'}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            <span className={`px-2 py-1 rounded text-xs font-medium ${category.productCount > 0 ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-600'}`}>
-                                                {category.productCount || 0}
-                                            </span>
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {category.createdAt ? new Date(category.createdAt).toLocaleDateString() : '-'}
-                                        </td>
-                                        {canEditProducts && (
-                                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <button onClick={() => startEdit(category)} className="text-blue-600 hover:text-blue-900 mr-4 p-1 rounded hover:bg-blue-50">
-                                                    <Edit className="w-4 h-4" />
-                                                </button>
-                                                <button onClick={() => handleDelete(category)} className="text-red-600 hover:text-red-900 p-1 rounded hover:bg-red-50">
-                                                    <Trash2 className="w-4 h-4" />
-                                                </button>
+                                {filteredAndSortedCategories.length > 0 ? filteredAndSortedCategories.map((category) => {
+                                    const prodCount = category.productCount || 0;
+                                    let badgeColor = 'bg-red-100 text-red-800'; // 0 -> rouge
+                                    if (prodCount > 0 && prodCount <= 5) badgeColor = 'bg-orange-100 text-orange-800'; // 1-5 -> orange
+                                    else if (prodCount >= 6) badgeColor = 'bg-green-100 text-green-800'; // 6+ -> vert
+                                    return (
+                                        <tr key={category.id} className="hover:bg-gray-50 transition-colors">
+                                            <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{category.name}</td>
+                                            <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{category.description || '-'}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                <span className={`px-2 py-1 rounded text-xs font-medium ${badgeColor}`}>
+                                                    {prodCount}
+                                                </span>
                                             </td>
-                                        )}
-                                    </tr>
-                                )) : (
+                                            {canEditProducts && (
+                                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    <button onClick={() => startEdit(category)} className="text-blue-600 hover:text-blue-900 mr-4 p-1 rounded hover:bg-blue-50" title="Éditer">
+                                                        <Edit className="w-4 h-4" />
+                                                    </button>
+                                                    <button onClick={() => handleDelete(category)} className={`p-1 rounded ${prodCount > 0 ? 'text-gray-400 cursor-not-allowed' : 'text-red-600 hover:text-red-900 hover:bg-red-50'}`} disabled={prodCount > 0} title={prodCount > 0 ? "Impossible de supprimer (contient des produits)" : "Supprimer"}>
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </button>
+                                                </td>
+                                            )}
+                                        </tr>
+                                    );
+                                }) : (
                                     <tr>
-                                        <td colSpan={canEditProducts ? 5 : 4} className="px-6 py-8 text-center text-gray-500">
+                                        <td colSpan={canEditProducts ? 4 : 3} className="px-6 py-8 text-center text-gray-500">
                                             Aucune catégorie trouvée.
                                         </td>
                                     </tr>
@@ -346,6 +346,6 @@ export default function CategoriesPage() {
                     </div>
                 </div>
             )}
-        </DashboardLayout>
+        </div>
     );
 }

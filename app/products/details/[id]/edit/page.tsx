@@ -66,7 +66,7 @@ export default function EditProductPage() {
                 });
 
                 setMainImage(product.image || null);
-                setExistingGalleryImages(product.gallery_images || product.galleryImages || []);
+                setExistingGalleryImages(product.gallery_images || (product as any).galleryImages || []);
 
             } catch (err: any) {
                 setErrorMsg('Erreur lors du chargement des données.');
@@ -125,7 +125,7 @@ export default function EditProductPage() {
             submitData.append('category_id', formData.category_id);
 
             const activeFeatures = formData.features.filter(f => f.trim() !== '');
-            activeFeatures.forEach(f => submitData.append('features', f));
+            submitData.append('features', JSON.stringify(activeFeatures));
 
             if (mainNewFile) {
                 submitData.append('image', mainNewFile);

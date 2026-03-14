@@ -17,9 +17,10 @@ export const productsApi = {
         if (Array.isArray(data)) {
             return { count: data.length, results: data };
         }
+        const resData = data as any;
         return {
-            count: data.count || 0,
-            results: data.results || []
+            count: resData.count || 0,
+            results: resData.results || []
         };
     },
 
@@ -70,8 +71,9 @@ export const productsApi = {
 
     getVariants: async (productId: string): Promise<ProductVariant[]> => {
         const data = await apiFetch(`/api/products/${productId}/variants/`);
+        const resData = data as any;
         // Gérer array fallback
-        return Array.isArray(data) ? data : (data.results || []);
+        return Array.isArray(resData) ? resData : (resData.results || []);
     },
 
     createVariant: async (productId: string, data: Omit<ProductVariant, 'id'>): Promise<ProductVariant> => {
@@ -95,8 +97,8 @@ export const productsApi = {
 
 export const categoriesApi = {
     getAll: async (): Promise<Category[]> => {
-        const data = await apiFetch('/api/categories/');
-        return Array.isArray(data) ? data : (data.results || data.data || []);
+        const resData = (await apiFetch('/api/categories/')) as any;
+        return Array.isArray(resData) ? resData : (resData.results || resData.data || []);
     },
 
     create: async (data: { name: string; description?: string }): Promise<Category> => {

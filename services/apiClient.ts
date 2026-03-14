@@ -7,11 +7,17 @@ import {
   setAuthSession,
 } from '@/app/lib/auth';
 
-export const API_BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? '').replace(/\/+$/, '');
+export const API_BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? '').replace(/\/+$/, '') + '/';
 
 export const normalizeApiPath = (path: string) => {
-  if (API_BASE_URL.endsWith('/api') && path.startsWith('/api/')) {
+  if (path.startsWith('/api/')) {
+    return path.slice(5);
+  }
+  if (path.startsWith('api/')) {
     return path.slice(4);
+  }
+  if (path.startsWith('/')) {
+    return path.slice(1);
   }
   return path;
 };

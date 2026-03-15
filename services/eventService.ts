@@ -83,10 +83,10 @@ interface EventsResponsePayload {
 }
 
 const EVENT_COLLECTION_ENDPOINTS = [
+  '/api/admin/events/',
+  '/api/admin/events',
   '/api/events/',
   '/api/events',
-  '/api/admin/events',
-  '/api/admin/events/',
 ] as const;
 
 const stripTrailingSlash = (value: string): string => value.replace(/\/+$/, '');

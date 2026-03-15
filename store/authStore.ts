@@ -194,28 +194,44 @@ const extractModulePermissions = (payload: unknown): ModulePermission[] => {
   const root = toRecord(payload);
   const rootUser = toRecord(root.user);
 
-  const source = Array.isArray(root.permissions)
-    ? root.permissions
-    : Array.isArray(rootUser.permissions)
-      ? rootUser.permissions
-      : [];
+  const rawPerms = root.module_permissions ?? root.permissions ?? rootUser.module_permissions ?? rootUser.permissions;
+  const source = Array.isArray(rawPerms) ? rawPerms : [];
 
-  return source.map((p: any) => ({
-    module_id: toNumber(p.module_id || p.id),
-    module_name: toText(p.module_name || p.name || p.label),
-    module_url: toText(p.module_url || p.url || p.href),
-    is_menu: Boolean(p.is_menu),
-    is_view: Boolean(p.is_view),
-    is_add: Boolean(p.is_add),
-    is_edit: Boolean(p.is_edit),
-    is_delete: Boolean(p.is_delete),
-  }));
+  return source
+    .filter((p: any) => isRecord(p) && (p.module_name || p.module_url || p.name || p.codename))
+    .map((p: any) => ({
+      module_id: toNumber(p.module_id || p.id),
+      module_name: toText(p.module_name || p.name || p.label || p.codename),
+      module_url: toText(p.module_url || p.url || p.href),
+      is_menu: Boolean(p.is_menu),
+      is_view: Boolean(p.is_view),
+      is_add: Boolean(p.is_add),
+      is_edit: Boolean(p.is_edit),
+      is_delete: Boolean(p.is_delete),
+    }));
 };
 
 const extractRoleFromPayload = (payload: unknown): RolePermissionProfile | null => {
   const root = toRecord(payload);
   const rootUser = toRecord(root.user);
-  const rawRole = isRecord(root.role) ? root.role : isRecord(rootUser.role) ? rootUser.role : null;
+  
+  let rawRole: Record<string, unknown> | null = null;
+  
+  if (isRecord(root.role) && (root.role.name || root.role.id)) {
+      rawRole = root.role as Record<string, unknown>;
+  } else if (isRecord(rootUser.role) && (rootUser.role.name || rootUser.role.id)) {
+      rawRole = rootUser.role as Record<string, unknown>;
+  } else if (Array.isArray(rootUser.groups) && rootUser.groups.length > 0 && isRecord(rootUser.groups[0])) {
+      rawRole = rootUser.groups[0] as Record<string, unknown>;
+  }
+
+  if (!rawRole) {
+      const nameString = toText(root.role) || toText(rootUser.role) || toText(root.user_role);
+      if (nameString) {
+          rawRole = { id: 0, name: nameString };
+      }
+  }
+
   if (!rawRole) return null;
 
   const permissions = mergePermissionSources([

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useCreateRole, useUpdateRole } from '../../hooks/useRoles';
 import { Role, RolePayload, ModulePermission } from '../../types/rbac';
 import { PermissionMatrix } from './PermissionMatrix';
+import { useModules } from '@/app/hooks/useModules';
 
 interface RoleFormModalProps {
     isOpen: boolean;
@@ -15,16 +16,16 @@ const COLORS = [
     'bg-purple-500', 'bg-indigo-500', 'bg-pink-500', 'bg-gray-500'
 ];
 
-// Valeur par défaut pour lancer la création si availableModules n'est pas fourni.
-// En pratique le parent peut passer une liste exhaustive de modules.
-const DEFAULT_MODULES = [
+// Fallback modules if API fails
+const FALLBACK_MODULES = [
     { id: 1, name: 'Dashboard' },
     { id: 2, name: 'Products' },
     { id: 3, name: 'Orders' },
     { id: 4, name: 'Users' }
 ];
 
-export const RoleFormModal: React.FC<RoleFormModalProps> = ({ isOpen, onClose, roleToEdit, availableModules = DEFAULT_MODULES }) => {
+export const RoleFormModal: React.FC<RoleFormModalProps> = ({ isOpen, onClose, roleToEdit, availableModules: propModules }) => {
+    const { modules: apiModules, loading: loadingModules } = useModules();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [color, setColor] = useState(COLORS[0]);
@@ -36,15 +37,19 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({ isOpen, onClose, r
 
     const isSubmitting = isCreating || isUpdating;
 
+    // Use prop modules if provided, else use apiModules, with fallback if not loading and empty
+    const currentModules = propModules || (apiModules.length > 0 ? apiModules : (!loadingModules ? FALLBACK_MODULES : []));
+
     useEffect(() => {
-        if (isOpen) {
+        if (isOpen && !loadingModules) {
             if (roleToEdit) {
                 setName(roleToEdit.name);
                 setDescription(roleToEdit.description);
                 setColor(roleToEdit.color);
+                
                 // On s'assure d'inclure tous les modules possibles lors de l'édition
-                const mappedPerms = availableModules.map(mod => {
-                    const existing = roleToEdit.module_permissions.find(p => p.module_id === mod.id);
+                const mappedPerms = currentModules.map(mod => {
+                    const existing = roleToEdit.module_permissions?.find(p => p.module_id === mod.id);
                     return existing || {
                         module_id: mod.id,
                         module_name: mod.name,
@@ -59,7 +64,7 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({ isOpen, onClose, r
                 setName('');
                 setDescription('');
                 setColor(COLORS[0]);
-                setPermissions(availableModules.map(mod => ({
+                setPermissions(currentModules.map(mod => ({
                     module_id: mod.id,
                     module_name: mod.name,
                     is_view: false,
@@ -70,7 +75,7 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({ isOpen, onClose, r
             }
             setErrorText('');
         }
-    }, [isOpen, roleToEdit, availableModules]);
+    }, [isOpen, roleToEdit, currentModules, loadingModules]);
 
     if (!isOpen) return null;
 
@@ -83,11 +88,12 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({ isOpen, onClose, r
             return;
         }
 
-        const hasAtLeastOnePermission = permissions.some(
+        // Le payload soumis doit filtrer les lignes toutes à false
+        const activePermissions = permissions.filter(
             p => p.is_view || p.is_add || p.is_edit || p.is_delete
         );
 
-        if (!hasAtLeastOnePermission) {
+        if (activePermissions.length === 0) {
             setErrorText('Veuillez attribuer au moins une permission au rôle.');
             return;
         }
@@ -96,7 +102,7 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({ isOpen, onClose, r
             name: name.trim(),
             description: description.trim(),
             color,
-            module_permissions: permissions.map(p => ({
+            module_permissions: activePermissions.map(p => ({
                 module_id: p.module_id,
                 is_view: p.is_view,
                 is_add: p.is_add,
@@ -113,7 +119,7 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({ isOpen, onClose, r
             }
             onClose();
         } catch (err: any) {
-            setErrorText(err.message || 'Une erreur est survenue lors de la sauvegarde.');
+            setErrorText(err.response?.data?.message || err.message || 'Une erreur est survenue lors de la sauvegarde.');
         }
     };
 
@@ -176,10 +182,20 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({ isOpen, onClose, r
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-3">Permissions</label>
-                            <PermissionMatrix
-                                permissions={permissions}
-                                onChange={setPermissions}
-                            />
+                            {loadingModules && permissions.length === 0 ? (
+                                <div className="flex flex-col items-center justify-center py-12 border-2 border-dashed border-gray-200 rounded-lg">
+                                    <svg className="animate-spin h-8 w-8 text-blue-500 mb-3" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                                    </svg>
+                                    <p className="text-gray-500 text-sm">Chargement des modules...</p>
+                                </div>
+                            ) : (
+                                <PermissionMatrix
+                                    permissions={permissions}
+                                    onChange={setPermissions}
+                                />
+                            )}
                         </div>
                     </form>
                 </div>
@@ -197,7 +213,7 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({ isOpen, onClose, r
                         type="submit"
                         form="role-form"
                         className="px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 flex items-center gap-2 disabled:opacity-50"
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || (loadingModules && permissions.length === 0)}
                     >
                         {isSubmitting ? (
                             <>

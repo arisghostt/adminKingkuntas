@@ -54,7 +54,7 @@ type UserFormState = {
 type UserFieldErrors = Partial<
   Record<'username' | 'phone' | 'email' | 'password' | 'role_id' | 'global', string>
 >;
-type RoleFieldErrors = Partial<Record<'name' | 'description' | 'permission_ids' | 'global', string>>;
+type RoleFieldErrors = Partial<Record<'name' | 'description' | 'module_permissions' | 'global', string>>;
 
 const createDefaultUserForm = (): UserFormState => ({
   username: '',
@@ -619,7 +619,7 @@ export default function SettingsUsersPage() {
   const handleSubmitRole = async (payload: {
     name: string;
     description?: string;
-    permission_ids: number[];
+    module_permissions: any[];
   }) => {
     if (!payload.name.trim()) {
       setRoleFieldErrors({
@@ -639,39 +639,14 @@ export default function SettingsUsersPage() {
     setRoleFieldErrors({});
 
     try {
-      const permissionMetadata = payload.permission_ids
-        .map((id) => permissionMetaById.get(id))
-        .filter(
-          (entry): entry is { codename: string; sourceId: number | null } =>
-            entry !== undefined
-        );
-
-      const resolvedPermissionIds = [
-        ...new Set(
-          permissionMetadata
-            .map((entry) => entry.sourceId)
-            .filter((value): value is number => typeof value === 'number' && value > 0)
-        ),
-      ];
-      const resolvedPermissionCodenames = [
-        ...new Set(permissionMetadata.map((entry) => entry.codename).filter(Boolean)),
-      ];
-
-      const rolePayload = {
-        ...payload,
-        // Only send backend-native permission ids when we can map to source ids.
-        permission_ids: resolvedPermissionIds,
-        permission_codenames: resolvedPermissionCodenames,
-      };
-
       if (roleModalMode === 'create') {
-        await createRole(rolePayload);
+        await createRole(payload);
         setToast({
           type: 'success',
           message: tx('pages.settingsUsers.roles.toast.created', 'Role created successfully.'),
         });
       } else if (editingRole) {
-        await updateRole(editingRole.id, rolePayload);
+        await updateRole(editingRole.id, payload);
         setToast({
           type: 'success',
           message: tx('pages.settingsUsers.roles.toast.updated', 'Role updated successfully.'),
@@ -687,7 +662,7 @@ export default function SettingsUsersPage() {
         setRoleFieldErrors({
           name: fields.name,
           description: fields.description,
-          permission_ids: fields.permission_ids ?? fields.permissions,
+          module_permissions: fields.module_permissions ?? fields.permission_ids ?? fields.permissions,
           global: fields.global,
         });
       } else {

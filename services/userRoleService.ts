@@ -36,16 +36,28 @@ export interface AdminUser {
   date_joined: string;
 }
 
+export interface ModulePermissionPayload {
+  module_id: number;
+  is_view: boolean;
+  is_add: boolean;
+  is_edit: boolean;
+  is_delete: boolean;
+}
+
 export interface CreateRolePayload {
   name: string;
   description?: string;
-  permission_ids: number[];
+  color?: string;
+  permission_ids?: number[];
   permission_codenames?: string[];
+  module_permissions?: ModulePermissionPayload[];
 }
 
 export interface UpdateRolePayload extends Partial<RoleProfile> {
+  color?: string;
   permission_ids?: number[];
   permission_codenames?: string[];
+  module_permissions?: ModulePermissionPayload[];
 }
 
 export interface CreateUserPayload {
@@ -487,37 +499,43 @@ const buildRolePayloadAttempts = (
 
   if (typeof data.name === 'string') base.name = data.name;
   if (typeof data.description === 'string') base.description = data.description;
+  if ('color' in data && typeof data.color === 'string') base.color = data.color;
   if ('is_active' in data && typeof data.is_active === 'boolean') {
     base.is_active = data.is_active;
   }
 
-  const hasPermissionIdsInput = Array.isArray(data.permission_ids);
-  const hasPermissionCodenamesInput = Array.isArray(data.permission_codenames);
-  const hasExplicitPermissionPayload = hasPermissionIdsInput || hasPermissionCodenamesInput;
-  const permissionIds = dedupeNumbers(data.permission_ids);
-  const permissionCodenames = dedupeCodenames(data.permission_codenames);
+  const hasModulePermissionsInput = Array.isArray(data.module_permissions) && data.module_permissions.length > 0;
   const attempts: Array<Record<string, unknown>> = [];
 
+  // Primary payload : { name, description, color, module_permissions }
+  if (hasModulePermissionsInput) {
+    attempts.push({
+      ...base,
+      module_permissions: data.module_permissions,
+    });
+  }
+
+  // Legacy permission handling
+  const permissionIds = dedupeNumbers(data.permission_ids);
+  const permissionCodenames = dedupeCodenames(data.permission_codenames);
+  const hasPermissionIdsInput = permissionIds.length > 0;
+  const hasPermissionCodenamesInput = permissionCodenames.length > 0;
+
   if (hasPermissionIdsInput) {
-    // Prefer Django Group-style payload first.
     attempts.push({ ...base, permissions: permissionIds });
     attempts.push({ ...base, permission_ids: permissionIds });
-    attempts.push({ ...base, permissionIds: permissionIds });
   }
 
-  if (permissionCodenames.length > 0) {
+  if (hasPermissionCodenamesInput) {
     attempts.push({ ...base, permissions: permissionCodenames });
     attempts.push({ ...base, permission_codenames: permissionCodenames });
-    attempts.push({ ...base, permission_codes: permissionCodenames });
   }
 
-  if (hasPermissionIdsInput && permissionCodenames.length > 0) {
-    attempts.push({ ...base, permission_ids: permissionIds, permissions: permissionCodenames });
-  }
-
-  if (!hasExplicitPermissionPayload || (permissionIds.length === 0 && permissionCodenames.length === 0)) {
-    attempts.push(base);
-  }
+  // Fallback payload: { name, description }
+  const minimalFallback: Record<string, unknown> = {};
+  if (typeof data.name === 'string') minimalFallback.name = data.name;
+  if (typeof data.description === 'string') minimalFallback.description = data.description;
+  attempts.push(minimalFallback);
 
   const seen = new Set<string>();
   return attempts.filter((entry) => {

@@ -45,8 +45,14 @@ export default function ProductGridPage() {
       fetchCategories();
       refetch();
     };
+    const handleStockUpdate = () => refetch();
+
     window.addEventListener('categories-updated', handleUpdated);
-    return () => window.removeEventListener('categories-updated', handleUpdated);
+    window.addEventListener('stock-updated', handleStockUpdate);
+    return () => {
+      window.removeEventListener('categories-updated', handleUpdated);
+      window.removeEventListener('stock-updated', handleStockUpdate);
+    };
   }, [fetchCategories, refetch]);
 
   const handleDelete = async (id: string) => {

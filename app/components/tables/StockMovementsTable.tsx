@@ -10,6 +10,7 @@ import {
   type StockMovement,
   type StockMovementsQueryParams,
 } from '@/services/inventoryService';
+import { productsApi } from '@/lib/api/products';
 
 type MovementFilter = 'all' | 'in' | 'out';
 
@@ -81,6 +82,7 @@ export default function StockMovementsTable({
   const [reason, setReason] = useState('');
   const [modalError, setModalError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [isProductsLoading, setIsProductsLoading] = useState(false);
 
   const resolveErrorMessage = useCallback(
     (err: unknown) => {
@@ -182,7 +184,7 @@ export default function StockMovementsTable({
 
   const totalPages = pageSize > 0 ? Math.max(1, Math.ceil(total / pageSize)) : 1;
 
-  const openAddModal = () => {
+  const openAddModal = async () => {
     setProductQuery('');
     setSelectedProductId('');
     setMovementType('in');
@@ -190,6 +192,16 @@ export default function StockMovementsTable({
     setReason('');
     setModalError('');
     setIsAddModalOpen(true);
+    setIsProductsLoading(true);
+
+    try {
+      const data = await productsApi.getAll();
+      setProductOptions(data.results.map((p) => ({ id: String(p.id), name: p.name })));
+    } catch {
+      // productOptions reste peuplé depuis les mouvements existants
+    } finally {
+      setIsProductsLoading(false);
+    }
   };
 
   const closeAddModal = () => {
@@ -199,17 +211,30 @@ export default function StockMovementsTable({
 
   const handleProductQueryChange = (value: string) => {
     setProductQuery(value);
+    const trimmed = value.trim().toLowerCase();
     const match = productOptions.find(
       (option) =>
-        option.name.toLowerCase() === value.trim().toLowerCase() ||
-        option.id === value.trim()
+        option.name.toLowerCase() === trimmed ||
+        option.id === value.trim() ||
+        option.name.toLowerCase().startsWith(trimmed)
     );
     setSelectedProductId(match?.id ?? '');
   };
 
   const handleCreateMovement = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!selectedProductId || quantity <= 0) {
+
+    let finalProductId = selectedProductId;
+    if (!finalProductId && productQuery.trim()) {
+      const match = productOptions.find(
+        (option) =>
+          option.name.toLowerCase() === productQuery.trim().toLowerCase() ||
+          option.id === productQuery.trim()
+      );
+      if (match) finalProductId = match.id;
+    }
+
+    if (!finalProductId || quantity <= 0) {
       setModalError(
         t('pages.inventory.modals.validationMovement', {
           defaultValue: 'Product and quantity are required.',
@@ -224,13 +249,16 @@ export default function StockMovementsTable({
 
     try {
       await createStockMovement({
-        product_id: selectedProductId,
+        product_id: finalProductId,
         type: movementType,
         quantity: Math.trunc(quantity),
         reason: reason.trim() || 'Manual stock movement',
       });
 
       closeAddModal();
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('stock-updated'));
+      }
       await fetchMovements();
     } catch (createError) {
       if (axios.isAxiosError(createError) && createError.response?.status === 400) {
@@ -484,13 +512,20 @@ export default function StockMovementsTable({
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   {t('pages.inventory.modals.product', { defaultValue: 'Product' })}
                 </label>
-                <input
-                  list="movement-products"
-                  value={productQuery}
-                  onChange={(event) => handleProductQueryChange(event.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder={t('pages.inventory.movements.byProduct')}
-                />
+                <div className="relative">
+                  <input
+                    list="movement-products"
+                    value={productQuery}
+                    onChange={(event) => handleProductQueryChange(event.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder={t('pages.inventory.movements.byProduct')}
+                  />
+                  {isProductsLoading && (
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                      <Loader2 className="w-4 h-4 animate-spin text-gray-400" />
+                    </div>
+                  )}
+                </div>
                 <datalist id="movement-products">
                   {productOptions.map((option) => (
                     <option key={option.id} value={option.name} />

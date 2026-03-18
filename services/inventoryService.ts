@@ -331,7 +331,7 @@ export const getInventoryStats = async (): Promise<InventoryStats> => {
 export const getStockMovements = async (
   params: StockMovementsQueryParams = {}
 ): Promise<StockMovementsResponse> => {
-  const response = await apiClient.get('/api/admin/inventory/movements', { params });
+  const response = await apiClient.get('/api/admin/inventory/movements/', { params });
   return normalizeStockMovementsResponse(response.data);
 };
 
@@ -341,12 +341,12 @@ export const createStockMovement = async (data: {
   quantity: number;
   reason: string;
 }): Promise<StockMovement> => {
-  const response = await apiClient.post('/api/admin/inventory/movements', data);
+  const response = await apiClient.post('/api/admin/inventory/movements/', data);
   return normalizeStockMovement(response.data as StockMovementPayload);
 };
 
 export const getInventoryAlerts = async (status?: string): Promise<InventoryAlertsResponse> => {
-  const response = await apiClient.get('/api/admin/inventory/alerts', {
+  const response = await apiClient.get('/api/admin/inventory/alerts/', {
     params: status && status !== 'all' ? { status } : undefined,
   });
   return normalizeInventoryAlerts(response.data);
@@ -356,18 +356,18 @@ export const restockProduct = async (
   productId: string,
   data: { quantity: number; reason?: string }
 ): Promise<void> => {
-  await apiClient.patch(`/api/admin/inventory/alerts/${productId}/restock`, data);
+  await apiClient.patch(`/api/admin/inventory/alerts/${productId}/restock/`, data);
 };
 
 export const getAnalytics = async (period: '7d' | '30d' | '90d'): Promise<AnalyticsData> => {
-  const response = await apiClient.get('/api/admin/inventory/analytics', {
+  const response = await apiClient.get('/api/admin/inventory/analytics/', {
     params: { period },
   });
   return normalizeAnalytics(response.data);
 };
 
 export const exportMovements = async (params: StockMovementsQueryParams = {}): Promise<void> => {
-  const response = await apiClient.get('/api/admin/inventory/export', {
+  const response = await apiClient.get('/api/admin/inventory/export/', {
     params,
     responseType: 'blob',
   });

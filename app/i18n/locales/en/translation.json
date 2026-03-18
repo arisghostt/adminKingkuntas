@@ -55,7 +55,9 @@
     "pending": "Pending",
     "high": "High",
     "medium": "Medium",
-    "low": "Low"
+    "low": "Low",
+    "justNow": "Just now",
+    "sessionExpired": "Session expired. Please log in again."
   },
   "pages": {
     "dashboard": {
@@ -757,6 +759,48 @@
       "errorLoginFailed": "Login failed. Check your credentials and try again.",
       "errorInvalidTokenRole": "Authenticated, but no valid access token or role was returned.",
       "errorUnableConnect": "Unable to connect to backend."
+    },
+    "profile": {
+      "title": "Profile",
+      "subtitle": "Manage your profile information and account security",
+      "editProfile": "Edit Profile",
+      "cancelEdit": "Cancel",
+      "saveChanges": "Save Changes",
+      "saving": "Saving...",
+      "avatarUpdated": "Avatar updated successfully",
+      "avatarError": "Failed to update avatar",
+      "profileUpdated": "Profile updated successfully",
+      "profileUpdateError": "Failed to update profile",
+      "about": "About",
+      "recentActivity": "Recent Activity",
+      "viewAll": "View All",
+      "noRecentActivity": "No recent activity found",
+      "quickLinks": {
+        "title": "Quick Links",
+        "settings": "Settings",
+        "orders": "Orders",
+        "products": "Products",
+        "inventory": "Inventory",
+        "analytics": "Analytics",
+        "promotions": "Promotions"
+      },
+      "security": {
+        "title": "Security & Session",
+        "sessionStatus": "Session Status",
+        "active": "Active",
+        "role": "Account Role",
+        "memberSince": "Member Since",
+        "manageSettings": "Manage Security Settings"
+      },
+      "personalInfo": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "username": "Username",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "location": "Location",
+        "bio": "Biography"
+      }
     },
     "promotions": {
       "title": "Promotions & Coupons",

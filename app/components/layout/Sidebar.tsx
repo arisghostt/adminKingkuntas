@@ -182,7 +182,7 @@ export default function Sidebar({
     };
 
     const parentToExpand = findParentAndExpand(visibleMenuItems, pathname);
-    
+
     // Strict accordion behavior: close other modules when navigating to a new section
     // Use functional update to avoid infinite loops by comparing current and next state
     setExpandedItems(prev => {

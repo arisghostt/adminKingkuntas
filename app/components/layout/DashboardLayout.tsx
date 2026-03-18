@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, ReactNode, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useLanguage } from '../LanguageProvider';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
@@ -11,6 +11,32 @@ import { useAuthStore } from '@/store/authStore';
 interface DashboardLayoutProps {
   children: ReactNode;
 }
+
+// Map pathname → label et icon pour l'affichage
+const PAGE_META: Record<string, { label: string; icon: string }> = {
+  '/dashboard': { label: 'Dashboard', icon: 'Home' },
+  '/products': { label: 'Products', icon: 'Package' },
+  '/products/add': { label: 'Add Product', icon: 'Package' },
+  '/products/grid': { label: 'Product Grid', icon: 'Package' },
+  '/orders': { label: 'Orders', icon: 'ShoppingCart' },
+  '/inventory': { label: 'Inventory', icon: 'Boxes' },
+  '/inventory/movements': { label: 'Stock Movements', icon: 'Boxes' },
+  '/inventory/alerts': { label: 'Stock Alerts', icon: 'Boxes' },
+  '/inventory/stock': { label: 'Stock Overview', icon: 'Boxes' },
+  '/customers': { label: 'Customers', icon: 'Users' },
+  '/analytics': { label: 'Analytics', icon: 'BarChart3' },
+  '/settings': { label: 'Settings', icon: 'Settings' },
+  '/profile': { label: 'Profile', icon: 'User' },
+  '/promotions': { label: 'Promotions', icon: 'Tag' },
+  '/billing': { label: 'Billing', icon: 'CreditCard' },
+  '/invoice': { label: 'Invoice', icon: 'FileText' },
+  '/email': { label: 'Email', icon: 'Mail' },
+  '/chat': { label: 'Chat', icon: 'MessageCircle' },
+  '/events': { label: 'Events', icon: 'Calendar' },
+  '/notifications': { label: 'Notifications', icon: 'Bell' },
+  '/users': { label: 'Users', icon: 'Users' },
+  '/reports': { label: 'Reports', icon: 'BarChart3' },
+};
 
 function DashboardContent({ children }: DashboardLayoutProps) {
   const router = useRouter();
@@ -55,6 +81,26 @@ function DashboardContent({ children }: DashboardLayoutProps) {
   const [currentYear, setCurrentYear] = useState<number | null>(null);
   const [authReady, setAuthReady] = useState(false);
   const { t } = useLanguage();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const meta = PAGE_META[pathname] || { 
+      label: pathname.split('/').filter(Boolean).join(' / ') || 'Page', 
+      icon: 'Home' 
+    };
+    const ACTIVITY_KEY = 'kk_recent_activity';
+    const existing = JSON.parse(localStorage.getItem(ACTIVITY_KEY) || '[]');
+    const filtered = existing.filter((a: {path: string}) => a.path !== pathname);
+    const updated = [{
+      path: pathname, 
+      label: meta.label, 
+      icon: meta.icon,
+      timestamp: new Date().toISOString(),
+      type: 'navigation'
+    }, ...filtered].slice(0, 8);
+    localStorage.setItem(ACTIVITY_KEY, JSON.stringify(updated));
+  }, [pathname]);
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());

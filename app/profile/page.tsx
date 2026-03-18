@@ -1,11 +1,19 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import DashboardLayout from '../components/layout/DashboardLayout';
-import { User, Mail, Phone, MapPin, Calendar, Link as LinkIcon, Edit2, Camera, Settings, Activity, ShoppingBag, CreditCard, Star } from 'lucide-react';
+import {
+  User, Mail, Phone, MapPin, Calendar, Link as LinkIcon,
+  Edit2, Camera, Settings, Activity, ShoppingCart,
+  Package, Boxes, BarChart3, Users, Tag, FileText,
+  Shield, Bell, CalendarDays
+} from 'lucide-react';
 import { getAuthSession, setAuthSession } from '@/app/lib/auth';
 import { usersApi } from '@/lib/api';
+import { useAuthStore } from '@/store/authStore';
+import { useLanguage } from '../components/LanguageProvider';
 
 type ProfileForm = {
   firstName: string;
@@ -84,7 +92,31 @@ const writeProfileMeta = (keys: string[], meta: ProfileMeta) => {
   });
 };
 
+const ACTIVITY_KEY = 'kk_recent_activity';
+const MAX_ACTIVITIES = 8;
+
+interface ActivityEntry {
+  path: string;
+  label: string;
+  icon: string;
+  timestamp: string;
+  type: 'navigation' | 'action';
+}
+
+const iconMap: Record<string, React.ElementType> = {
+  'Home': User, 'Package': Package, 'ShoppingCart': ShoppingCart,
+  'Boxes': Boxes, 'Users': Users, 'BarChart3': BarChart3,
+  'Settings': Settings, 'User': User, 'Tag': Tag,
+  'CreditCard': MapPin, 'Mail': Mail, 'MessageCircle': Activity,
+  'FileText': FileText, 'Calendar': CalendarDays, 'Bell': Bell,
+};
+
 export default function ProfilePage() {
+  const router = useRouter();
+  const { t } = useLanguage();
+  const setAuthData = useAuthStore((state) => state.setAuthData);
+  const authUser = useAuthStore((state) => state.user);
+
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -94,6 +126,12 @@ export default function ProfilePage() {
   const [roleName, setRoleName] = useState('User');
   const [joinedDate, setJoinedDate] = useState('');
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [recentActivities, setRecentActivities] = useState<ActivityEntry[]>([]);
+  const [sessionInfo] = useState({
+    lastLogin: new Date().toLocaleDateString(),
+    sessionActive: true,
+  });
+
   const [form, setForm] = useState<ProfileForm>({
     firstName: '',
     lastName: '',
@@ -104,17 +142,70 @@ export default function ProfilePage() {
     bio: DEFAULT_BIO,
   });
 
-  const userStats = [
-    { label: 'Total Orders', value: '156', icon: ShoppingBag, color: 'bg-blue-500' },
-    { label: 'Total Spent', value: '$12,345', icon: CreditCard, color: 'bg-green-500' },
-    { label: 'Points', value: '2,450', icon: Star, color: 'bg-yellow-500' },
-    { label: 'Member Since', value: joinedDate ? new Date(joinedDate).getFullYear().toString() : '-', icon: Calendar, color: 'bg-purple-500' },
+  const quickLinks = [
+    {
+      href: '/settings',
+      icon: Settings,
+      labelKey: 'pages.profile.quickLinks.settings',
+      color: 'text-gray-600', bg: 'bg-gray-100'
+    },
+    {
+      href: '/orders',
+      icon: ShoppingCart,
+      labelKey: 'pages.profile.quickLinks.orders',
+      color: 'text-blue-600', bg: 'bg-blue-100'
+    },
+    {
+      href: '/products',
+      icon: Package,
+      labelKey: 'pages.profile.quickLinks.products',
+      color: 'text-green-600', bg: 'bg-green-100'
+    },
+    {
+      href: '/inventory',
+      icon: Boxes,
+      labelKey: 'pages.profile.quickLinks.inventory',
+      color: 'text-orange-600', bg: 'bg-orange-100'
+    },
+    {
+      href: '/analytics',
+      icon: BarChart3,
+      labelKey: 'pages.profile.quickLinks.analytics',
+      color: 'text-purple-600', bg: 'bg-purple-100'
+    },
+    {
+      href: '/promotions',
+      icon: Tag,
+      labelKey: 'pages.profile.quickLinks.promotions',
+      color: 'text-red-600', bg: 'bg-red-100'
+    },
   ];
 
-  const recentActivity = [
-    { action: 'Profile synchronized with API', date: 'Now', type: 'update' },
-    { action: 'Security session active (JWT)', date: 'Today', type: 'account' },
-  ];
+  const formatTimeAgo = (isoString: string): string => {
+    const diff = Date.now() - new Date(isoString).getTime();
+    const minutes = Math.floor(diff / 60000);
+    if (minutes < 1) return t('common.justNow') || 'Just now';
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}h ago`;
+    return `${Math.floor(hours / 24)}d ago`;
+  };
+
+  const logPageVisit = (path: string, label: string, icon: string) => {
+    if (typeof window === 'undefined') return;
+    const existing: ActivityEntry[] = JSON.parse(
+      localStorage.getItem(ACTIVITY_KEY) || '[]'
+    );
+    const filtered = existing.filter(a => a.path !== path);
+    const newEntry: ActivityEntry = {
+      path, label, icon,
+      timestamp: new Date().toISOString(),
+      type: 'navigation'
+    };
+    const updated = [newEntry, ...filtered].slice(0, MAX_ACTIVITIES);
+    localStorage.setItem(ACTIVITY_KEY, JSON.stringify(updated));
+    setRecentActivities(updated);
+  };
 
   const displayName = useMemo(() => {
     const fullName = `${form.firstName} ${form.lastName}`.trim();
@@ -138,14 +229,26 @@ export default function ProfilePage() {
         setError(null);
         setSuccess(null);
 
+        // Tracker la visite du profil
+        logPageVisit('/profile', 'Profile', 'User');
+
+        // Charger les activités récentes
+        const raw = localStorage.getItem(ACTIVITY_KEY);
+        if (raw) {
+          setRecentActivities(JSON.parse(raw));
+        }
+
         const session = getAuthSession();
         if (!session) {
-          setError('Session introuvable. Veuillez vous reconnecter.');
+          setError(t('common.sessionExpired'));
           return;
         }
 
         setRoleName(session.role || 'User');
-        if (session.user?.avatar) setProfileImage(session.user.avatar);
+
+        // Priorité avatar : authUser.avatar > session.user.avatar
+        const initialAvatar = authUser?.avatar || authUser?.profile_image || session.user?.avatar;
+        if (initialAvatar) setProfileImage(initialAvatar);
 
         const sessionUsername = session.user?.username ?? '';
         const sessionEmail = session.user?.email ?? '';
@@ -179,7 +282,10 @@ export default function ProfilePage() {
           apiLocation = pickString(meRecord.location, meRecord.city);
           apiBio = pickString(meRecord.bio, meRecord.about, meRecord.description);
           apiAvatar = pickString(meRecord.avatar, meRecord.profile_image);
-          if (apiAvatar) setProfileImage(apiAvatar);
+
+          const resolvedAvatar = authUser?.avatar || authUser?.profile_image
+            || session?.user?.avatar || apiAvatar;
+          if (resolvedAvatar) setProfileImage(resolvedAvatar);
         } catch {
           if (sessionUserId !== null && sessionUserId !== undefined) {
             try {
@@ -197,7 +303,7 @@ export default function ProfilePage() {
               apiBio = pickString(byIdRecord.bio, byIdRecord.about, byIdRecord.description);
               apiAvatar = pickString(byIdRecord.avatar, byIdRecord.profile_image);
               if (apiAvatar) setProfileImage(apiAvatar);
-            } catch {}
+            } catch { }
           }
         }
 
@@ -310,9 +416,9 @@ export default function ProfilePage() {
       }
 
       setIsEditing(false);
-      setSuccess('Informations personnelles mises a jour avec succes.');
+      setSuccess(t('pages.profile.profileUpdated'));
     } catch (saveError) {
-      setError(saveError instanceof Error ? saveError.message : 'Erreur lors de la mise a jour du profil.');
+      setError(saveError instanceof Error ? saveError.message : t('pages.profile.profileUpdateError') || 'Erreur lors de la mise a jour du profil.');
     } finally {
       setIsSaving(false);
     }
@@ -330,37 +436,39 @@ export default function ProfilePage() {
     setError(null);
     setSuccess(null);
 
-    try {
-      const reader = new FileReader();
-      reader.onloadend = () => setProfileImage(reader.result as string);
-      reader.readAsDataURL(file);
+    const reader = new FileReader();
+    reader.onloadend = async () => {
+      const base64 = reader.result as string;
+      setProfileImage(base64); // Preview immédiat
 
-      await usersApi.uploadAvatar(file);
-      
-      const session = getAuthSession();
-      if (session) {
+      try {
+        await usersApi.uploadAvatar(file);
         const me = await usersApi.getMe();
         const meRecord = toRecord(me);
         const avatarUrl = pickString(meRecord.avatar, meRecord.profile_image);
-        
-        setAuthSession({
-          ...session,
-          user: {
-            ...session.user,
-            avatar: avatarUrl,
-          },
-        });
-        
-        if (avatarUrl) setProfileImage(avatarUrl);
-        window.dispatchEvent(new Event('kk_profile_updated'));
-      }
+        const finalAvatar = avatarUrl || base64;
 
-      setSuccess('Photo de profil mise à jour avec succès.');
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erreur lors de l\'upload de l\'image.');
-    } finally {
-      setIsSaving(false);
-    }
+        setProfileImage(finalAvatar);
+
+        // Mettre à jour authStore (utilisé par Topbar)
+        setAuthData({ user: { ...authUser, avatar: finalAvatar, profile_image: finalAvatar } as any });
+
+        // Mettre à jour la session
+        const session = getAuthSession();
+        if (session) {
+          setAuthSession({ ...session, user: { ...session.user, avatar: finalAvatar } });
+        }
+
+        // Notifier tous les composants
+        window.dispatchEvent(new Event('kk_profile_updated'));
+        setSuccess(t('pages.profile.avatarUpdated'));
+      } catch (err) {
+        setError(err instanceof Error ? err.message : t('pages.profile.avatarError'));
+      } finally {
+        setIsSaving(false);
+      }
+    };
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -371,8 +479,8 @@ export default function ProfilePage() {
         transition={{ duration: 0.5 }}
         className="mb-6"
       >
-        <h1 className="text-2xl font-bold text-gray-900">Profile</h1>
-        <p className="text-gray-600">Manage your personal information and account details</p>
+        <h1 className="text-2xl font-bold text-gray-900">{t('pages.profile.title')}</h1>
+        <p className="text-gray-600">{t('pages.profile.subtitle')}</p>
       </motion.div>
 
       {success && (
@@ -393,7 +501,8 @@ export default function ProfilePage() {
           transition={{ type: 'spring', stiffness: 120, damping: 18 }}
           className="grid grid-cols-1 lg:grid-cols-3 gap-6"
         >
-          <div className="lg:col-span-1">
+          {/* Left Column */}
+          <div className="lg:col-span-1 space-y-6">
             <motion.div
               whileHover={{ y: -3 }}
               transition={{ type: 'spring', stiffness: 260, damping: 18 }}
@@ -434,7 +543,7 @@ export default function ProfilePage() {
                 <div className="w-full space-y-3">
                   <div className="flex items-center gap-3 text-sm text-gray-600">
                     <Mail className="w-4 h-4" />
-                    <span>{form.email || '-'}</span>
+                    <span className="truncate">{form.email || '-'}</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm text-gray-600">
                     <Phone className="w-4 h-4" />
@@ -446,7 +555,7 @@ export default function ProfilePage() {
                   </div>
                   <div className="flex items-center gap-3 text-sm text-gray-600">
                     <Calendar className="w-4 h-4" />
-                    <span>{joinedDate ? `Joined ${new Date(joinedDate).toLocaleDateString()}` : 'Joined -'}</span>
+                    <span>{joinedDate ? `${t('pages.profile.security.memberSince')} ${new Date(joinedDate).toLocaleDateString()}` : `${t('pages.profile.security.memberSince')} -`}</span>
                   </div>
                 </div>
 
@@ -461,73 +570,106 @@ export default function ProfilePage() {
                   className="w-full mt-6 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2"
                 >
                   <Edit2 className="w-4 h-4" />
-                  {isEditing ? 'Cancel Editing' : 'Edit Profile'}
+                  {isEditing ? t('pages.profile.cancelEdit') : t('pages.profile.editProfile')}
                 </motion.button>
               </div>
             </motion.div>
 
             <motion.div
-              whileHover={{ y: -3 }}
-              transition={{ type: 'spring', stiffness: 260, damping: 18 }}
-              className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mt-6"
+              whileHover={{ y: -2 }}
+              className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
             >
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Account Statistics</h3>
-              <div className="grid grid-cols-2 gap-4">
-                {userStats.map((stat, index) => {
-                  const Icon = stat.icon;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.08 + index * 0.05, duration: 0.22 }}
-                      whileHover={{ y: -2, scale: 1.02 }}
-                      className="text-center p-4 bg-gray-50 rounded-lg"
-                    >
-                      <div className={`inline-flex p-2 rounded-full ${stat.color} mb-2`}>
-                        <Icon className="w-5 h-5 text-white" />
-                      </div>
-                      <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                      <p className="text-sm text-gray-500">{stat.label}</p>
-                    </motion.div>
-                  );
-                })}
+              <h3 className="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <Shield className="w-4 h-4 text-green-600" />
+                {t('pages.profile.security.title')}
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600">
+                    {t('pages.profile.security.sessionStatus')}
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 px-2 py-1 rounded-full">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                    {t('pages.profile.security.active')}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600">
+                    {t('pages.profile.security.role')}
+                  </span>
+                  <span className="text-sm font-medium text-gray-900 capitalize">
+                    {roleName}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600">
+                    {t('pages.profile.security.memberSince')}
+                  </span>
+                  <span className="text-sm font-medium text-gray-900">
+                    {joinedDate ? new Date(joinedDate).toLocaleDateString() : '—'}
+                  </span>
+                </div>
+                <div className="pt-2 border-t border-gray-100">
+                  <button
+                    onClick={() => router.push('/settings')}
+                    className="text-xs text-blue-600 hover:text-blue-800 font-medium"
+                  >
+                    {t('pages.profile.security.manageSettings')} →
+                  </button>
+                </div>
               </div>
             </motion.div>
           </div>
 
+          {/* Right Column */}
           <div className="lg:col-span-2 space-y-6">
             <motion.div whileHover={{ y: -2 }} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">About</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('pages.profile.about')}</h3>
               <p className="text-gray-600 leading-relaxed">{form.bio || DEFAULT_BIO}</p>
             </motion.div>
 
             <motion.div whileHover={{ y: -2 }} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900">Recent Activity</h3>
-                <motion.button whileHover={{ x: 2 }} className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center gap-1">
+                <h3 className="text-lg font-semibold text-gray-900">{t('pages.profile.recentActivity')}</h3>
+                <motion.button
+                  whileHover={{ x: 2 }}
+                  className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center gap-1"
+                  onClick={() => router.push('/dashboard')}
+                >
                   <Activity className="w-4 h-4" />
-                  View All
+                  {t('pages.profile.viewAll')}
                 </motion.button>
               </div>
-              <div className="space-y-4">
-                {recentActivity.map((activity, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.24, delay: index * 0.06 }}
-                    className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg"
-                  >
-                    <div className={`w-2 h-2 rounded-full ${
-                      activity.type === 'update' ? 'bg-blue-500' : 'bg-gray-500'
-                    }`} />
-                    <div className="flex-1">
-                      <p className="font-medium text-gray-900">{activity.action}</p>
-                      <p className="text-sm text-gray-500">{activity.date}</p>
-                    </div>
-                  </motion.div>
-                ))}
+              <div className="space-y-3">
+                {recentActivities.length === 0 ? (
+                  <p className="text-sm text-gray-500 text-center py-4">
+                    {t('pages.profile.noRecentActivity')}
+                  </p>
+                ) : (
+                  recentActivities.map((activity, index) => {
+                    const IconComp = iconMap[activity.icon] || Activity;
+                    const timeAgo = formatTimeAgo(activity.timestamp);
+                    return (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.2, delay: index * 0.05 }}
+                        className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
+                        onClick={() => router.push(activity.path)}
+                      >
+                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                          <IconComp className="w-4 h-4 text-blue-600" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-gray-800 truncate">{activity.label}</p>
+                          <p className="text-xs text-gray-500">{activity.path}</p>
+                        </div>
+                        <span className="text-xs text-gray-400 flex-shrink-0">{timeAgo}</span>
+                      </motion.div>
+                    );
+                  })
+                )}
               </div>
             </motion.div>
 
@@ -540,10 +682,10 @@ export default function ProfilePage() {
                   transition={{ duration: 0.3 }}
                   className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
                 >
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Edit Profile</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('pages.profile.editProfile')}</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('pages.profile.personalInfo.firstName')}</label>
                       <input
                         type="text"
                         value={form.firstName}
@@ -552,7 +694,7 @@ export default function ProfilePage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('pages.profile.personalInfo.lastName')}</label>
                       <input
                         type="text"
                         value={form.lastName}
@@ -561,7 +703,7 @@ export default function ProfilePage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('pages.profile.personalInfo.username')}</label>
                       <input
                         type="text"
                         value={form.username}
@@ -570,7 +712,7 @@ export default function ProfilePage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('pages.profile.personalInfo.email')}</label>
                       <input
                         type="email"
                         value={form.email}
@@ -579,7 +721,7 @@ export default function ProfilePage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('pages.profile.personalInfo.phone')}</label>
                       <input
                         type="tel"
                         value={form.phone}
@@ -588,7 +730,7 @@ export default function ProfilePage() {
                       />
                     </div>
                     <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('pages.profile.personalInfo.location')}</label>
                       <input
                         type="text"
                         value={form.location}
@@ -597,7 +739,7 @@ export default function ProfilePage() {
                       />
                     </div>
                     <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('pages.profile.personalInfo.bio')}</label>
                       <textarea
                         rows={4}
                         value={form.bio}
@@ -613,7 +755,7 @@ export default function ProfilePage() {
                       className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
                       disabled={isSaving}
                     >
-                      Cancel
+                      {t('pages.profile.cancelEdit')}
                     </motion.button>
                     <motion.button
                       whileHover={{ scale: 1.02 }}
@@ -622,7 +764,7 @@ export default function ProfilePage() {
                       disabled={isSaving}
                       className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
                     >
-                      {isSaving ? 'Saving...' : 'Save Changes'}
+                      {isSaving ? t('pages.profile.saving') : t('pages.profile.saveChanges')}
                     </motion.button>
                   </div>
                 </motion.div>
@@ -630,24 +772,29 @@ export default function ProfilePage() {
             </AnimatePresence>
 
             <motion.div whileHover={{ y: -2 }} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Links</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <motion.button whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }} className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors flex flex-col items-center gap-2">
-                  <Settings className="w-6 h-6 text-gray-600" />
-                  <span className="text-sm font-medium text-gray-700">Settings</span>
-                </motion.button>
-                <motion.button whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }} className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors flex flex-col items-center gap-2">
-                  <ShoppingBag className="w-6 h-6 text-gray-600" />
-                  <span className="text-sm font-medium text-gray-700">My Orders</span>
-                </motion.button>
-                <motion.button whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }} className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors flex flex-col items-center gap-2">
-                  <Star className="w-6 h-6 text-gray-600" />
-                  <span className="text-sm font-medium text-gray-700">Wishlist</span>
-                </motion.button>
-                <motion.button whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }} className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors flex flex-col items-center gap-2">
-                  <LinkIcon className="w-6 h-6 text-gray-600" />
-                  <span className="text-sm font-medium text-gray-700">Integrations</span>
-                </motion.button>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('pages.profile.quickLinks.title')}</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {quickLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <motion.button
+                      key={link.href}
+                      whileHover={{ y: -3, scale: 1.02 }}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={() => router.push(link.href)}
+                      className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 
+                                 transition-colors flex flex-col items-center gap-2 
+                                 border border-transparent hover:border-gray-200"
+                    >
+                      <div className={`p-2 rounded-full ${link.bg}`}>
+                        <Icon className={`w-5 h-5 ${link.color}`} />
+                      </div>
+                      <span className="text-sm font-medium text-gray-700 text-center">
+                        {t(link.labelKey)}
+                      </span>
+                    </motion.button>
+                  );
+                })}
               </div>
             </motion.div>
           </div>

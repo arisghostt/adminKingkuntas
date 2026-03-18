@@ -25,7 +25,7 @@ interface NotificationPreview {
 }
 
 const getNotificationIcon = (type: string, className: string) => {
-  const icons: Record<string, React.ComponentType<{className?: string}>> = {
+  const icons: Record<string, React.ComponentType<{ className?: string }>> = {
     order: Bell, payment: Bell, product: Bell, user: Bell,
     system: Bell, email: Bell, alert: Bell, info: Bell
   };
@@ -105,10 +105,10 @@ export default function Topbar({
   const [userSubLabel, setUserSubLabel] = useState('admin@kingkunta.com');
   const [userAvatar, setUserAvatar] = useState<string | null>(null);
   const [notifications, setNotifications] = useState<NotificationPreview[]>([]);
-  
+
   const currentTheme = themeOptions.find(t => t.value === theme) || themeOptions[0];
   const CurrentIcon = currentTheme.icon;
-  
+
   const currentLanguage = supportedLanguages.find(l => l.code === language) || supportedLanguages[0];
 
   const unreadCount = useMemo(
@@ -130,14 +130,14 @@ export default function Topbar({
       setUserLabel(displayName ? String(displayName) : 'Admin');
       setUserSubLabel(
         authUser?.email ||
-          session?.user?.email ||
-          `${authRoleName || session?.role || 'user'}@kingkunta.local`
+        session?.user?.email ||
+        `${authRoleName || session?.role || 'user'}@kingkunta.local`
       );
       setUserAvatar(
         authUser?.avatar ||
-          authUser?.profile_image ||
-          session?.user?.avatar ||
-          null
+        authUser?.profile_image ||
+        session?.user?.avatar ||
+        null
       );
     };
 
@@ -185,7 +185,7 @@ export default function Topbar({
         setIsNotificationsOpen(false);
       }
     };
-    
+
     if (isNotificationsOpen) {
       document.addEventListener('click', handleClickOutside);
     }
@@ -246,15 +246,15 @@ export default function Topbar({
               type="text"
               placeholder={t('common.search')}
               className="w-full pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              style={{ 
-                borderColor: 'var(--border)', 
-                color: 'var(--text-primary)', 
-                background: 'var(--card-bg)' 
+              style={{
+                borderColor: 'var(--border)',
+                color: 'var(--text-primary)',
+                background: 'var(--card-bg)'
               }}
             />
           </div>
         </div>
-        
+
         {/* Right section - All actions aligned to right on mobile */}
         <div className="flex items-center justify-end space-x-2 sm:space-x-4 w-full sm:w-auto">
           {/* Language Selector Dropdown */}
@@ -262,8 +262,8 @@ export default function Topbar({
             <button
               onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
               className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg"
-              style={{ 
-                color: 'var(--text-primary)', 
+              style={{
+                color: 'var(--text-primary)',
                 background: 'var(--hover-bg)',
                 border: '1px solid var(--border)'
               }}
@@ -272,16 +272,16 @@ export default function Topbar({
               <span className="text-xs sm:text-sm font-medium hidden xs:inline">{currentLanguage?.flag} {currentLanguage?.nativeName}</span>
               <ChevronDown className={`w-3 sm:w-4 h-3 sm:h-4 transition-transform ${isLanguageDropdownOpen ? 'rotate-180' : ''}`} style={{ color: 'var(--text-secondary)' }} />
             </button>
-            
+
             {isLanguageDropdownOpen && (
               <>
-                <div 
-                  className="fixed inset-0 z-10" 
+                <div
+                  className="fixed inset-0 z-10"
                   onClick={() => setIsLanguageDropdownOpen(false)}
                 ></div>
-                <div 
+                <div
                   className="absolute right-0 mt-2 w-56 rounded-lg shadow-lg z-20 overflow-y-auto max-h-60 scrollbar-thin"
-                  style={{ 
+                  style={{
                     background: 'var(--card-bg)',
                     border: '1px solid var(--border)',
                     boxShadow: 'var(--card-shadow)'
@@ -289,7 +289,7 @@ export default function Topbar({
                 >
                   {supportedLanguages.map((lang) => {
                     const isActive = lang.code === language;
-                    
+
                     return (
                       <button
                         key={lang.code}
@@ -298,7 +298,7 @@ export default function Topbar({
                           setIsLanguageDropdownOpen(false);
                         }}
                         className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-opacity-50"
-                        style={{ 
+                        style={{
                           color: 'var(--text-primary)',
                           background: isActive ? 'var(--hover-bg)' : 'transparent'
                         }}
@@ -334,27 +334,27 @@ export default function Topbar({
             <button
               onClick={() => setIsThemeDropdownOpen(!isThemeDropdownOpen)}
               className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg"
-              style={{ 
-                color: 'var(--text-primary)', 
+              style={{
+                color: 'var(--text-primary)',
                 background: 'var(--hover-bg)',
                 border: '1px solid var(--border)'
               }}
             >
-              <CurrentIcon className="w-4 h-4 sm:w-5 sm:h-5" style={{ 
+              <CurrentIcon className="w-4 h-4 sm:w-5 sm:h-5" style={{
                 color: theme === 'dark' ? '#fbbf24' : '#f59e0b'
               }} />
               <ChevronDown className={`w-3 sm:w-4 h-3 sm:h-4 transition-transform ${isThemeDropdownOpen ? 'rotate-180' : ''}`} style={{ color: 'var(--text-secondary)' }} />
             </button>
-            
+
             {isThemeDropdownOpen && (
               <>
-                <div 
-                  className="fixed inset-0 z-10" 
+                <div
+                  className="fixed inset-0 z-10"
                   onClick={() => setIsThemeDropdownOpen(false)}
                 ></div>
-                <div 
+                <div
                   className="absolute right-0 mt-2 w-28 rounded-lg shadow-lg z-20 overflow-hidden"
-                  style={{ 
+                  style={{
                     background: 'var(--card-bg)',
                     border: '1px solid var(--border)',
                     boxShadow: 'var(--card-shadow)'
@@ -363,7 +363,7 @@ export default function Topbar({
                   {themeOptions.map((option) => {
                     const Icon = option.icon;
                     const isActive = option.value === theme;
-                    
+
                     return (
                       <button
                         key={option.value}
@@ -372,7 +372,7 @@ export default function Topbar({
                           setIsThemeDropdownOpen(false);
                         }}
                         className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-opacity-50"
-                        style={{ 
+                        style={{
                           color: 'var(--text-primary)',
                           background: isActive ? 'var(--hover-bg)' : 'transparent'
                         }}
@@ -388,7 +388,7 @@ export default function Topbar({
                         }}
                       >
                         <div className="flex items-center space-x-3">
-                          <Icon className="w-4 h-4" style={{ 
+                          <Icon className="w-4 h-4" style={{
                             color: option.value === 'dark' ? '#fbbf24' : '#f59e0b'
                           }} />
                         </div>
@@ -403,7 +403,7 @@ export default function Topbar({
 
           {/* Notifications with Badge and Dropdown */}
           <div className="relative notifications-dropdown">
-            <button 
+            <button
               className="relative p-1.5 sm:p-2 rounded-lg"
               style={{ color: 'var(--text-secondary)' }}
               onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
@@ -418,17 +418,17 @@ export default function Topbar({
                 </span>
               )}
             </button>
-            
+
             {/* Notification Dropdown Preview */}
             {isNotificationsOpen && (
               <>
-                <div 
-                  className="fixed inset-0 z-10" 
+                <div
+                  className="fixed inset-0 z-10"
                   onClick={() => setIsNotificationsOpen(false)}
                 ></div>
-                <div 
+                <div
                   className="absolute right-0 mt-2 w-72 sm:w-80 rounded-lg shadow-lg z-20 overflow-hidden"
-                  style={{ 
+                  style={{
                     background: 'var(--card-bg)',
                     border: '1px solid var(--border)',
                     boxShadow: 'var(--card-shadow)'
@@ -445,14 +445,14 @@ export default function Topbar({
                       </span>
                     )}
                   </div>
-                  
+
                   {/* Notification List */}
                   <div className="max-h-64 sm:max-h-80 overflow-y-auto">
                     {notifications.slice(0, 5).map((notification) => (
                       <div
                         key={notification.id}
                         className="px-4 py-3 border-b cursor-pointer transition-colors"
-                        style={{ 
+                        style={{
                           borderColor: 'var(--border)',
                           background: notification.read ? 'transparent' : 'var(--hover-bg)'
                         }}
@@ -489,9 +489,9 @@ export default function Topbar({
                       </div>
                     )}
                   </div>
-                  
+
                   {/* Footer - View All */}
-                  <div 
+                  <div
                     className="px-4 py-3 border-t flex items-center justify-center gap-1 cursor-pointer transition-colors"
                     style={{ borderColor: 'var(--border)', background: 'var(--hover-bg)' }}
                     onClick={handleNotificationClick}
@@ -505,7 +505,7 @@ export default function Topbar({
               </>
             )}
           </div>
-          
+
           {/* User Info */}
           <div
             className="relative"

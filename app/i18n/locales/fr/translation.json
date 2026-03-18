@@ -55,7 +55,9 @@
     "pending": "En attente",
     "high": "Élevé",
     "medium": "Moyen",
-    "low": "Faible"
+    "low": "Faible",
+    "justNow": "À l'instant",
+    "sessionExpired": "La session a expiré. Veuillez vous reconnecter."
   },
   "pages": {
     "dashboard": {
@@ -757,6 +759,48 @@
       "errorLoginFailed": "Echec de la connexion. Verifiez vos identifiants puis reessayez.",
       "errorInvalidTokenRole": "Authentification reussie, mais aucun jeton ou role valide n'a ete renvoye.",
       "errorUnableConnect": "Impossible de se connecter au backend."
+    },
+    "profile": {
+      "title": "Profil",
+      "subtitle": "Gérez vos informations de profil et la sécurité de votre compte",
+      "editProfile": "Modifier le profil",
+      "cancelEdit": "Annuler",
+      "saveChanges": "Enregistrer les modifications",
+      "saving": "Enregistrement...",
+      "avatarUpdated": "Avatar mis à jour avec succès",
+      "avatarError": "Échec de la mise à jour de l'avatar",
+      "profileUpdated": "Profil mis à jour avec succès",
+      "profileUpdateError": "Erreur lors de la mise à jour du profil.",
+      "about": "À propos",
+      "recentActivity": "Activité récente",
+      "viewAll": "Tout voir",
+      "noRecentActivity": "Aucune activité récente trouvée",
+      "quickLinks": {
+        "title": "Liens rapides",
+        "settings": "Paramètres",
+        "orders": "Commandes",
+        "products": "Produits",
+        "inventory": "Inventaire",
+        "analytics": "Analytique",
+        "promotions": "Promotions"
+      },
+      "security": {
+        "title": "Sécurité & Session",
+        "sessionStatus": "Statut de la session",
+        "active": "Active",
+        "role": "Rôle du compte",
+        "memberSince": "Membre depuis",
+        "manageSettings": "Gérer les paramètres de sécurité"
+      },
+      "personalInfo": {
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "username": "Nom d'utilisateur",
+        "email": "Adresse e-mail",
+        "phone": "Numéro de téléphone",
+        "location": "Localisation",
+        "bio": "Biographie"
+      }
     },
     "promotions": {
       "title": "Promotions & Coupons",

@@ -143,6 +143,24 @@
         "byDate": "Par date",
         "export": "Exporter le rapport",
         "exportShort": "Exporter"
+      },
+      "stock": {
+        "title": "Vue du stock",
+        "subtitle": "Tous les produits et leurs niveaux de stock",
+        "byProduct": "Par produit",
+        "byCategory": "Par catégorie",
+        "totalProducts": "Total produits",
+        "lowStock": "Stock bas",
+        "outOfStock": "Rupture de stock",
+        "inStock": "En stock",
+        "currentStock": "Stock actuel",
+        "minStock": "Stock minimum",
+        "noProducts": "Aucun produit trouvé",
+        "searchPlaceholder": "Rechercher un produit...",
+        "allCategories": "Toutes les catégories",
+        "allStatus": "Tous les statuts",
+        "categoryProducts": "produits",
+        "categoryTotalStock": "Stock total"
       }
     },
     "settings": {
@@ -874,6 +892,7 @@
     "orders": "Commandes",
     "inventory": "Inventaire",
     "inventoryOverview": "Aperçu de l'inventaire",
+    "stockOverview": "Vue du stock",
     "stockMovements": "Mouvements de stock",
     "lowStockAlerts": "Alertes stock faible",
     "events": "Événements",

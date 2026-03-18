@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 import { useAuthStore } from '@/store/authStore';
 import type { ModulePermission } from '@/src/types/rbac';
 
@@ -21,7 +21,7 @@ export function usePermissions() {
     return map;
   }, [modulePermissions]);
 
-  const hasPermission = (
+  const hasPermission = useCallback((
     moduleUrl: string,
     action: PermissionAction = 'is_view'
   ): boolean => {
@@ -32,7 +32,7 @@ export function usePermissions() {
     if (!modulePerm) return false;
 
     return Boolean(modulePerm[action]);
-  };
+  }, [isSuperAdmin, user, permissionMap]);
 
   /** True while the store has not yet loaded/hydrated any user data */
   const isLoading = user === null && modulePermissions.length === 0;

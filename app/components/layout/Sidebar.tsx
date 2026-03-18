@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Home, ShoppingCart, Users, Package, BarChart3, Settings, MessageCircle, Mail, CalendarDays, ChevronDown, ChevronRight, Grid, Plus, Eye, FileText, CreditCard, UserCog, Shield, Boxes, AlertTriangle, Tag } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../LanguageProvider';
 import Logo from '../../../public/kingkunta-logo.svg';
 import { usePermissions } from '@/app/hooks/usePermissions';
@@ -56,6 +57,13 @@ const menuItems: MenuItem[] = [
     permissionModule: '/inventory',
     children: [
       { icon: BarChart3, labelKey: 'nav.inventoryOverview', href: '/inventory', permissionModule: '/inventory', permissionAction: 'is_view' },
+      {
+        icon: Package,
+        labelKey: 'nav.stockOverview',
+        href: '/inventory/stock',
+        permissionModule: '/inventory',
+        permissionAction: 'is_view',
+      },
       { icon: Package, labelKey: 'nav.stockMovements', href: '/inventory/movements', permissionModule: '/inventory', permissionAction: 'is_view' },
       { icon: AlertTriangle, labelKey: 'nav.lowStockAlerts', href: '/inventory/alerts', permissionModule: '/inventory', permissionAction: 'is_view' },
     ],
@@ -174,15 +182,24 @@ export default function Sidebar({
     };
 
     const parentToExpand = findParentAndExpand(visibleMenuItems, pathname);
-    if (parentToExpand && !expandedItems.includes(parentToExpand)) {
-      setExpandedItems(prev => [...prev, parentToExpand]);
-    }
-  }, [pathname, showCollapsedMode, visibleMenuItems, expandedItems]);
+    
+    // Strict accordion behavior: close other modules when navigating to a new section
+    // Use functional update to avoid infinite loops by comparing current and next state
+    setExpandedItems(prev => {
+      if (parentToExpand) {
+        if (prev.length === 1 && prev[0] === parentToExpand) return prev;
+        return [parentToExpand];
+      } else {
+        if (prev.length === 0) return prev;
+        return [];
+      }
+    });
+  }, [pathname, showCollapsedMode, visibleMenuItems]);
 
   // Reset open flyouts when entering collapsed mode to avoid sticky submenu panels.
   useEffect(() => {
     if (showCollapsedMode) {
-      setExpandedItems([]);
+      setExpandedItems(prev => prev.length > 0 ? [] : prev);
     }
   }, [showCollapsedMode]);
 
@@ -199,9 +216,10 @@ export default function Sidebar({
   const isParentActive = (children: MenuItem[]) =>
     children.some(child => child.href && pathname === toPathOnly(child.href));
   const handleItemClick = () => {
-    if (showCollapsedMode) {
-      setExpandedItems([]);
-    }
+    // Accordion effect: close the module when a submenu item is clicked
+    // as requested by the user
+    setExpandedItems([]);
+
     if (onCloseMobile) {
       onCloseMobile();
     }
@@ -336,11 +354,20 @@ export default function Sidebar({
               <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
             )}
           </button>
-          {isExpanded && (
-            <div className="bg-opacity-50" style={{ backgroundColor: 'var(--sidebar-bg)' }}>
-              {item.children!.map(child => renderMenuItem(child, level + 1))}
-            </div>
-          )}
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className="overflow-hidden bg-opacity-50"
+                style={{ backgroundColor: 'var(--sidebar-bg)' }}
+              >
+                {item.children!.map(child => renderMenuItem(child, level + 1))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       );
     }

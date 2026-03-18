@@ -143,6 +143,24 @@
         "byDate": "By Date",
         "export": "Export Report",
         "exportShort": "Export"
+      },
+      "stock": {
+        "title": "Stock Overview",
+        "subtitle": "All products and their stock levels",
+        "byProduct": "By Product",
+        "byCategory": "By Category",
+        "totalProducts": "Total Products",
+        "lowStock": "Low Stock",
+        "outOfStock": "Out of Stock",
+        "inStock": "In Stock",
+        "currentStock": "Current Stock",
+        "minStock": "Min Stock",
+        "noProducts": "No products found",
+        "searchPlaceholder": "Search products...",
+        "allCategories": "All Categories",
+        "allStatus": "All Status",
+        "categoryProducts": "products",
+        "categoryTotalStock": "Total Stock"
       }
     },
     "settings": {
@@ -874,6 +892,7 @@
     "orders": "Orders",
     "inventory": "Inventory",
     "inventoryOverview": "Inventory Overview",
+    "stockOverview": "Stock Overview",
     "stockMovements": "Stock Movements",
     "lowStockAlerts": "Low Stock Alerts",
     "events": "Events",

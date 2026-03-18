@@ -9,6 +9,7 @@ import { Search, Eye, Edit, Package, AlertTriangle, Loader2, X } from 'lucide-re
 import { useLanguage } from "../hooks/useLanguage";
 import { getOrders, type Order, type OrderStatus, updateOrderStatus } from '@/services/orderService';
 import { usePermissions } from '@/app/hooks/usePermissions';
+import PermissionRestricted from '@/app/components/PermissionRestricted';
 
 const getStatusColor = (status: Order['status']) => {
   switch (status) {
@@ -43,7 +44,8 @@ const extractErrorDetail = (payload: unknown): string | null => {
 export default function OrdersPage() {
   const router = useRouter();
   const { t } = useLanguage();
-  const { canEditOrders } = usePermissions();
+  const { canViewOrders, canEditOrders, isLoading: permLoading } = usePermissions();
+
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [savingStatus, setSavingStatus] = useState(false);
@@ -85,6 +87,8 @@ export default function OrdersPage() {
   }, [search]);
 
   const fetchOrders = useCallback(async () => {
+    if (!canViewOrders) return;
+
     setLoading(true);
     setError('');
     try {
@@ -100,7 +104,7 @@ export default function OrdersPage() {
     } finally {
       setLoading(false);
     }
-  }, [debouncedSearch, statusFilter, dateFilter, resolveErrorMessage]);
+  }, [canViewOrders, debouncedSearch, statusFilter, dateFilter, resolveErrorMessage]);
 
   useEffect(() => {
     fetchOrders();
@@ -151,149 +155,176 @@ export default function OrdersPage() {
           </button>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 mb-4 sm:mb-6">
-          <div className="relative flex-1 max-w-full sm:max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+        {/* Filters – shown regardless of permission so navigation isn't confusing */}
+        {canViewOrders && (
+          <div className="flex flex-col sm:flex-row gap-3 mb-4 sm:mb-6">
+            <div className="relative flex-1 max-w-full sm:max-w-md">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <input
+                type="text"
+                placeholder={t('pages.orders.search.placeholder')}
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              />
+            </div>
+            <select
+              value={statusFilter}
+              onChange={(event) => setStatusFilter(event.target.value)}
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm min-w-[120px]"
+            >
+              <option value="all">{t('pages.orders.filters.allStatus')}</option>
+              <option value="pending">{t('pages.orders.filters.pending')}</option>
+              <option value="processing">{t('pages.orders.filters.processing')}</option>
+              <option value="shipped">{t('pages.orders.filters.shipped')}</option>
+              <option value="delivered">{t('pages.orders.filters.delivered')}</option>
+              <option value="cancelled">{t('pages.orders.filters.cancelled')}</option>
+            </select>
             <input
-              type="text"
-              placeholder={t('pages.orders.search.placeholder')}
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              type="date"
+              value={dateFilter}
+              onChange={(event) => setDateFilter(event.target.value)}
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             />
           </div>
-          <select
-            value={statusFilter}
-            onChange={(event) => setStatusFilter(event.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm min-w-[120px]"
-          >
-            <option value="all">{t('pages.orders.filters.allStatus')}</option>
-            <option value="pending">{t('pages.orders.filters.pending')}</option>
-            <option value="processing">{t('pages.orders.filters.processing')}</option>
-            <option value="shipped">{t('pages.orders.filters.shipped')}</option>
-            <option value="delivered">{t('pages.orders.filters.delivered')}</option>
-            <option value="cancelled">{t('pages.orders.filters.cancelled')}</option>
-          </select>
-          <input
-            type="date"
-            value={dateFilter}
-            onChange={(event) => setDateFilter(event.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+        )}
+      </motion.div>
+
+      {/* ── Permission guard ── */}
+      {!permLoading && !canViewOrders ? (
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <PermissionRestricted
+            variant="full"
+            message="Accès aux commandes restreint"
+            hint="Votre rôle actuel ne dispose pas de la permission nécessaire pour consulter la liste des commandes. Veuillez contacter un administrateur."
           />
-        </div>
-      </motion.div>
+        </motion.div>
+      ) : (
+        <>
+          {error ? (
+            <div className="mb-4 flex items-center gap-2 text-sm text-red-600">
+              <AlertTriangle className="w-4 h-4" />
+              {error}
+            </div>
+          ) : null}
 
-      {error ? (
-        <div className="mb-4 flex items-center gap-2 text-sm text-red-600">
-          <AlertTriangle className="w-4 h-4" />
-          {error}
-        </div>
-      ) : null}
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="bg-white rounded-lg shadow-sm border border-gray-200"
-      >
-        <div className={`overflow-x-auto transition-opacity ${loading ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('pages.orders.table.orderId')}
-                </th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('pages.orders.table.customer')}
-                </th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">
-                  {t('pages.orders.table.items')}
-                </th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
-                  {t('pages.orders.table.total')}
-                </th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('pages.orders.table.status')}
-                </th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">
-                  {t('pages.orders.table.date')}
-                </th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('pages.orders.table.actions')}
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {orders.map((order) => (
-                <tr key={order.id} className="hover:bg-gray-50">
-                  <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm font-medium text-blue-600">
-                    {order.id}
-                  </td>
-                  <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
-                    <div>
-                      <div className="text-sm font-medium text-gray-900">{order.customer}</div>
-                      <div className="text-xs text-gray-500 sm:hidden">{order.email}</div>
-                    </div>
-                  </td>
-                  <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm text-gray-900 hidden md:table-cell">
-                    {order.items} {t('common.items')}
-                  </td>
-                  <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm font-medium text-gray-900 hidden sm:table-cell">
-                    ${order.total.toFixed(2)}
-                  </td>
-                  <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
-                    <div className="flex flex-col gap-1">
-                      <span className={`inline-flex px-2 py-1 w-fit text-xs font-semibold rounded-full ${getStatusColor(order.status)}`}>
-                        {t(`pages.orders.filters.${order.status}`)}
-                      </span>
-                      {(order.status === 'pending' || order.status === 'processing') && order.stock_status && (
-                        <span className={`inline-flex px-2 py-1 w-fit text-xs font-semibold rounded-full ${order.stock_status === 'ok' ? 'bg-green-100 text-green-800' :
-                            order.stock_status === 'partial' ? 'bg-orange-100 text-orange-800' :
-                              'bg-red-100 text-red-800'
-                          }`}>
-                          Stock {order.stock_status.toUpperCase()}
-                        </span>
-                      )}
-                    </div>
-                  </td>
-                  <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm text-gray-900 hidden lg:table-cell">
-                    {order.date}
-                  </td>
-                  <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex space-x-2">
-                      <button
-                        onClick={() => router.push(`/orders/${order.id}`)}
-                        className="text-blue-600 hover:text-blue-900 p-1"
-                        title={t('common.view')}
-                      >
-                        <Eye className="w-4 h-4" />
-                      </button>
-                      {canEditOrders && (
-                        <button
-                          onClick={() => openStatusModal(order)}
-                          className="text-green-600 hover:text-green-900 p-1"
-                          title={t('common.edit')}
-                        >
-                          <Edit className="w-4 h-4" />
-                        </button>
-                      )}
-                      <button className="text-purple-600 hover:text-purple-900 p-1" title={t('nav.orders')}>
-                        <Package className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        {loading ? (
-          <div className="p-4 flex items-center justify-center gap-2 text-sm text-gray-500 border-t border-gray-200">
-            <Loader2 className="w-4 h-4 animate-spin" />
-            {t('common.loading')}
-          </div>
-        ) : null}
-      </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="bg-white rounded-lg shadow-sm border border-gray-200"
+          >
+            <div className={`overflow-x-auto transition-opacity ${loading ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      {t('pages.orders.table.orderId')}
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      {t('pages.orders.table.customer')}
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">
+                      {t('pages.orders.table.items')}
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
+                      {t('pages.orders.table.total')}
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      {t('pages.orders.table.status')}
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">
+                      {t('pages.orders.table.date')}
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      {t('pages.orders.table.actions')}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {orders.map((order) => (
+                    <tr key={order.id} className="hover:bg-gray-50">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm font-medium text-blue-600">
+                        {order.id}
+                      </td>
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                        <div>
+                          <div className="text-sm font-medium text-gray-900">{order.customer}</div>
+                          <div className="text-xs text-gray-500 sm:hidden">{order.email}</div>
+                        </div>
+                      </td>
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm text-gray-900 hidden md:table-cell">
+                        {order.items} {t('common.items')}
+                      </td>
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm font-medium text-gray-900 hidden sm:table-cell">
+                        ${order.total.toFixed(2)}
+                      </td>
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                        <div className="flex flex-col gap-1">
+                          <span className={`inline-flex px-2 py-1 w-fit text-xs font-semibold rounded-full ${getStatusColor(order.status)}`}>
+                            {t(`pages.orders.filters.${order.status}`)}
+                          </span>
+                          {(order.status === 'pending' || order.status === 'processing') && order.stock_status && (
+                            <span className={`inline-flex px-2 py-1 w-fit text-xs font-semibold rounded-full ${order.stock_status === 'ok' ? 'bg-green-100 text-green-800' :
+                                order.stock_status === 'partial' ? 'bg-orange-100 text-orange-800' :
+                                  'bg-red-100 text-red-800'
+                              }`}>
+                              Stock {order.stock_status.toUpperCase()}
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm text-gray-900 hidden lg:table-cell">
+                        {order.date}
+                      </td>
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm font-medium">
+                        <div className="flex space-x-2">
+                          <button
+                            onClick={() => router.push(`/orders/${order.id}`)}
+                            className="text-blue-600 hover:text-blue-900 p-1"
+                            title={t('common.view')}
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
+                          {canEditOrders ? (
+                            <button
+                              onClick={() => openStatusModal(order)}
+                              className="text-green-600 hover:text-green-900 p-1"
+                              title={t('common.edit')}
+                            >
+                              <Edit className="w-4 h-4" />
+                            </button>
+                          ) : (
+                            <span
+                              className="text-gray-300 p-1 cursor-not-allowed"
+                              title="Permission refusée"
+                            >
+                              <Edit className="w-4 h-4" />
+                            </span>
+                          )}
+                          <button className="text-purple-600 hover:text-purple-900 p-1" title={t('nav.orders')}>
+                            <Package className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {loading ? (
+              <div className="p-4 flex items-center justify-center gap-2 text-sm text-gray-500 border-t border-gray-200">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                {t('common.loading')}
+              </div>
+            ) : null}
+          </motion.div>
+        </>
+      )}
 
       {editingOrder && canEditOrders ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">

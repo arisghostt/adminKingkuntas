@@ -53,10 +53,11 @@ const menuItems: MenuItem[] = [
   {
     icon: Boxes,
     labelKey: 'nav.inventory',
+    permissionModule: '/inventory',
     children: [
-      { icon: BarChart3, labelKey: 'nav.inventoryOverview', href: '/inventory' },
-      { icon: Package, labelKey: 'nav.stockMovements', href: '/inventory/movements' },
-      { icon: AlertTriangle, labelKey: 'nav.lowStockAlerts', href: '/inventory/alerts' },
+      { icon: BarChart3, labelKey: 'nav.inventoryOverview', href: '/inventory', permissionModule: '/inventory', permissionAction: 'is_view' },
+      { icon: Package, labelKey: 'nav.stockMovements', href: '/inventory/movements', permissionModule: '/inventory', permissionAction: 'is_view' },
+      { icon: AlertTriangle, labelKey: 'nav.lowStockAlerts', href: '/inventory/alerts', permissionModule: '/inventory', permissionAction: 'is_view' },
     ],
   },
   {
@@ -81,10 +82,10 @@ const menuItems: MenuItem[] = [
   { icon: FileText, labelKey: 'nav.billingLabel', href: '/billing', permissionModule: '/billing', permissionAction: 'is_view' },
   { icon: FileText, labelKey: 'nav.invoiceLabel', href: '/invoice', permissionModule: '/billing', permissionAction: 'is_view' },
   { icon: BarChart3, labelKey: 'nav.analyticsLabel', href: '/analytics', permissionModule: '/analytics', permissionAction: 'is_view' },
-  { icon: MessageCircle, labelKey: 'nav.chatLabel', href: '/chat' },
-  { icon: Mail, labelKey: 'nav.emailLabel', href: '/email' },
-  { icon: CalendarDays, labelKey: 'nav.eventsLabel', href: '/events' },
-  { icon: Settings, labelKey: 'nav.settingsLabel', href: '/settings' },
+  { icon: MessageCircle, labelKey: 'nav.chatLabel', href: '/chat', permissionModule: '/chat', permissionAction: 'is_view' },
+  { icon: Mail, labelKey: 'nav.emailLabel', href: '/email', permissionModule: '/email', permissionAction: 'is_view' },
+  { icon: CalendarDays, labelKey: 'nav.eventsLabel', href: '/events', permissionModule: '/events', permissionAction: 'is_view' },
+  { icon: Settings, labelKey: 'nav.settingsLabel', href: '/settings', permissionModule: '/settings', permissionAction: 'is_view' },
 ];
 
 export default function Sidebar({

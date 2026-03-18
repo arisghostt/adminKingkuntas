@@ -58,12 +58,32 @@ export default function RolePermissionsModal({
     setDescription(role?.description ?? '');
     
     // Map modules to current permissions
+    const AUTO_VIEW_ONLY = ['/chat', '/email', '/settings'];
+    const AUTO_VIEW_FREE = ['/events'];
+
     const mappedPerms = modules.map(mod => {
-        // Try to find existing permission for this module
-        // services/userRoleService.ts's RoleProfile has permissions as a flat list of Permission objects
-        // But the backend now provides module_permissions
         const existing = (role as any)?.module_permissions?.find((p: any) => p.module_id === mod.id);
         
+        if (AUTO_VIEW_ONLY.includes(mod.url)) {
+            return { 
+                module_id: mod.id, 
+                module_name: mod.name,
+                is_view: true, 
+                is_add: false, 
+                is_edit: false, 
+                is_delete: false 
+            };
+        }
+        if (AUTO_VIEW_FREE.includes(mod.url)) {
+            return existing || { 
+                module_id: mod.id, 
+                module_name: mod.name,
+                is_view: true, 
+                is_add: false, 
+                is_edit: false, 
+                is_delete: false 
+            };
+        }
         return existing || {
             module_id: mod.id,
             module_name: mod.name,

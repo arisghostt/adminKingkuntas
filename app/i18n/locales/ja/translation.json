@@ -73,7 +73,8 @@
         "date": "日付",
         "in": "入库",
         "out": "出庫",
-        "allMovements": "すべての移動を表示"
+        "allMovements": "すべての移動を表示",
+        "lowStock": "在庫不足"
       }
     },
     "inventory": {

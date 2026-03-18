@@ -194,10 +194,10 @@ const normalizeInventoryStats = (payload: unknown): InventoryStats => {
     low_stock_count: Math.trunc(
       toNumber(record.low_stock_count ?? record.lowStockCount ?? record.low_stock ?? record.lowStock)
     ),
-    total_products_change: toNumber(record.total_products_change ?? record.totalProductsChange),
-    stock_in_change: toNumber(record.stock_in_change ?? record.stockInChange),
-    stock_out_change: toNumber(record.stock_out_change ?? record.stockOutChange),
-    low_stock_change: toNumber(record.low_stock_change ?? record.lowStockChange),
+    total_products_change: toNumber(record.total_products_change ?? record.totalProductsChange ?? 0),
+    stock_in_change: toNumber(record.stock_in_change ?? record.stockInChange ?? 0),
+    stock_out_change: toNumber(record.stock_out_change ?? record.stockOutChange ?? 0),
+    low_stock_change: toNumber(record.low_stock_change ?? record.lowStockChange ?? 0),
   };
 };
 

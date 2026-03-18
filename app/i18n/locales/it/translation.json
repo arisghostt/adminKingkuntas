@@ -73,7 +73,8 @@
         "date": "Data",
         "in": "Entrata",
         "out": "Uscita",
-        "allMovements": "Visualizza tutti i movimenti"
+        "allMovements": "Visualizza tutti i movimenti",
+        "lowStock": "Stock basso"
       }
     },
     "inventory": {

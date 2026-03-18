@@ -34,6 +34,14 @@ export function usePermissions() {
     return Boolean(modulePerm[action]);
   };
 
+  /** True while the store has not yet loaded/hydrated any user data */
+  const isLoading = user === null && modulePermissions.length === 0;
+
+  /** True when the user is authenticated and has a role assigned */
+  const hasRole = Boolean(
+    user && (isSuperAdmin || user.is_superuser || user.is_superadmin || user.role?.id)
+  );
+
   const canViewDashboard = hasPermission('/dashboard', 'is_view');
   const canViewProducts = hasPermission('/products', 'is_view');
   const canEditProducts = hasPermission('/products', 'is_edit');
@@ -45,9 +53,20 @@ export function usePermissions() {
   const canViewAnalytics = hasPermission('/analytics', 'is_view');
   const canManagePromotions = hasPermission('/promotions', 'is_add');
   const canManageBilling = hasPermission('/billing', 'is_view');
+  const canViewInventory = hasPermission('/inventory', 'is_view');
+  const canViewReports = hasPermission('/reports', 'is_view');
+  const canViewEvents    = hasPermission('/events', 'is_view');
+  const canAddEvents     = hasPermission('/events', 'is_add');
+  const canEditEvents    = hasPermission('/events', 'is_edit');
+  const canDeleteEvents  = hasPermission('/events', 'is_delete');
+  const canViewChat      = hasPermission('/chat', 'is_view');
+  const canViewEmail     = hasPermission('/email', 'is_view');
+  const canViewSettings  = hasPermission('/settings', 'is_view');
 
   return {
     hasPermission,
+    isLoading,
+    hasRole,
     isSuperAdmin: isSuperAdmin || Boolean(user?.is_superuser) || Boolean(user?.is_superadmin),
     canViewDashboard,
     canManageUsers,
@@ -60,5 +79,14 @@ export function usePermissions() {
     canViewAnalytics,
     canManagePromotions,
     canManageBilling,
+    canViewInventory,
+    canViewReports,
+    canViewEvents,
+    canAddEvents,
+    canEditEvents,
+    canDeleteEvents,
+    canViewChat,
+    canViewEmail,
+    canViewSettings,
   };
 }

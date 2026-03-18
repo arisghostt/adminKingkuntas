@@ -72,8 +72,9 @@
         "reference": "Referenz",
         "date": "Datum",
         "in": "An",
-        "out": "Eraus",
-        "allMovements": "All Bewegunge kucken"
+        "out": "Ausgang",
+        "allMovements": "All Beweegunge weisen",
+        "lowStock": "Nidrege Bestand"
       }
     },
     "inventory": {

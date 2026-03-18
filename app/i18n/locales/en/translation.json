@@ -103,7 +103,8 @@
         "date": "Date",
         "in": "In",
         "out": "Out",
-        "allMovements": "View All Movements"
+        "allMovements": "View All Movements",
+        "lowStock": "Low Stock"
       }
     },
     "inventory": {

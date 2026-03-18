@@ -73,7 +73,8 @@
         "date": "日期",
         "in": "入库",
         "out": "出库",
-        "allMovements": "查看所有变动"
+        "allMovements": "查看所有变动",
+        "lowStock": "低库存"
       }
     },
     "inventory": {

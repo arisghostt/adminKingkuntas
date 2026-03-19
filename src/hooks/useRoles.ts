@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Role, RolePayload } from '../types/rbac';
-import apiClient from '@/services/apiClient';
+import { apiClient } from '@/services/apiClient';
 
 const fetchRoles = async (): Promise<Role[]> => {
     const response = await apiClient.get('/roles/');

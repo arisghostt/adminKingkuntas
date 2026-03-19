@@ -1298,7 +1298,6 @@ export default function SettingsUsersPage() {
         isOpen={showRoleModal}
         mode={roleModalMode}
         role={editingRole}
-        permissionGroups={permissionGroups}
         fieldErrors={roleFieldErrors}
         isSubmitting={roleSubmitting}
         onClose={() => {
